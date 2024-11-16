@@ -19,7 +19,7 @@ namespace OctagonHelpdesk.Formularios
         public event Action<UserModel> UsuarioCreated;
         private readonly UsuarioService usuarioServiceLocal;
 
-        public UserModel usuario = new UserModel();
+        public UserModel usuario { get; set; }
         public CrearUsuarioForm(UsuarioService usuarioService)
         {
             InitializeComponent();
@@ -38,6 +38,21 @@ namespace OctagonHelpdesk.Formularios
             usuario.Departamento = (Departament)cmbDepartamento.SelectedItem;
 
             UsuarioCreated?.Invoke(usuario);
+
+            FileHelper fileHelper = new FileHelper();
+
+            List<UserModel> userModels = new List<UserModel>();
+            userModels = fileHelper.GetUsers();
+
+            try
+            {
+                fileHelper.SaveUser(userModels, usuario.Roles.AdminPerms);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Womp womp");
+            }
+
 
             this.Close();
 

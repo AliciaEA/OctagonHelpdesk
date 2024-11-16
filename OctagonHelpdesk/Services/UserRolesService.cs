@@ -34,7 +34,7 @@ namespace OctagonHelpdesk.Services
         //Mario: To Do, Enable Admins to create other admins
         private void AdminSetter(UserModel CurrentUser, Role AssignedRole, string AdminPasskey)
         {
-            string secretkey = "admin"; // Mario: To Do, DO NOT HARDCODE ADMIN PASSWORDS ON PRODUCTION VERSIONS
+            string secretkey = "admin"; 
             if (CurrentUser.Roles.AdminPerms && AdminPasskey == secretkey)
             {
                 //To do Implement Admin creation logic -Mario

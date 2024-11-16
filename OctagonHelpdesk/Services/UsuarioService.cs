@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using OctagonHelpdesk.Models;
 
 
@@ -11,12 +12,40 @@ namespace OctagonHelpdesk.Services
 {
     public class UsuarioService
     {
-        private List<UserModel> Usuarios = new List<UserModel>();
-        
+        public List<UserModel> Usuarios = new List<UserModel>();
+        FileHelper fileHelper = new FileHelper();
         public UsuarioService() 
         {
-            MassFillLocal();
+           
+            this.Usuarios=fileHelper.GetUsers();
+            //MassFillLocal();
+
         }
+
+        //Test code begin
+        public UsuarioService(int id,string password)
+        {
+            this.Usuarios = fileHelper.GetUsers();
+            UserModel user = new UserModel
+            {
+                IDUser = id,
+                Name = "Mitch",
+                Lastname = "Gonz",
+                ActiveStateU = true,
+                CreationDate = DateTime.Now,
+                Departamento = 0,
+                Email = "mail"
+            };
+           
+            user.SetPassword(password, true);
+            this.AddUsuario(user);
+            fileHelper.SaveUser(Usuarios,true);
+            this.Usuarios = fileHelper.GetUsers();
+
+        }
+
+        //Test code end
+
 
         private void MassFillLocal()
         {
@@ -28,8 +57,12 @@ namespace OctagonHelpdesk.Services
 
 
         public void AddUsuario(UserModel usuario)
-        {
-            Usuarios.Add(usuario);
+        { 
+            if(Usuarios != null)
+            {
+                Usuarios.Add(usuario);
+                fileHelper.SaveUser(Usuarios,true);
+            }
         }
         public void RemoveUsuario(UserModel LoggedUser,UserModel usuario)
         {
@@ -63,18 +96,11 @@ namespace OctagonHelpdesk.Services
         }
 
 
-        public bool CheckUser(string UserID, string password)
-        {
-            int ID = 0;
-            try
+        public bool CheckUser(int UserID, string password)
+        {  
+           for (int i = 0; i < Usuarios.Count; i++)
             {
-                ID = int.Parse(UserID);
-            }
-            catch { }
-            
-            for (int i = 0; i < Usuarios.Count; i++)
-            {
-                if ((ID == Usuarios[i].IDUser)&&ID != 0) 
+                if ((UserID == Usuarios[i].IDUser)&& UserID != 0) 
                 { 
                     if (Usuarios[i].ChecKPassword(password))
                     {

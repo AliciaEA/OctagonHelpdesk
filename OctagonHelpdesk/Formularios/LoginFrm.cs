@@ -25,34 +25,36 @@ namespace OctagonHelpdesk.Formularios
         private void btnlogin_Click(object sender, EventArgs e)
         {
             // Get from db
-            string userdb = "santaclus";
-            string passwordb = "1234";
-            UsuarioService usuarioService = new UsuarioService();
+            UsuarioService usuarioService = new UsuarioService(1,"123");
+
+            int id =0;
 
             string inputuser = txbuser.Text;
             string inputpassword = txbpassword.Text;
 
+            try
+            {
+                id = int.Parse(inputuser);
+            } catch { }
+
             this.DialogResult = DialogResult.OK;
             submitted = true;
-            this.Close();
+            
 
-            if ((!string.IsNullOrEmpty(txbuser.Text) && !string.IsNullOrEmpty(txbpassword.Text)) && usuarioService.CheckUser(inputuser, inputpassword))
+
+
+            if ((!string.IsNullOrEmpty(txbuser.Text) && !string.IsNullOrEmpty(txbpassword.Text)) && usuarioService.CheckUser(id, inputpassword))
             {
-                CurrentUser = new UserModel { 
-                    Name = txbuser.Text              
-                };
+                
                 this.DialogResult = DialogResult.OK;
                 submitted = true;
                 this.Close();
+
             } else if(string.IsNullOrEmpty(txbuser.Text) || string.IsNullOrEmpty(txbpassword.Text))
-            {
-                MessageBox.Show("Credenciales vacias");
-            }
-            else
             {
                 MessageBox.Show("Credenciales invalidas");
             }
-
+           
 
         }
 
