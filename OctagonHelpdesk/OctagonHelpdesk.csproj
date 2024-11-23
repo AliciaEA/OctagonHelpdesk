@@ -202,6 +202,8 @@
     <Content Include="Assets\stacked-waves-haikei%28720p%29.png" />
     <Content Include="Assets\stacked-waves-haikei.png" />
     <Content Include="Assets\wavebckg.jpg" />
+    <None Include="Resources\usuariosNoFocus.png" />
+    <None Include="Resources\boleto.png" />
     <None Include="Resources\iconHelpdesk.ico" />
     <None Include="Resources\RegTickets.png" />
     <None Include="Resources\menu.png" />

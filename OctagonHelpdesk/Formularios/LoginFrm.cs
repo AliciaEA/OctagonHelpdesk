@@ -53,5 +53,23 @@ namespace OctagonHelpdesk
 
             }
         }
+
+        private void txbuser_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+               txbpassword.Focus();
+            }
+        }
+
+        private void txbpassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                btnlogin_Click(sender, e);
+            }
+           
+        }
+
     }
 }

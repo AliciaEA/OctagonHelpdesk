@@ -111,13 +111,9 @@ namespace OctagonHelpdesk.Formularios
             }
             else
             {
-                MessageBox.Show("Revise el Formato de los Datos Ingresados, No se admiten campis vacíos. Minimo uno de los permisos debe estar activo", "¡Cuidado!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Revise el formato de los datos ingresados, no se admiten campos vacíos. Mínimo uno de los permisos debe estar activo", "¡Cuidado!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Error: " + ex.Message, "¡Cuidado!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //}
+            
         }
 
         public bool ValidarDatos()

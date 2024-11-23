@@ -146,6 +146,14 @@ namespace OctagonHelpdesk
                     sidebar.Width = sidebarWidthCollapsed;
                     isExpanded = false;
                     btnRegTickets.Text = "";
+                    btnMenu.Text = "";
+                    btnRegUsuarios.Text = "";
+
+                    // Ajustar el ancho de los botones
+                    btnRegTickets.Width = sidebarWidthCollapsed;
+                    btnMenu.Width = sidebarWidthCollapsed;
+                    btnRegUsuarios.Width = sidebarWidthCollapsed;
+
                     animationTimer.Stop();
 
                     // Reactiva el redibujado al finalizar la animación
@@ -161,6 +169,16 @@ namespace OctagonHelpdesk
                     sidebar.Width = sidebarWidthExpanded;
                     isExpanded = true;
                     btnRegTickets.Text = "Tickets";
+                    btnMenu.Text = "Menu";
+                    btnRegUsuarios.Text = "Usuarios";
+
+                    // Ajustar el ancho de los botones
+                    btnRegTickets.Width = sidebarWidthExpanded;
+                    btnRegUsuarios.Width = sidebarWidthExpanded;
+
+
+                    btnMenu.Width = sidebarWidthExpanded;
+
                     animationTimer.Stop();
 
                     // Reactiva el redibujado al finalizar la animación
@@ -169,6 +187,7 @@ namespace OctagonHelpdesk
                 }
             }
         }
+
 
         private void btnMenu_Click(object sender, EventArgs e)
         {
@@ -190,6 +209,56 @@ namespace OctagonHelpdesk
         private void btnMenu_MouseHover(object sender, EventArgs e)
         {
             btnMenu.BackColor = Color.FromArgb(0, 122, 204);
+        }
+
+        private void btnRegTickets_Click(object sender, EventArgs e)
+        {
+            RegTicketFrm regTicketFrm = Application.OpenForms.OfType<RegTicketFrm>().FirstOrDefault();
+            /*busca si ya existe una instancia de RegTicketFrm abierta. Si encuentra una, la asigna a regTicketFrm.*/
+
+            if (regTicketFrm != null)
+            {
+                // Si el formulario ya está abierto, lo trae al frente y lo maximiza
+                regTicketFrm.WindowState = FormWindowState.Maximized;
+                regTicketFrm.BringToFront();
+            }
+            else
+            {
+                // Si el formulario no está abierto, crea una nueva instancia
+                regTicketFrm = new RegTicketFrm(currentUser);
+                regTicketFrm.MdiParent = this;
+                regTicketFrm.WindowState = FormWindowState.Minimized; // Minimiza el formulario inmediatamente
+                regTicketFrm.Show();
+                regTicketFrm.WindowState = FormWindowState.Maximized; // Luego lo maximiza
+            }
+        }
+
+        private void btnRegUsuarios_Click(object sender, EventArgs e)
+        {
+            // Verifica si el formulario ya está abierto
+            RegEmpleadosFrm regEmpleadosFrm = Application.OpenForms.OfType<RegEmpleadosFrm>().FirstOrDefault();
+
+            if (regEmpleadosFrm != null)
+            {
+                // Si el formulario ya está abierto, lo trae al frente y lo maximiza
+                regEmpleadosFrm.WindowState = FormWindowState.Maximized;
+                regEmpleadosFrm.BringToFront();
+            }
+            else
+            {
+                // Si el formulario no está abierto, crea una nueva instancia
+                regEmpleadosFrm = new RegEmpleadosFrm(currentUser);
+                regEmpleadosFrm.MdiParent = this;
+                regEmpleadosFrm.WindowState = FormWindowState.Minimized; // Minimiza el formulario inmediatamente
+                regEmpleadosFrm.Show();
+                regEmpleadosFrm.WindowState = FormWindowState.Maximized; // Luego lo maximiza
+            }
+
+        }
+
+        private void btnRegUsuarios_MouseHover(object sender, EventArgs e)
+        {
+            btnRegUsuarios.BackColor = Color.FromArgb(0, 122, 204);
         }
     }
 }
