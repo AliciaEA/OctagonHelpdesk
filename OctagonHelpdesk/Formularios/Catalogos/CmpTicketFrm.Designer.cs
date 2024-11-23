@@ -174,9 +174,9 @@
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.txtSubject);
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Location = new System.Drawing.Point(188, 93);
+            this.panel1.Location = new System.Drawing.Point(167, 54);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(672, 559);
+            this.panel1.Size = new System.Drawing.Size(592, 546);
             this.panel1.TabIndex = 14;
             // 
             // btnAttachments
@@ -225,7 +225,7 @@
             this.pictureBox1.Image = global::OctagonHelpdesk.Properties.Resources.wavebckg;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(132, 664);
+            this.pictureBox1.Size = new System.Drawing.Size(132, 622);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 17;
             this.pictureBox1.TabStop = false;
@@ -233,14 +233,14 @@
             // CmpTicketFrm
             // 
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(906, 664);
+            this.ClientSize = new System.Drawing.Size(783, 622);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblTicketID);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CmpTicketFrm";
-            this.Text = "Campos Ticket";
+            this.Text = "Ticket";
             this.Load += new System.EventHandler(this.CmpTicketFrm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

@@ -2,20 +2,13 @@
 using OctagonHelpdesk.Models.Enum;
 using OctagonHelpdesk.Services;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace OctagonHelpdesk.Formularios
 {
     public partial class CmpTicketFrm : Form
     {
-
         public event Action<Ticket> TicketCreated;
         private readonly TicketDao ticketDaoLocal;
         UserModel currentUser { get; set; }
@@ -38,7 +31,6 @@ namespace OctagonHelpdesk.Formularios
             InitializeComponent();
             ticketDaoLocal = ticketService;
             ticketSel = ticketSelected;
-            InitializeFormWithTicketData();
             this.currentUser = currentUser;
             txtCreatedBy.Text = currentUser.Name;
         }
@@ -50,7 +42,7 @@ namespace OctagonHelpdesk.Formularios
             lblTicketID.Text = $"Ticket # {ticket.IDTicket}";
             ticket.CreationDate = DateTime.Now;
             ticket.ActiveState = true;
-            cmbAsigned.Text = "No Asignado";
+            cmbAsigned.SelectedValue = 0;
         }
 
         // Inicializar el formulario para editar un ticket existente
@@ -65,9 +57,9 @@ namespace OctagonHelpdesk.Formularios
                 txtDescription.Text = ticketSel.Descripcion;
                 cmbState.SelectedItem = ticketSel.StateProcess;
                 cmbPriority.SelectedItem = ticketSel.Prioridad;
-                cmbAsigned.SelectedValue = ticketSel.AsignadoA;
-                //si es admin o it
 
+                // Asignar el valor seleccionado después de que el ComboBox esté cargado
+                cmbAsigned.SelectedValue = ticketSel.AsignadoA;
             }
         }
 
@@ -88,7 +80,7 @@ namespace OctagonHelpdesk.Formularios
                     ticket.Descripcion = description;
                     ticket.StateProcess = cmbState.SelectedItem != null ? (State)cmbState.SelectedItem : State.Creado;
                     ticket.Prioridad = (Priority)cmbPriority.SelectedItem;
-                    ticket.AsignadoA = cmbAsigned.SelectedValue != null ? (int)cmbAsigned.SelectedValue : 0;
+                    ticket.AsignadoA = (int)cmbAsigned.SelectedValue;
 
                     if (ticket.StateProcess == State.Cerrado)
                     {
@@ -109,8 +101,6 @@ namespace OctagonHelpdesk.Formularios
             }
         }
 
-   
-
         public bool ValidarDatos()
         {
             if (string.IsNullOrEmpty(txtSubject.Text) || string.IsNullOrEmpty(txtDescription.Text) || cmbState.SelectedIndex == -1 || cmbPriority.SelectedIndex == -1)
@@ -119,6 +109,7 @@ namespace OctagonHelpdesk.Formularios
             }
             return true;
         }
+
         private void LoadComboBox()
         {
             UsuarioDao usuarios = new UsuarioDao();
@@ -126,6 +117,7 @@ namespace OctagonHelpdesk.Formularios
                 .Where(u => u.Roles.ITPerms == true || u.Roles.AdminPerms == true)
                 .Select(u => new { u.IDUser, u.Username })
                 .ToList();
+            filteredUsers.Insert(0, new { IDUser = 0, Username = "No Asignado" });
 
             cmbAsigned.DataSource = filteredUsers;
             cmbAsigned.DisplayMember = "Username";
@@ -144,6 +136,11 @@ namespace OctagonHelpdesk.Formularios
 
             LoadComboBox();
 
+            // Inicializar el formulario con los datos del ticket seleccionado
+            if (ticketSel != null)
+            {
+                InitializeFormWithTicketData();
+            }
         }
     }
 }
