@@ -24,13 +24,19 @@ namespace OctagonHelpdesk
         private int sidebarWidthExpanded = 150; // Ancho expandido
         private int sidebarWidthCollapsed = 50;  // Ancho colapsado
         private int animationStep = 5; // Velocidad de la animación
+
+
+
         UserModel currentUser { get; set; }
 
         public MdiParentFrm()
         {
             InitializeComponent();
             animationTimer.Interval = 15; // Velocidad de refresco (15 ms)
-
+            timer1.Interval = 1000; // 1 segundo
+            timer1.Tick += new EventHandler(timer1_Tick);
+            timer1.Start();
+            UpdateTime();
         }
 
         //Archivo, Salir
@@ -48,6 +54,24 @@ namespace OctagonHelpdesk
                 {
                     currentUser = loginForm.CurrentUser;
                     // Aquí puedes agregar lógica adicional para manejar el usuario logueado
+                    Home home = Application.OpenForms.OfType<Home>().FirstOrDefault();
+                    /*busca si ya existe una instancia de RegTicketFrm abierta. Si encuentra una, la asigna a regTicketFrm.*/
+
+                    if (home != null)
+                    {
+                        // Si el formulario ya está abierto, lo trae al frente y lo maximiza
+                        home.WindowState = FormWindowState.Maximized;
+                        home.BringToFront();
+                    }
+                    else
+                    {
+                        // Si el formulario no está abierto, crea una nueva instancia
+                        home = new Home(currentUser);
+                        home.MdiParent = this;
+                        home.WindowState = FormWindowState.Minimized; // Minimiza el formulario inmediatamente
+                        home.Show();
+                        home.WindowState = FormWindowState.Maximized; // Luego lo maximiza
+                    }
                 }
                 else
                 {
@@ -56,10 +80,32 @@ namespace OctagonHelpdesk
             }
         }
 
+        //****Formulario Home****
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            Home home = Application.OpenForms.OfType<Home>().FirstOrDefault();
+            /*busca si ya existe una instancia de RegTicketFrm abierta. Si encuentra una, la asigna a regTicketFrm.*/
+
+            if (home != null)
+            {
+                // Si el formulario ya está abierto, lo trae al frente y lo maximiza
+                home.WindowState = FormWindowState.Maximized;
+                home.BringToFront();
+            }
+            else
+            {
+                // Si el formulario no está abierto, crea una nueva instancia
+                home = new Home(currentUser);
+                home.MdiParent = this;
+                home.WindowState = FormWindowState.Minimized; // Minimiza el formulario inmediatamente
+                home.Show();
+                home.WindowState = FormWindowState.Maximized; // Luego lo maximiza
+            }
+        }
 
 
-        //Formulario Registro de Tickets
-        private void ticketToolStripMenuItem_Click(object sender, EventArgs e)
+        //****Formulario Registro de Tickets****
+        private void btnRegTickets_Click(object sender, EventArgs e)
         {
             RegTicketFrm regTicketFrm = Application.OpenForms.OfType<RegTicketFrm>().FirstOrDefault();
             /*busca si ya existe una instancia de RegTicketFrm abierta. Si encuentra una, la asigna a regTicketFrm.*/
@@ -79,13 +125,12 @@ namespace OctagonHelpdesk
                 regTicketFrm.Show();
                 regTicketFrm.WindowState = FormWindowState.Maximized; // Luego lo maximiza
             }
-
         }
 
-        //Formulario Registro de Usuarios
-        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
 
+        //****Formulario Registro de Usuarios****
+        private void btnRegUsuarios_Click(object sender, EventArgs e)
+        {
             // Verifica si el formulario ya está abierto
             RegEmpleadosFrm regEmpleadosFrm = Application.OpenForms.OfType<RegEmpleadosFrm>().FirstOrDefault();
 
@@ -104,7 +149,10 @@ namespace OctagonHelpdesk
                 regEmpleadosFrm.Show();
                 regEmpleadosFrm.WindowState = FormWindowState.Maximized; // Luego lo maximiza
             }
+
         }
+
+       
 
         //Test
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
@@ -113,6 +161,13 @@ namespace OctagonHelpdesk
             frame.Show();
         }
 
+        //****DISPLAY HOUR****
+
+
+        private void UpdateTime()
+        {
+            lblHora.Text = DateTime.Now.ToString("HH:mm");
+        }
 
         //****SIDE BAR ANIMATION****
         private void ToggleSidebar(object sender, EventArgs e)
@@ -211,55 +266,19 @@ namespace OctagonHelpdesk
             btnMenu.BackColor = Color.FromArgb(0, 122, 204);
         }
 
-        private void btnRegTickets_Click(object sender, EventArgs e)
-        {
-            RegTicketFrm regTicketFrm = Application.OpenForms.OfType<RegTicketFrm>().FirstOrDefault();
-            /*busca si ya existe una instancia de RegTicketFrm abierta. Si encuentra una, la asigna a regTicketFrm.*/
-
-            if (regTicketFrm != null)
-            {
-                // Si el formulario ya está abierto, lo trae al frente y lo maximiza
-                regTicketFrm.WindowState = FormWindowState.Maximized;
-                regTicketFrm.BringToFront();
-            }
-            else
-            {
-                // Si el formulario no está abierto, crea una nueva instancia
-                regTicketFrm = new RegTicketFrm(currentUser);
-                regTicketFrm.MdiParent = this;
-                regTicketFrm.WindowState = FormWindowState.Minimized; // Minimiza el formulario inmediatamente
-                regTicketFrm.Show();
-                regTicketFrm.WindowState = FormWindowState.Maximized; // Luego lo maximiza
-            }
-        }
-
-        private void btnRegUsuarios_Click(object sender, EventArgs e)
-        {
-            // Verifica si el formulario ya está abierto
-            RegEmpleadosFrm regEmpleadosFrm = Application.OpenForms.OfType<RegEmpleadosFrm>().FirstOrDefault();
-
-            if (regEmpleadosFrm != null)
-            {
-                // Si el formulario ya está abierto, lo trae al frente y lo maximiza
-                regEmpleadosFrm.WindowState = FormWindowState.Maximized;
-                regEmpleadosFrm.BringToFront();
-            }
-            else
-            {
-                // Si el formulario no está abierto, crea una nueva instancia
-                regEmpleadosFrm = new RegEmpleadosFrm(currentUser);
-                regEmpleadosFrm.MdiParent = this;
-                regEmpleadosFrm.WindowState = FormWindowState.Minimized; // Minimiza el formulario inmediatamente
-                regEmpleadosFrm.Show();
-                regEmpleadosFrm.WindowState = FormWindowState.Maximized; // Luego lo maximiza
-            }
-
-        }
-
         private void btnRegUsuarios_MouseHover(object sender, EventArgs e)
         {
             btnRegUsuarios.BackColor = Color.FromArgb(0, 122, 204);
         }
+
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
+            UpdateTime();
+        }
+
+       
     }
 }
 

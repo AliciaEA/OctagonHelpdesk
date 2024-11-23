@@ -78,6 +78,12 @@
     <Compile Include="Formularios\Catalogos\CrearUsuarioForm.Designer.cs">
       <DependentUpon>CrearUsuarioForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Home.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Home.Designer.cs">
+      <DependentUpon>Home.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\LoginFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Catalogos\CrearUsuarioForm.resx">
       <DependentUpon>CrearUsuarioForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Home.resx">
+      <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\LoginFrm.resx">
       <DependentUpon>LoginFrm.cs</DependentUpon>
@@ -202,6 +211,8 @@
     <Content Include="Assets\stacked-waves-haikei%28720p%29.png" />
     <Content Include="Assets\stacked-waves-haikei.png" />
     <Content Include="Assets\wavebckg.jpg" />
+    <None Include="Resources\bienvenida.png" />
+    <None Include="Resources\inicioNoFocus.png" />
     <None Include="Resources\usuariosNoFocus.png" />
     <None Include="Resources\boleto.png" />
     <None Include="Resources\iconHelpdesk.ico" />

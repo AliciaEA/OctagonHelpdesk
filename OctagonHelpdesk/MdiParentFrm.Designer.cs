@@ -32,13 +32,16 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MdiParentFrm));
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblHora = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.animationTimer = new System.Windows.Forms.Timer(this.components);
             this.sidebar = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.btnMenu = new System.Windows.Forms.ToolStripButton();
+            this.btnHome = new System.Windows.Forms.ToolStripButton();
             this.btnRegTickets = new System.Windows.Forms.ToolStripButton();
             this.btnRegUsuarios = new System.Windows.Forms.ToolStripButton();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.statusStrip.SuspendLayout();
             this.sidebar.SuspendLayout();
             this.SuspendLayout();
@@ -47,7 +50,8 @@
             // 
             this.statusStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel});
+            this.toolStripStatusLabel,
+            this.lblHora});
             this.statusStrip.Location = new System.Drawing.Point(0, 603);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Padding = new System.Windows.Forms.Padding(2, 0, 21, 0);
@@ -60,6 +64,12 @@
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
             this.toolStripStatusLabel.Size = new System.Drawing.Size(66, 25);
             this.toolStripStatusLabel.Text = "Estado";
+            // 
+            // lblHora
+            // 
+            this.lblHora.Name = "lblHora";
+            this.lblHora.Size = new System.Drawing.Size(179, 25);
+            this.lblHora.Text = "toolStripStatusLabel1";
             // 
             // animationTimer
             // 
@@ -75,6 +85,7 @@
             this.sidebar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
             this.btnMenu,
+            this.btnHome,
             this.btnRegTickets,
             this.btnRegUsuarios});
             this.sidebar.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
@@ -106,6 +117,18 @@
             this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
             this.btnMenu.MouseHover += new System.EventHandler(this.btnMenu_MouseHover);
             // 
+            // btnHome
+            // 
+            this.btnHome.AutoSize = false;
+            this.btnHome.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnHome.Image = global::OctagonHelpdesk.Properties.Resources.inicioNoFocus;
+            this.btnHome.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnHome.Name = "btnHome";
+            this.btnHome.Size = new System.Drawing.Size(63, 40);
+            this.btnHome.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnHome.ToolTipText = "Inicio";
+            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
+            // 
             // btnRegTickets
             // 
             this.btnRegTickets.AutoSize = false;
@@ -132,6 +155,10 @@
             this.btnRegUsuarios.ToolTipText = "Registro de Usuarios";
             this.btnRegUsuarios.Click += new System.EventHandler(this.btnRegUsuarios_Click);
             this.btnRegUsuarios.MouseHover += new System.EventHandler(this.btnRegUsuarios_MouseHover);
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // MdiParentFrm
             // 
@@ -167,6 +194,9 @@
         private System.Windows.Forms.Timer animationTimer;
         private System.Windows.Forms.ToolStripButton btnRegTickets;
         private System.Windows.Forms.ToolStripButton btnRegUsuarios;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ToolStripStatusLabel lblHora;
+        private System.Windows.Forms.ToolStripButton btnHome;
     }
 }
 

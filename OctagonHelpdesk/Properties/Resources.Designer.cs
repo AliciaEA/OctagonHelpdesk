@@ -83,6 +83,16 @@ namespace OctagonHelpdesk.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bienvenida {
+            get {
+                object obj = ResourceManager.GetObject("bienvenida", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap boleto {
             get {
                 object obj = ResourceManager.GetObject("boleto", resourceCulture);
@@ -107,6 +117,16 @@ namespace OctagonHelpdesk.Properties {
             get {
                 object obj = ResourceManager.GetObject("iconHelpdesk", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap inicioNoFocus {
+            get {
+                object obj = ResourceManager.GetObject("inicioNoFocus", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
