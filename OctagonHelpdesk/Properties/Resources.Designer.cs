@@ -233,6 +233,16 @@ namespace OctagonHelpdesk.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap reportesIcon {
+            get {
+                object obj = ResourceManager.GetObject("reportesIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap see {
             get {
                 object obj = ResourceManager.GetObject("see", resourceCulture);

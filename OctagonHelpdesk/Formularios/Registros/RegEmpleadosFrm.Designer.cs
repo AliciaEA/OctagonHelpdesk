@@ -46,9 +46,14 @@
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.DgvRegUsuarios = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.btnReportesVistaPrevia = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmbFilterRole = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cmbFilterState = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmbFilterDepartment = new System.Windows.Forms.ComboBox();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.iDUserDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.activeStateUDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -61,6 +66,7 @@
             this.lastUpdatedDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.deactivationDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.reactivationDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnApplyFilters = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
@@ -75,9 +81,9 @@
             this.panel2.Controls.Add(this.bindingNavigator1);
             this.panel2.Controls.Add(this.DgvRegUsuarios);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 178);
+            this.panel2.Location = new System.Drawing.Point(0, 233);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1166, 710);
+            this.panel2.Size = new System.Drawing.Size(1166, 655);
             this.panel2.TabIndex = 20;
             // 
             // bindingNavigator1
@@ -107,14 +113,14 @@
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(1166, 38);
+            this.bindingNavigator1.Size = new System.Drawing.Size(1749, 57);
             this.bindingNavigator1.TabIndex = 1;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(57, 33);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(57, 52);
             this.bindingNavigatorCountItem.Text = "de {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Número total de elementos";
             // 
@@ -124,7 +130,7 @@
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(34, 33);
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(34, 52);
             this.bindingNavigatorMoveFirstItem.Text = "Mover primero";
             // 
             // bindingNavigatorMovePreviousItem
@@ -133,13 +139,13 @@
             this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
             this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
             this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(34, 33);
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(34, 52);
             this.bindingNavigatorMovePreviousItem.Text = "Mover anterior";
             // 
             // bindingNavigatorSeparator
             // 
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 38);
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 57);
             // 
             // bindingNavigatorPositionItem
             // 
@@ -154,7 +160,7 @@
             // bindingNavigatorSeparator1
             // 
             this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 38);
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 57);
             // 
             // bindingNavigatorMoveNextItem
             // 
@@ -162,7 +168,7 @@
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(34, 33);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(34, 52);
             this.bindingNavigatorMoveNextItem.Text = "Mover siguiente";
             // 
             // bindingNavigatorMoveLastItem
@@ -171,13 +177,13 @@
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(34, 33);
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(34, 52);
             this.bindingNavigatorMoveLastItem.Text = "Mover último";
             // 
             // bindingNavigatorSeparator2
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 38);
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 57);
             // 
             // bindingNavigatorAddNewItem
             // 
@@ -185,7 +191,7 @@
             this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(34, 33);
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(34, 52);
             this.bindingNavigatorAddNewItem.Text = "Agregar nuevo";
             this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
             // 
@@ -195,7 +201,7 @@
             this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
             this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(34, 33);
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(34, 52);
             this.bindingNavigatorDeleteItem.Text = "Eliminar";
             this.bindingNavigatorDeleteItem.Click += new System.EventHandler(this.bindingNavigatorDeleteItem_Click);
             // 
@@ -231,7 +237,7 @@
             this.DgvRegUsuarios.RowHeadersWidth = 62;
             this.DgvRegUsuarios.RowTemplate.Height = 28;
             this.DgvRegUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgvRegUsuarios.Size = new System.Drawing.Size(1166, 639);
+            this.DgvRegUsuarios.Size = new System.Drawing.Size(1166, 584);
             this.DgvRegUsuarios.TabIndex = 0;
             this.DgvRegUsuarios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvRegUsuarios_CellClick);
             this.DgvRegUsuarios.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvRegUsuarios_CellDoubleClick);
@@ -239,43 +245,98 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Controls.Add(this.btnApplyFilters);
+            this.panel1.Controls.Add(this.cmbFilterDepartment);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.cmbFilterState);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.cmbFilterRole);
             this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.btnReportesVistaPrevia);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1166, 178);
+            this.panel1.Size = new System.Drawing.Size(1166, 233);
             this.panel1.TabIndex = 19;
             // 
-            // comboBox1
+            // label6
             // 
-            this.comboBox1.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(106, 91);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(134, 28);
-            this.comboBox1.TabIndex = 0;
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("MingLiU-ExtB", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(36, 19);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(437, 40);
+            this.label6.TabIndex = 17;
+            this.label6.Text = "Registro de Empleados";
+            // 
+            // btnReportesVistaPrevia
+            // 
+            this.btnReportesVistaPrevia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReportesVistaPrevia.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnReportesVistaPrevia.Image = global::OctagonHelpdesk.Properties.Resources.reportesIcon;
+            this.btnReportesVistaPrevia.Location = new System.Drawing.Point(1053, 101);
+            this.btnReportesVistaPrevia.Name = "btnReportesVistaPrevia";
+            this.btnReportesVistaPrevia.Size = new System.Drawing.Size(88, 89);
+            this.btnReportesVistaPrevia.TabIndex = 19;
+            this.btnReportesVistaPrevia.UseVisualStyleBackColor = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 94);
+            this.label1.Font = new System.Drawing.Font("MingLiU-ExtB", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(39, 181);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 20);
-            this.label1.TabIndex = 18;
-            this.label1.Text = "Filtrar por:";
+            this.label1.Size = new System.Drawing.Size(43, 16);
+            this.label1.TabIndex = 22;
+            this.label1.Text = "Rol:";
             // 
-            // label6
+            // cmbFilterRole
             // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(6, 9);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(429, 54);
-            this.label6.TabIndex = 17;
-            this.label6.Text = "Registro de Empleados";
+            this.cmbFilterRole.FormattingEnabled = true;
+            this.cmbFilterRole.Location = new System.Drawing.Point(125, 175);
+            this.cmbFilterRole.Name = "cmbFilterRole";
+            this.cmbFilterRole.Size = new System.Drawing.Size(175, 28);
+            this.cmbFilterRole.TabIndex = 23;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("MingLiU-ExtB", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(39, 114);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(70, 16);
+            this.label2.TabIndex = 24;
+            this.label2.Text = "Estado:";
+            // 
+            // cmbFilterState
+            // 
+            this.cmbFilterState.FormattingEnabled = true;
+            this.cmbFilterState.Location = new System.Drawing.Point(125, 110);
+            this.cmbFilterState.Name = "cmbFilterState";
+            this.cmbFilterState.Size = new System.Drawing.Size(175, 28);
+            this.cmbFilterState.TabIndex = 25;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("MingLiU-ExtB", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(365, 114);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(124, 16);
+            this.label3.TabIndex = 26;
+            this.label3.Text = "Departamento:";
+            // 
+            // cmbFilterDepartment
+            // 
+            this.cmbFilterDepartment.FormattingEnabled = true;
+            this.cmbFilterDepartment.Location = new System.Drawing.Point(508, 110);
+            this.cmbFilterDepartment.Name = "cmbFilterDepartment";
+            this.cmbFilterDepartment.Size = new System.Drawing.Size(190, 28);
+            this.cmbFilterDepartment.TabIndex = 27;
             // 
             // bindingSource1
             // 
@@ -379,6 +440,18 @@
             this.reactivationDateDataGridViewTextBoxColumn.ReadOnly = true;
             this.reactivationDateDataGridViewTextBoxColumn.ToolTipText = "Fecha de Reactivacion del Empleado";
             // 
+            // btnApplyFilters
+            // 
+            this.btnApplyFilters.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnApplyFilters.Font = new System.Drawing.Font("MingLiU-ExtB", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnApplyFilters.Location = new System.Drawing.Point(373, 170);
+            this.btnApplyFilters.Name = "btnApplyFilters";
+            this.btnApplyFilters.Size = new System.Drawing.Size(325, 36);
+            this.btnApplyFilters.TabIndex = 28;
+            this.btnApplyFilters.Text = "Aplicar Filtros";
+            this.btnApplyFilters.UseVisualStyleBackColor = false;
+            this.btnApplyFilters.Click += new System.EventHandler(this.btnApplyFilters_Click);
+            // 
             // RegEmpleadosFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -408,8 +481,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridView DgvRegUsuarios;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.BindingNavigator bindingNavigator1;
         private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
@@ -435,5 +506,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn lastUpdatedDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn deactivationDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn reactivationDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button btnReportesVistaPrevia;
+        private System.Windows.Forms.ComboBox cmbFilterState;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cmbFilterRole;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cmbFilterDepartment;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnApplyFilters;
     }
 }
