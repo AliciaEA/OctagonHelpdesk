@@ -33,7 +33,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
@@ -50,12 +49,24 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.iDUserDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.activeStateUDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.usernameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.departamentoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.creationDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastUpdatedDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.deactivationDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.reactivationDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvRegUsuarios)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
@@ -96,14 +107,14 @@
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(1166, 33);
+            this.bindingNavigator1.Size = new System.Drawing.Size(1166, 38);
             this.bindingNavigator1.TabIndex = 1;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(57, 28);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(57, 33);
             this.bindingNavigatorCountItem.Text = "de {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Número total de elementos";
             // 
@@ -113,7 +124,7 @@
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(34, 28);
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(34, 33);
             this.bindingNavigatorMoveFirstItem.Text = "Mover primero";
             // 
             // bindingNavigatorMovePreviousItem
@@ -122,13 +133,13 @@
             this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
             this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
             this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(34, 28);
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(34, 33);
             this.bindingNavigatorMovePreviousItem.Text = "Mover anterior";
             // 
             // bindingNavigatorSeparator
             // 
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 33);
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 38);
             // 
             // bindingNavigatorPositionItem
             // 
@@ -143,7 +154,7 @@
             // bindingNavigatorSeparator1
             // 
             this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 33);
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 38);
             // 
             // bindingNavigatorMoveNextItem
             // 
@@ -151,7 +162,7 @@
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(34, 28);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(34, 33);
             this.bindingNavigatorMoveNextItem.Text = "Mover siguiente";
             // 
             // bindingNavigatorMoveLastItem
@@ -160,13 +171,13 @@
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(34, 28);
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(34, 33);
             this.bindingNavigatorMoveLastItem.Text = "Mover último";
             // 
             // bindingNavigatorSeparator2
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 33);
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 38);
             // 
             // bindingNavigatorAddNewItem
             // 
@@ -174,7 +185,7 @@
             this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(34, 28);
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(34, 33);
             this.bindingNavigatorAddNewItem.Text = "Agregar nuevo";
             this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
             // 
@@ -184,7 +195,7 @@
             this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
             this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(34, 28);
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(34, 33);
             this.bindingNavigatorDeleteItem.Text = "Eliminar";
             this.bindingNavigatorDeleteItem.Click += new System.EventHandler(this.bindingNavigatorDeleteItem_Click);
             // 
@@ -197,9 +208,23 @@
             this.DgvRegUsuarios.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.DgvRegUsuarios.AutoGenerateColumns = false;
             this.DgvRegUsuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DgvRegUsuarios.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DgvRegUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvRegUsuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.iDUserDataGridViewTextBoxColumn,
+            this.activeStateUDataGridViewCheckBoxColumn,
+            this.usernameDataGridViewTextBoxColumn,
+            this.nameDataGridViewTextBoxColumn,
+            this.lastnameDataGridViewTextBoxColumn,
+            this.emailDataGridViewTextBoxColumn,
+            this.departamentoDataGridViewTextBoxColumn,
+            this.creationDateDataGridViewTextBoxColumn,
+            this.lastUpdatedDateDataGridViewTextBoxColumn,
+            this.deactivationDateDataGridViewTextBoxColumn,
+            this.reactivationDateDataGridViewTextBoxColumn});
+            this.DgvRegUsuarios.DataSource = this.bindingSource1;
             this.DgvRegUsuarios.Location = new System.Drawing.Point(-3, 71);
             this.DgvRegUsuarios.Name = "DgvRegUsuarios";
             this.DgvRegUsuarios.ReadOnly = true;
@@ -252,6 +277,108 @@
             this.label6.TabIndex = 17;
             this.label6.Text = "Registro de Empleados";
             // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataSource = typeof(OctagonHelpdesk.Models.UserModel);
+            // 
+            // iDUserDataGridViewTextBoxColumn
+            // 
+            this.iDUserDataGridViewTextBoxColumn.DataPropertyName = "IDUser";
+            this.iDUserDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDUserDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.iDUserDataGridViewTextBoxColumn.Name = "iDUserDataGridViewTextBoxColumn";
+            this.iDUserDataGridViewTextBoxColumn.ReadOnly = true;
+            this.iDUserDataGridViewTextBoxColumn.ToolTipText = "ID del Empleado";
+            // 
+            // activeStateUDataGridViewCheckBoxColumn
+            // 
+            this.activeStateUDataGridViewCheckBoxColumn.DataPropertyName = "ActiveStateU";
+            this.activeStateUDataGridViewCheckBoxColumn.HeaderText = "Estado";
+            this.activeStateUDataGridViewCheckBoxColumn.MinimumWidth = 8;
+            this.activeStateUDataGridViewCheckBoxColumn.Name = "activeStateUDataGridViewCheckBoxColumn";
+            this.activeStateUDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.activeStateUDataGridViewCheckBoxColumn.ToolTipText = "(Habilitado o Deshabilitado)";
+            // 
+            // usernameDataGridViewTextBoxColumn
+            // 
+            this.usernameDataGridViewTextBoxColumn.DataPropertyName = "Username";
+            this.usernameDataGridViewTextBoxColumn.HeaderText = "Alias del Empleado";
+            this.usernameDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.usernameDataGridViewTextBoxColumn.Name = "usernameDataGridViewTextBoxColumn";
+            this.usernameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Nombre";
+            this.nameDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn.ToolTipText = "Nombre del Empleado";
+            // 
+            // lastnameDataGridViewTextBoxColumn
+            // 
+            this.lastnameDataGridViewTextBoxColumn.DataPropertyName = "Lastname";
+            this.lastnameDataGridViewTextBoxColumn.HeaderText = "Apellido";
+            this.lastnameDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.lastnameDataGridViewTextBoxColumn.Name = "lastnameDataGridViewTextBoxColumn";
+            this.lastnameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.lastnameDataGridViewTextBoxColumn.ToolTipText = "Apellido del Empleado";
+            // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+            this.emailDataGridViewTextBoxColumn.HeaderText = "Correo";
+            this.emailDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
+            this.emailDataGridViewTextBoxColumn.ToolTipText = "Correo del Empleado";
+            // 
+            // departamentoDataGridViewTextBoxColumn
+            // 
+            this.departamentoDataGridViewTextBoxColumn.DataPropertyName = "Departamento";
+            this.departamentoDataGridViewTextBoxColumn.HeaderText = "Departamento";
+            this.departamentoDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.departamentoDataGridViewTextBoxColumn.Name = "departamentoDataGridViewTextBoxColumn";
+            this.departamentoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.departamentoDataGridViewTextBoxColumn.ToolTipText = "Departamento de la Empresa";
+            // 
+            // creationDateDataGridViewTextBoxColumn
+            // 
+            this.creationDateDataGridViewTextBoxColumn.DataPropertyName = "CreationDate";
+            this.creationDateDataGridViewTextBoxColumn.HeaderText = "Creado";
+            this.creationDateDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.creationDateDataGridViewTextBoxColumn.Name = "creationDateDataGridViewTextBoxColumn";
+            this.creationDateDataGridViewTextBoxColumn.ReadOnly = true;
+            this.creationDateDataGridViewTextBoxColumn.ToolTipText = "Fecha de creacion del Empleado";
+            // 
+            // lastUpdatedDateDataGridViewTextBoxColumn
+            // 
+            this.lastUpdatedDateDataGridViewTextBoxColumn.DataPropertyName = "LastUpdatedDate";
+            this.lastUpdatedDateDataGridViewTextBoxColumn.HeaderText = "Actualizado";
+            this.lastUpdatedDateDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.lastUpdatedDateDataGridViewTextBoxColumn.Name = "lastUpdatedDateDataGridViewTextBoxColumn";
+            this.lastUpdatedDateDataGridViewTextBoxColumn.ReadOnly = true;
+            this.lastUpdatedDateDataGridViewTextBoxColumn.ToolTipText = "Ultima modificacion de datos del Empleado";
+            // 
+            // deactivationDateDataGridViewTextBoxColumn
+            // 
+            this.deactivationDateDataGridViewTextBoxColumn.DataPropertyName = "DeactivationDate";
+            this.deactivationDateDataGridViewTextBoxColumn.HeaderText = "Desactivado";
+            this.deactivationDateDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.deactivationDateDataGridViewTextBoxColumn.Name = "deactivationDateDataGridViewTextBoxColumn";
+            this.deactivationDateDataGridViewTextBoxColumn.ReadOnly = true;
+            this.deactivationDateDataGridViewTextBoxColumn.ToolTipText = "Fecha de Deshabilitacion del Empleado";
+            // 
+            // reactivationDateDataGridViewTextBoxColumn
+            // 
+            this.reactivationDateDataGridViewTextBoxColumn.DataPropertyName = "ReactivationDate";
+            this.reactivationDateDataGridViewTextBoxColumn.HeaderText = "Reactivado";
+            this.reactivationDateDataGridViewTextBoxColumn.MinimumWidth = 8;
+            this.reactivationDateDataGridViewTextBoxColumn.Name = "reactivationDateDataGridViewTextBoxColumn";
+            this.reactivationDateDataGridViewTextBoxColumn.ReadOnly = true;
+            this.reactivationDateDataGridViewTextBoxColumn.ToolTipText = "Fecha de Reactivacion del Empleado";
+            // 
             // RegEmpleadosFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -268,10 +395,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvRegUsuarios)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -297,5 +424,16 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDUserDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn activeStateUDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn usernameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn lastnameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn departamentoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn creationDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn lastUpdatedDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn deactivationDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn reactivationDateDataGridViewTextBoxColumn;
     }
 }

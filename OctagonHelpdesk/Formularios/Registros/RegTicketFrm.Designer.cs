@@ -268,6 +268,7 @@
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "Registro de Tickets";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.RegTicketFrm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

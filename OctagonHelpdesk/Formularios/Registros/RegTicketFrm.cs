@@ -117,6 +117,20 @@ namespace OctagonHelpdesk.Formularios
         {
             bindingNavigatorDeleteItem.Enabled = true;
         }
+
+        //****FILTRO DE BUSQUEDA****//
+        public void FilterMyTickets()
+        {
+            bindingSource.Filter = $"IDUser = {currentUser.IDUser}";
+        }
+
+        private void RegTicketFrm_Load(object sender, EventArgs e)
+        {
+            if (!currentUser.Roles.ITPerms || !currentUser.Roles.AdminPerms)
+            {
+                FilterMyTickets();
+            }
+        }
     }
 }
 

@@ -120,5 +120,8 @@ namespace OctagonHelpdesk.Formularios
         {
             bindingNavigatorDeleteItem.Enabled = true;
         }
+
+        //****FILTRO DE BUSQUEDA****//
+        
     }
 }

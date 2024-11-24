@@ -24,7 +24,7 @@ namespace OctagonHelpdesk.Formularios
         public UserModel usuarioSel = new UserModel();
 
         //Primer Constructor para cuando se crea un Usuario
-        public CrearUsuarioForm(UsuarioDao usuarioService)
+        public CrearUsuarioForm(UsuarioDao usuarioService )
         {
             InitializeComponent();
             usuarioServiceLocal = usuarioService;
@@ -39,14 +39,16 @@ namespace OctagonHelpdesk.Formularios
             InitializeComponent();
             usuarioServiceLocal = usuarios;
             usuarioSel = usuarioSelected;
-            InitializeFormWithUserData();
+            
         }
+        //Inicializar el formulario para ver perfil
 
         //Inicializar el formulario cuando es para crear un nuevo usuario
         private void InitializeFormWithoutUserData()
         {
             usuario.IDUser = usuarioServiceLocal.AutogeneradorID();
-            tbIDUser.Text = usuario.IDUser.ToString();
+            cbActiveState.Enabled = false;
+            cbActiveState.Visible = false;
             usuario.ActiveStateU = true;
 
         }
@@ -57,7 +59,7 @@ namespace OctagonHelpdesk.Formularios
             if (usuarioSel != null)
             {
                 // Asignar los valores del usuario seleccionado a los controles del formulario
-                tbIDUser.Text = usuarioSel.IDUser.ToString();
+                cbActiveState.Checked = usuarioSel.ActiveStateU;
                 tbName.Text = usuarioSel.Name;
                 tbLastname.Text = usuarioSel.Lastname;
                 tbEmail.Text = usuarioSel.Email;
@@ -77,33 +79,16 @@ namespace OctagonHelpdesk.Formularios
         {
 
             bool usuarioValid = false;
-            string username = txtUsername.Text;
-            string password = txtPassword.Text;
-            string name = tbName.Text;
-            string lastname = tbLastname.Text;
-            string email = tbEmail.Text;
-            int indexUsuario = int.Parse(tbIDUser.Text);
+            usuarioValid = ValidarDatosGenerales() && ValidarPermisos() && ValidarLogUser(); //Validar los datos ingresados
 
-            usuarioValid = ValidarDatos() && ValidarPermisos(); //Validar los datos ingresados
-
-            //try
-            //{
+           
             if (usuarioValid)
             {
-                usuario.Username = username;
-                usuario.SetPassword(password);
-                usuario.Name = name;
-                usuario.Lastname = lastname;
+                string email = tbEmail.Text.Trim();
                 usuario.Email = email;
-                usuario.Departamento = (Departament)cmbDepartamento.SelectedItem;
-
                 usuario.Roles.ITPerms = cbIT.Checked ? true : false;
                 usuario.Roles.AdminPerms = cbAdmin.Checked ? true : false;
                 usuario.Roles.BasicPerms = cbEmpleado.Checked ? true : false;
-
-
-
-                usuarioValid = true;
                 UsuarioCreated?.Invoke(usuario);
 
                 this.Close();
@@ -116,9 +101,17 @@ namespace OctagonHelpdesk.Formularios
             
         }
 
-        public bool ValidarDatos()
+        public bool ValidarDatosGenerales()
         {
-            if (string.IsNullOrEmpty(tbName.Text) || string.IsNullOrEmpty(tbLastname.Text) || string.IsNullOrEmpty(tbEmail.Text) || string.IsNullOrEmpty(txtUsername.Text) || string.IsNullOrEmpty(txtPassword.Text) || cmbDepartamento.SelectedIndex == -1)
+            if (string.IsNullOrEmpty(tbName.Text) || string.IsNullOrEmpty(tbLastname.Text) || cmbDepartamento.SelectedIndex == -1)
+            {
+                return false;
+            }
+            return true;
+        }
+        public bool ValidarUserLog()
+        {
+            if (string.IsNullOrEmpty(txtUsername.Text) || string.IsNullOrEmpty(txtPassword.Text) || string.IsNullOrEmpty(tbEmail.Text))
             {
                 return false;
             }
@@ -132,15 +125,85 @@ namespace OctagonHelpdesk.Formularios
             }
             return false;
         }
+        public bool ValidarLogUser()
+        {
+            if (string.IsNullOrEmpty(txtUsername.Text) || string.IsNullOrEmpty(txtPassword.Text))
+            {
+                return false;
+            }
+            return true;
+        }
 
+        public void LoadCDepartamento()
+        {
+            cmbDepartamento.Items.Clear();
+            cmbDepartamento.DataSource = Enum.GetValues(typeof(Departament));
+        }
 
         private void CrearUsuarioForm_Load_1(object sender, EventArgs e)
         {
-            cmbDepartamento.Items.Clear();
-            cmbDepartamento.SelectedIndex = -1;
-            cmbDepartamento.DataSource = Enum.GetValues(typeof(Departament));
+            LoadCDepartamento();
+            gbDatosGenerales.Visible = true;
+            gbUserLog.Visible = false;
+            if (usuarioSel != null)
+            {
+                InitializeFormWithUserData();
 
-            tbIDUser.Enabled = false;
+            }
+        }
+
+        private void btnDatosGenerales_Click(object sender, EventArgs e)
+        {
+            gbDatosGenerales.Visible = true;
+            gbUserLog.Visible = false;
+            
+
+        }
+
+        private void btnUserLogDat_Click(object sender, EventArgs e)
+        {
+            
+            if (ValidarDatosGenerales())
+            {
+                gbDatosGenerales.Visible = false;
+                gbUserLog.Visible = true;
+
+                usuario.Name = tbName.Text.Trim();
+                usuario.Lastname = tbLastname.Text.Trim();
+                usuario.Departamento = (Departament)cmbDepartamento.SelectedItem;
+                usuario.SetUsername();
+                txtUsername.Text = usuario.Username;
+                txtUsername.Enabled = false;
+                usuario.SetPassword(txtPassword.Text);
+                txtPassword.Text = usuario.EncryptedPassword;
+
+                
+               
+                
+               
+
+            }
+            else
+            {
+                MessageBox.Show("Para generar las credenciales del empleado, se necesita rellenar estos campos. No se admiten campos vacíos", "¡Espera!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void cbActiveState_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (cbActiveState.Checked)
+            {
+                usuario.ActiveStateU = true;
+                cbActiveState.BackColor = Color.MediumSeaGreen;
+                cbActiveState.Text = "Activo";
+                usuario.ReactivationDate = DateTime.Now;
+            }
+            else
+            {
+                usuario.ActiveStateU = false;
+                cbActiveState.BackColor = Color.IndianRed;
+                cbActiveState.Text = "Inactivo";
+            }
         }
     }
 }

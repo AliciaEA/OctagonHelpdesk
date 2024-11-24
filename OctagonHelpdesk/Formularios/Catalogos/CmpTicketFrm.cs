@@ -34,6 +34,8 @@ namespace OctagonHelpdesk.Formularios
             this.currentUser = currentUser;
             txtCreatedBy.Text = currentUser.Name;
         }
+        
+        
 
         // Inicializar el formulario para crear un nuevo ticket
         private void InitializeFormWithoutTicketData()

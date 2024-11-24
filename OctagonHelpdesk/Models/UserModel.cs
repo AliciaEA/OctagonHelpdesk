@@ -56,7 +56,13 @@ namespace OctagonHelpdesk.Models
             }
         }
 
-      
+        public void SetUsername()
+        {
+            string idFormatted = IDUser < 10 ? $"0{IDUser}" : IDUser.ToString();
+            Username = $"{Name[0]}{Lastname}{idFormatted}".ToLower();
+        }
+
+
         internal void SetEncryptedPassword(string encryptedPassword)
         {
             EncryptedPassword = encryptedPassword;
