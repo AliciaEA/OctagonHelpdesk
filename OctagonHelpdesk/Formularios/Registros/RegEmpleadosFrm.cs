@@ -103,7 +103,7 @@ namespace OctagonHelpdesk.Formularios
         //Envio los datos y llamo a un nuevo evento para la edición
         public void EditarUsuario(UserModel usuarioSel)
         {
-            CrearUsuarioForm formEmpleado = new CrearUsuarioForm(usuarios, usuarioSel);
+            CrearUsuarioForm formEmpleado = new CrearUsuarioForm(usuarioSel, currentUser);
             formEmpleado.UsuarioCreated += OnUsuarioCreated;
             formEmpleado.ShowDialog();
         }
@@ -111,7 +111,7 @@ namespace OctagonHelpdesk.Formularios
         //Envio los datos y llamo a un nuevo evento para la creación
         public void CrearUsuario()
         {
-            CrearUsuarioForm formEmpleado = new CrearUsuarioForm(usuarios);
+            CrearUsuarioForm formEmpleado = new CrearUsuarioForm(usuarios,currentUser);
             formEmpleado.UsuarioCreated += OnUsuarioCreated;
             formEmpleado.ShowDialog();
         }

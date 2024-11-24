@@ -18,70 +18,92 @@ namespace OctagonHelpdesk.Formularios
     {
 
         public event Action<UserModel> UsuarioCreated;
-        private readonly UsuarioDao usuarioServiceLocal;
-
         public UserModel usuario = new UserModel();
-        public UserModel usuarioSel = new UserModel();
+        public UserModel currentUser { get; set; }
 
         //Primer Constructor para cuando se crea un Usuario
-        public CrearUsuarioForm(UsuarioDao usuarioService )
+        public CrearUsuarioForm(UsuarioDao usuarioService, UserModel currentUser)
         {
             InitializeComponent();
-            usuarioServiceLocal = usuarioService;
-            InitializeFormWithoutUserData();
+            SharedLoad(currentUser);
+            InitializeFormWithoutUserData(usuarioService);
+            
+        }
+
+        //Segundo Constructor, cuando se selecciona un Usuario del DataGridView
+        public CrearUsuarioForm(UserModel usuarioSelected, UserModel currentUser)//Se envia la info del User Seleccionado
+        {
+            InitializeComponent();
+            SharedLoad(currentUser);
+            if (usuarioSelected != null)
+            {
+                InitializeFormWithUserData(usuarioSelected);
+            }
 
 
         }
 
-        //Segundo Constructor, cuando se selecciona un Usuario del DataGridView
-        public CrearUsuarioForm(UsuarioDao usuarios, UserModel usuarioSelected)//Se envia la info del User Seleccionado
+        //Tercer Constructor, para visualizar el perfil propio
+        public CrearUsuarioForm(UserModel currentUser)
         {
             InitializeComponent();
-            usuarioServiceLocal = usuarios;
-            usuarioSel = usuarioSelected;
+            SharedLoad(currentUser);
+            usuario = currentUser;
+            InitializeFormWithUserData(currentUser);
             
+        }
+        private void CrearUsuarioForm_Load_1(object sender, EventArgs e)
+        {
+
+
+        }
+
+        //Elementos Escenciales del Form
+        public void SharedLoad(UserModel currentUser)
+        {
+            LoadCDepartamento();
+            gbDatosGenerales.Visible = true;
+            gbUserLog.Visible = false;
+            this.currentUser = currentUser;
+
         }
         //Inicializar el formulario para ver perfil
 
         //Inicializar el formulario cuando es para crear un nuevo usuario
-        private void InitializeFormWithoutUserData()
+        private void InitializeFormWithoutUserData(UsuarioDao usuarioDao)
         {
-            usuario.IDUser = usuarioServiceLocal.AutogeneradorID();
+            usuario.IDUser = usuarioDao.AutogeneradorID();
             cbActiveState.Enabled = false;
             cbActiveState.Visible = false;
             usuario.ActiveStateU = true;
 
         }
 
-        //Inicializar el formulario cuando se ha seleccionado un usuario del DataGridView
-        private void InitializeFormWithUserData()
+        //Inicializar el formulario cuando se tiene informacion de un usuario
+        private void InitializeFormWithUserData(UserModel usuarioData)
         {
-            if (usuarioSel != null)
-            {
+           
                 // Asignar los valores del usuario seleccionado a los controles del formulario
-                cbActiveState.Checked = usuarioSel.ActiveStateU;
-                tbName.Text = usuarioSel.Name;
-                tbLastname.Text = usuarioSel.Lastname;
-                tbEmail.Text = usuarioSel.Email;
-                cmbDepartamento.SelectedItem = usuarioSel.Departamento;
-                txtUsername.Text = usuarioSel.Username;
-                cbAdmin.Checked = usuarioSel.Roles.AdminPerms;
-                cbEmpleado.Checked = usuarioSel.Roles.BasicPerms;
-                cbIT.Checked = usuarioSel.Roles.ITPerms;
+                cbActiveState.Checked = usuarioData.ActiveStateU;
+                tbName.Text = usuarioData.Name;
+                tbLastname.Text = usuarioData.Lastname;
+                tbEmail.Text = usuarioData.Email;
+                cmbDepartamento.SelectedItem = usuarioData.Departamento;
+                txtUsername.Text = usuarioData.Username;
+                cbAdmin.Checked = usuarioData.Roles.AdminPerms;
+                cbEmpleado.Checked = usuarioData.Roles.BasicPerms;
+                cbIT.Checked = usuarioData.Roles.ITPerms;
 
-                // Asignar otros valores según sea necesario
-                usuario = usuarioSel;
-            }
+            usuario = usuarioData;
+
         }
 
-        //Boton para guardar los datos del usuario
+        //Boton para GUARDAR los datos del usuario
         private void btnConfirmUserCreation_Click(object sender, EventArgs e)
         {
 
             bool usuarioValid = false;
             usuarioValid = ValidarDatosGenerales() && ValidarPermisos() && ValidarLogUser(); //Validar los datos ingresados
-
-           
             if (usuarioValid)
             {
                 string email = tbEmail.Text.Trim();
@@ -100,95 +122,7 @@ namespace OctagonHelpdesk.Formularios
             }
             
         }
-
-        public bool ValidarDatosGenerales()
-        {
-            if (string.IsNullOrEmpty(tbName.Text) || string.IsNullOrEmpty(tbLastname.Text) || cmbDepartamento.SelectedIndex == -1)
-            {
-                return false;
-            }
-            return true;
-        }
-        public bool ValidarUserLog()
-        {
-            if (string.IsNullOrEmpty(txtUsername.Text) || string.IsNullOrEmpty(txtPassword.Text) || string.IsNullOrEmpty(tbEmail.Text))
-            {
-                return false;
-            }
-            return true;
-        }
-        public bool ValidarPermisos()
-        {
-            if (cbAdmin.Checked || cbEmpleado.Checked || cbIT.Checked)
-            {
-                return true;
-            }
-            return false;
-        }
-        public bool ValidarLogUser()
-        {
-            if (string.IsNullOrEmpty(txtUsername.Text) || string.IsNullOrEmpty(txtPassword.Text))
-            {
-                return false;
-            }
-            return true;
-        }
-
-        public void LoadCDepartamento()
-        {
-            cmbDepartamento.Items.Clear();
-            cmbDepartamento.DataSource = Enum.GetValues(typeof(Departament));
-        }
-
-        private void CrearUsuarioForm_Load_1(object sender, EventArgs e)
-        {
-            LoadCDepartamento();
-            gbDatosGenerales.Visible = true;
-            gbUserLog.Visible = false;
-            if (usuarioSel != null)
-            {
-                InitializeFormWithUserData();
-
-            }
-        }
-
-        private void btnDatosGenerales_Click(object sender, EventArgs e)
-        {
-            gbDatosGenerales.Visible = true;
-            gbUserLog.Visible = false;
-            
-
-        }
-
-        private void btnUserLogDat_Click(object sender, EventArgs e)
-        {
-            
-            if (ValidarDatosGenerales())
-            {
-                gbDatosGenerales.Visible = false;
-                gbUserLog.Visible = true;
-
-                usuario.Name = tbName.Text.Trim();
-                usuario.Lastname = tbLastname.Text.Trim();
-                usuario.Departamento = (Departament)cmbDepartamento.SelectedItem;
-                usuario.SetUsername();
-                txtUsername.Text = usuario.Username;
-                txtUsername.Enabled = false;
-                usuario.SetPassword(txtPassword.Text);
-                txtPassword.Text = usuario.EncryptedPassword;
-
-                
-               
-                
-               
-
-            }
-            else
-            {
-                MessageBox.Show("Para generar las credenciales del empleado, se necesita rellenar estos campos. No se admiten campos vacíos", "¡Espera!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
+        //****HABILITACION Y DESHABILITACION DE USUARIO****//
         private void cbActiveState_CheckStateChanged(object sender, EventArgs e)
         {
             if (cbActiveState.Checked)
@@ -205,5 +139,80 @@ namespace OctagonHelpdesk.Formularios
                 cbActiveState.Text = "Inactivo";
             }
         }
+        //****BOTONES DE NAVEGACION****//
+        //Boton para regresar a la ventana de datos generales
+        private void btnDatosGenerales_Click(object sender, EventArgs e)
+        {
+            gbDatosGenerales.Visible = true;
+            gbUserLog.Visible = false;
+        }
+
+        //Boton para ir a la ventana de credenciales
+        private void btnUserLogDat_Click(object sender, EventArgs e)
+        {
+
+            if (ValidarDatosGenerales())
+            {
+                gbDatosGenerales.Visible = false;
+                gbUserLog.Visible = true;
+
+                usuario.Name = tbName.Text.Trim();
+                usuario.Lastname = tbLastname.Text.Trim();
+                usuario.Departamento = (Departament)cmbDepartamento.SelectedItem;
+                usuario.SetUsername();
+                txtUsername.Text = usuario.Username;
+                txtUsername.Enabled = false;
+                usuario.SetPassword(txtPassword.Text);
+                txtPassword.Text = usuario.EncryptedPassword;
+            }
+            else
+            {
+                MessageBox.Show("Para generar las credenciales del empleado, se necesita rellenar estos campos. No se admiten campos vacíos", "¡Espera!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        //****VALIDACIONES****//
+        //Validar los datos generales
+        public bool ValidarDatosGenerales()
+        {
+            if (string.IsNullOrEmpty(tbName.Text) || string.IsNullOrEmpty(tbLastname.Text) || cmbDepartamento.SelectedIndex == -1)
+            {
+                return false;
+            }
+            return true;
+        }
+        //Validar las credenciales
+        public bool ValidarLogUser()
+        {
+            if (string.IsNullOrEmpty(txtUsername.Text) || string.IsNullOrEmpty(txtPassword.Text))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        //Validar los permisos 
+        public bool ValidarPermisos()
+        {
+            if (cbAdmin.Checked || cbEmpleado.Checked || cbIT.Checked)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        
+
+        public void LoadCDepartamento()
+        {
+            cmbDepartamento.Items.Clear();
+            cmbDepartamento.DataSource = Enum.GetValues(typeof(Departament));
+        }
+
+        
+
+        
+
+        
     }
 }
