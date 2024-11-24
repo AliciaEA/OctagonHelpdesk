@@ -45,7 +45,7 @@ namespace OctagonHelpdesk
                     ITPerms = true,
                     BasicPerms = true
                 },
-                Username = "admin",
+                Username = "auser01",
                 Name = "Admin",
                 Lastname = "User",
                 Email = "admin@octagonhelpdesk.com",

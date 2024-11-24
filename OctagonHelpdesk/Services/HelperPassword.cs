@@ -74,7 +74,7 @@ namespace OctagonHelpdesk.Services
         public static string GeneratePassword(int length = PasswordLength)
         {
             string[] words = { "apple", "orange", "banana", "grape", "peach", "cherry", "berry", "melon", "kiwi", "plum" };
-            const string specialChars = "!@#$%^&*()";
+            const string specialChars = "123456789";
             Random random = new Random();
 
             StringBuilder password = new StringBuilder();

@@ -28,18 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CrearUsuarioForm));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.gbDatosGenerales = new System.Windows.Forms.GroupBox();
             this.tbLastname = new System.Windows.Forms.TextBox();
+            this.btnUserLogDat = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.cmbDepartamento = new System.Windows.Forms.ComboBox();
             this.tbName = new System.Windows.Forms.TextBox();
-            this.tbEmail = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.tbEmail = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
@@ -50,14 +52,26 @@
             this.btnConfirmUserCreation = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.gbUserLog = new System.Windows.Forms.GroupBox();
-            this.btnUserLogDat = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnDatosGenerales = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.cbActiveState = new System.Windows.Forms.CheckBox();
+            this.btnActividad = new System.Windows.Forms.Button();
+            this.pnlActivity = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.lblCreationDate = new System.Windows.Forms.Label();
+            this.lblLastUpdatedDate = new System.Windows.Forms.Label();
+            this.lblDeactivationDate = new System.Windows.Forms.Label();
+            this.lblReactivationDate = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnGeneratePassword = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.gbDatosGenerales.SuspendLayout();
             this.gbUserLog.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.pnlActivity.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -75,7 +89,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 16F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(233, 37);
+            this.label1.Location = new System.Drawing.Point(233, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(235, 32);
             this.label1.TabIndex = 1;
@@ -102,7 +116,18 @@
             this.tbLastname.Location = new System.Drawing.Point(139, 92);
             this.tbLastname.Name = "tbLastname";
             this.tbLastname.Size = new System.Drawing.Size(334, 26);
-            this.tbLastname.TabIndex = 4;
+            this.tbLastname.TabIndex = 2;
+            // 
+            // btnUserLogDat
+            // 
+            this.btnUserLogDat.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnUserLogDat.Location = new System.Drawing.Point(426, 217);
+            this.btnUserLogDat.Name = "btnUserLogDat";
+            this.btnUserLogDat.Size = new System.Drawing.Size(47, 45);
+            this.btnUserLogDat.TabIndex = 4;
+            this.btnUserLogDat.Text = "→";
+            this.btnUserLogDat.UseVisualStyleBackColor = false;
+            this.btnUserLogDat.Click += new System.EventHandler(this.btnUserLogDat_Click);
             // 
             // label7
             // 
@@ -120,7 +145,7 @@
             this.cmbDepartamento.Location = new System.Drawing.Point(139, 152);
             this.cmbDepartamento.Name = "cmbDepartamento";
             this.cmbDepartamento.Size = new System.Drawing.Size(334, 28);
-            this.cmbDepartamento.TabIndex = 6;
+            this.cmbDepartamento.TabIndex = 3;
             this.cmbDepartamento.Text = "...";
             // 
             // tbName
@@ -129,15 +154,7 @@
             this.tbName.Location = new System.Drawing.Point(139, 38);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(334, 26);
-            this.tbName.TabIndex = 3;
-            // 
-            // tbEmail
-            // 
-            this.tbEmail.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.tbEmail.Location = new System.Drawing.Point(134, 142);
-            this.tbEmail.Name = "tbEmail";
-            this.tbEmail.Size = new System.Drawing.Size(334, 26);
-            this.tbEmail.TabIndex = 5;
+            this.tbName.TabIndex = 1;
             // 
             // label5
             // 
@@ -149,16 +166,6 @@
             this.label5.TabIndex = 3;
             this.label5.Text = "Departamento:";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 9F);
-            this.label4.Location = new System.Drawing.Point(8, 142);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(62, 18);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Email:";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -168,6 +175,25 @@
             this.label3.Size = new System.Drawing.Size(71, 18);
             this.label3.TabIndex = 1;
             this.label3.Text = "Nombre:";
+            // 
+            // tbEmail
+            // 
+            this.tbEmail.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.tbEmail.Location = new System.Drawing.Point(134, 147);
+            this.tbEmail.Name = "tbEmail";
+            this.tbEmail.Size = new System.Drawing.Size(334, 26);
+            this.tbEmail.TabIndex = 4;
+            this.tbEmail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbEmail_KeyPress);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 9F);
+            this.label4.Location = new System.Drawing.Point(10, 150);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(62, 18);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Email:";
             // 
             // label9
             // 
@@ -194,8 +220,10 @@
             this.txtPassword.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.txtPassword.Location = new System.Drawing.Point(134, 88);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(334, 26);
+            this.txtPassword.Size = new System.Drawing.Size(292, 26);
             this.txtPassword.TabIndex = 2;
+            this.txtPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassword_KeyPress);
+            this.txtPassword.Leave += new System.EventHandler(this.txtPassword_Leave);
             // 
             // txtUsername
             // 
@@ -204,6 +232,7 @@
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(334, 26);
             this.txtUsername.TabIndex = 1;
+            this.txtUsername.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUsername_KeyPress);
             // 
             // cbEmpleado
             // 
@@ -212,7 +241,7 @@
             this.cbEmpleado.Location = new System.Drawing.Point(360, 207);
             this.cbEmpleado.Name = "cbEmpleado";
             this.cbEmpleado.Size = new System.Drawing.Size(97, 21);
-            this.cbEmpleado.TabIndex = 9;
+            this.cbEmpleado.TabIndex = 7;
             this.cbEmpleado.Text = "Empleado";
             this.cbEmpleado.UseVisualStyleBackColor = true;
             // 
@@ -223,7 +252,7 @@
             this.cbIT.Location = new System.Drawing.Point(234, 207);
             this.cbIT.Name = "cbIT";
             this.cbIT.Size = new System.Drawing.Size(113, 21);
-            this.cbIT.TabIndex = 8;
+            this.cbIT.TabIndex = 6;
             this.cbIT.Text = "Tecnico IT";
             this.cbIT.UseVisualStyleBackColor = true;
             // 
@@ -234,7 +263,7 @@
             this.cbAdmin.Location = new System.Drawing.Point(134, 207);
             this.cbAdmin.Name = "cbAdmin";
             this.cbAdmin.Size = new System.Drawing.Size(73, 21);
-            this.cbAdmin.TabIndex = 7;
+            this.cbAdmin.TabIndex = 5;
             this.cbAdmin.Text = "Admin";
             this.cbAdmin.UseVisualStyleBackColor = true;
             // 
@@ -245,7 +274,7 @@
             this.btnConfirmUserCreation.Location = new System.Drawing.Point(340, 262);
             this.btnConfirmUserCreation.Name = "btnConfirmUserCreation";
             this.btnConfirmUserCreation.Size = new System.Drawing.Size(128, 49);
-            this.btnConfirmUserCreation.TabIndex = 10;
+            this.btnConfirmUserCreation.TabIndex = 8;
             this.btnConfirmUserCreation.Text = "Guardar";
             this.btnConfirmUserCreation.UseVisualStyleBackColor = false;
             this.btnConfirmUserCreation.Click += new System.EventHandler(this.btnConfirmUserCreation_Click);
@@ -254,7 +283,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 9F);
-            this.label6.Location = new System.Drawing.Point(8, 187);
+            this.label6.Location = new System.Drawing.Point(6, 207);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(89, 18);
             this.label6.TabIndex = 5;
@@ -262,6 +291,7 @@
             // 
             // gbUserLog
             // 
+            this.gbUserLog.Controls.Add(this.btnGeneratePassword);
             this.gbUserLog.Controls.Add(this.btnDatosGenerales);
             this.gbUserLog.Controls.Add(this.label9);
             this.gbUserLog.Controls.Add(this.label8);
@@ -274,33 +304,12 @@
             this.gbUserLog.Controls.Add(this.cbAdmin);
             this.gbUserLog.Controls.Add(this.label6);
             this.gbUserLog.Controls.Add(this.btnConfirmUserCreation);
-            this.gbUserLog.Location = new System.Drawing.Point(100, 261);
+            this.gbUserLog.Location = new System.Drawing.Point(113, 251);
             this.gbUserLog.Name = "gbUserLog";
             this.gbUserLog.Size = new System.Drawing.Size(482, 340);
             this.gbUserLog.TabIndex = 3;
             this.gbUserLog.TabStop = false;
             this.gbUserLog.Visible = false;
-            // 
-            // btnUserLogDat
-            // 
-            this.btnUserLogDat.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.btnUserLogDat.Location = new System.Drawing.Point(426, 217);
-            this.btnUserLogDat.Name = "btnUserLogDat";
-            this.btnUserLogDat.Size = new System.Drawing.Size(47, 45);
-            this.btnUserLogDat.TabIndex = 4;
-            this.btnUserLogDat.Text = "→";
-            this.btnUserLogDat.UseVisualStyleBackColor = false;
-            this.btnUserLogDat.Click += new System.EventHandler(this.btnUserLogDat_Click);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::OctagonHelpdesk.Properties.Resources.kindpng_2697881;
-            this.pictureBox2.Location = new System.Drawing.Point(280, 72);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(142, 140);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 5;
-            this.pictureBox2.TabStop = false;
             // 
             // btnDatosGenerales
             // 
@@ -308,10 +317,20 @@
             this.btnDatosGenerales.Location = new System.Drawing.Point(11, 266);
             this.btnDatosGenerales.Name = "btnDatosGenerales";
             this.btnDatosGenerales.Size = new System.Drawing.Size(47, 45);
-            this.btnDatosGenerales.TabIndex = 16;
+            this.btnDatosGenerales.TabIndex = 9;
             this.btnDatosGenerales.Text = "←";
             this.btnDatosGenerales.UseVisualStyleBackColor = false;
             this.btnDatosGenerales.Click += new System.EventHandler(this.btnDatosGenerales_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::OctagonHelpdesk.Properties.Resources.kindpng_2697881;
+            this.pictureBox2.Location = new System.Drawing.Point(282, 56);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(142, 140);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 5;
+            this.pictureBox2.TabStop = false;
             // 
             // cbActiveState
             // 
@@ -322,18 +341,150 @@
             this.cbActiveState.Name = "cbActiveState";
             this.cbActiveState.Padding = new System.Windows.Forms.Padding(3);
             this.cbActiveState.Size = new System.Drawing.Size(93, 27);
-            this.cbActiveState.TabIndex = 6;
+            this.cbActiveState.TabIndex = 5;
             this.cbActiveState.Text = "Activo";
             this.cbActiveState.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.cbActiveState.UseVisualStyleBackColor = false;
             this.cbActiveState.CheckStateChanged += new System.EventHandler(this.cbActiveState_CheckStateChanged);
+            // 
+            // btnActividad
+            // 
+            this.btnActividad.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnActividad.Image = global::OctagonHelpdesk.Properties.Resources.historial;
+            this.btnActividad.Location = new System.Drawing.Point(507, 12);
+            this.btnActividad.Name = "btnActividad";
+            this.btnActividad.Size = new System.Drawing.Size(61, 61);
+            this.btnActividad.TabIndex = 6;
+            this.btnActividad.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolTip1.SetToolTip(this.btnActividad, "Auditoria");
+            this.btnActividad.UseVisualStyleBackColor = false;
+            this.btnActividad.Click += new System.EventHandler(this.btnActividad_Click);
+            // 
+            // pnlActivity
+            // 
+            this.pnlActivity.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.pnlActivity.Controls.Add(this.lblReactivationDate);
+            this.pnlActivity.Controls.Add(this.lblDeactivationDate);
+            this.pnlActivity.Controls.Add(this.lblLastUpdatedDate);
+            this.pnlActivity.Controls.Add(this.lblCreationDate);
+            this.pnlActivity.Controls.Add(this.label12);
+            this.pnlActivity.Controls.Add(this.label11);
+            this.pnlActivity.Controls.Add(this.label10);
+            this.pnlActivity.Controls.Add(this.label2);
+            this.pnlActivity.Location = new System.Drawing.Point(344, 60);
+            this.pnlActivity.Name = "pnlActivity";
+            this.pnlActivity.Size = new System.Drawing.Size(224, 266);
+            this.pnlActivity.TabIndex = 8;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(3, 15);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(79, 16);
+            this.label2.TabIndex = 20;
+            this.label2.Text = "Creado: ";
+            this.toolTip1.SetToolTip(this.label2, "Fecha de Creacion");
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(3, 71);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(196, 16);
+            this.label10.TabIndex = 21;
+            this.label10.Text = "Ultima Modificacion: ";
+            this.toolTip1.SetToolTip(this.label10, "Fecha de Ultima Modificacion");
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(0, 129);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(142, 16);
+            this.label11.TabIndex = 22;
+            this.label11.Text = "Desactivacion: ";
+            this.toolTip1.SetToolTip(this.label11, "Fecha de Desactivacion");
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(3, 191);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(115, 16);
+            this.label12.TabIndex = 23;
+            this.label12.Text = "Reactivacion";
+            this.toolTip1.SetToolTip(this.label12, "Fecha de Reactivacio");
+            // 
+            // lblCreationDate
+            // 
+            this.lblCreationDate.AutoSize = true;
+            this.lblCreationDate.Font = new System.Drawing.Font("MingLiU-ExtB", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCreationDate.Location = new System.Drawing.Point(3, 38);
+            this.lblCreationDate.Name = "lblCreationDate";
+            this.lblCreationDate.Size = new System.Drawing.Size(63, 16);
+            this.lblCreationDate.TabIndex = 24;
+            this.lblCreationDate.Text = "label13";
+            this.toolTip1.SetToolTip(this.lblCreationDate, "Fecha de Creacion");
+            // 
+            // lblLastUpdatedDate
+            // 
+            this.lblLastUpdatedDate.AutoSize = true;
+            this.lblLastUpdatedDate.Font = new System.Drawing.Font("MingLiU-ExtB", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLastUpdatedDate.Location = new System.Drawing.Point(3, 96);
+            this.lblLastUpdatedDate.Name = "lblLastUpdatedDate";
+            this.lblLastUpdatedDate.Size = new System.Drawing.Size(63, 16);
+            this.lblLastUpdatedDate.TabIndex = 25;
+            this.lblLastUpdatedDate.Text = "label13";
+            this.toolTip1.SetToolTip(this.lblLastUpdatedDate, "Fecha de Ultima Modificacion");
+            // 
+            // lblDeactivationDate
+            // 
+            this.lblDeactivationDate.AutoSize = true;
+            this.lblDeactivationDate.Font = new System.Drawing.Font("MingLiU-ExtB", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDeactivationDate.Location = new System.Drawing.Point(3, 157);
+            this.lblDeactivationDate.Name = "lblDeactivationDate";
+            this.lblDeactivationDate.Size = new System.Drawing.Size(63, 16);
+            this.lblDeactivationDate.TabIndex = 26;
+            this.lblDeactivationDate.Text = "label13";
+            this.toolTip1.SetToolTip(this.lblDeactivationDate, "Fecha de Desactivacio");
+            // 
+            // lblReactivationDate
+            // 
+            this.lblReactivationDate.AutoSize = true;
+            this.lblReactivationDate.Font = new System.Drawing.Font("MingLiU-ExtB", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReactivationDate.Location = new System.Drawing.Point(3, 220);
+            this.lblReactivationDate.Name = "lblReactivationDate";
+            this.lblReactivationDate.Size = new System.Drawing.Size(63, 16);
+            this.lblReactivationDate.TabIndex = 27;
+            this.lblReactivationDate.Text = "label13";
+            this.toolTip1.SetToolTip(this.lblReactivationDate, "Fecha de Reactivacio");
+            // 
+            // btnGeneratePassword
+            // 
+            this.btnGeneratePassword.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.btnGeneratePassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGeneratePassword.Location = new System.Drawing.Point(421, 81);
+            this.btnGeneratePassword.Name = "btnGeneratePassword";
+            this.btnGeneratePassword.Size = new System.Drawing.Size(46, 37);
+            this.btnGeneratePassword.TabIndex = 3;
+            this.btnGeneratePassword.Text = "↻";
+            this.btnGeneratePassword.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnGeneratePassword.UseVisualStyleBackColor = false;
+            this.btnGeneratePassword.Click += new System.EventHandler(this.btnGeneratePassword_Click);
             // 
             // CrearUsuarioForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(624, 591);
+            this.ClientSize = new System.Drawing.Size(624, 594);
+            this.Controls.Add(this.pnlActivity);
+            this.Controls.Add(this.btnActividad);
             this.Controls.Add(this.cbActiveState);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.gbUserLog);
@@ -341,6 +492,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "CrearUsuarioForm";
             this.Text = "Registro de Empleado - Octagon Helpdesk";
             this.Load += new System.EventHandler(this.CrearUsuarioForm_Load_1);
@@ -350,6 +502,8 @@
             this.gbUserLog.ResumeLayout(false);
             this.gbUserLog.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.pnlActivity.ResumeLayout(false);
+            this.pnlActivity.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -382,5 +536,17 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Button btnDatosGenerales;
         private System.Windows.Forms.CheckBox cbActiveState;
+        private System.Windows.Forms.Button btnActividad;
+        private System.Windows.Forms.Panel pnlActivity;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Label lblReactivationDate;
+        private System.Windows.Forms.Label lblDeactivationDate;
+        private System.Windows.Forms.Label lblLastUpdatedDate;
+        private System.Windows.Forms.Label lblCreationDate;
+        private System.Windows.Forms.Button btnGeneratePassword;
     }
 }

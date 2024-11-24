@@ -43,6 +43,12 @@ namespace OctagonHelpdesk.Models
             //// Mario: To do, Find a way to dispose of the UserRolesServices after it's used so it doesn't hog memory
         }
 
+        public string GeneratePassword()
+        {
+            string password = HelperPassword.GeneratePassword();
+            SetPassword(password);
+            return password;
+        }
 
         public void SetPassword(string password)
         {

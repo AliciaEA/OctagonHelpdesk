@@ -27,7 +27,7 @@ namespace OctagonHelpdesk.Formularios
             InitializeComponent();
             SharedLoad(currentUser);
             InitializeFormWithoutUserData(usuarioService);
-            
+
         }
 
         //Segundo Constructor, cuando se selecciona un Usuario del DataGridView
@@ -50,7 +50,7 @@ namespace OctagonHelpdesk.Formularios
             SharedLoad(currentUser);
             usuario = currentUser;
             InitializeFormWithUserData(currentUser);
-            
+
         }
         private void CrearUsuarioForm_Load_1(object sender, EventArgs e)
         {
@@ -65,13 +65,14 @@ namespace OctagonHelpdesk.Formularios
             gbDatosGenerales.Visible = true;
             gbUserLog.Visible = false;
             this.currentUser = currentUser;
-
+            pnlActivity.Visible = false;
         }
         //Inicializar el formulario para ver perfil
 
         //Inicializar el formulario cuando es para crear un nuevo usuario
         private void InitializeFormWithoutUserData(UsuarioDao usuarioDao)
         {
+            btnActividad.Visible = false;
             usuario.IDUser = usuarioDao.AutogeneradorID();
             cbActiveState.Enabled = false;
             cbActiveState.Visible = false;
@@ -82,17 +83,27 @@ namespace OctagonHelpdesk.Formularios
         //Inicializar el formulario cuando se tiene informacion de un usuario
         private void InitializeFormWithUserData(UserModel usuarioData)
         {
-           
-                // Asignar los valores del usuario seleccionado a los controles del formulario
-                cbActiveState.Checked = usuarioData.ActiveStateU;
-                tbName.Text = usuarioData.Name;
-                tbLastname.Text = usuarioData.Lastname;
-                tbEmail.Text = usuarioData.Email;
-                cmbDepartamento.SelectedItem = usuarioData.Departamento;
-                txtUsername.Text = usuarioData.Username;
-                cbAdmin.Checked = usuarioData.Roles.AdminPerms;
-                cbEmpleado.Checked = usuarioData.Roles.BasicPerms;
-                cbIT.Checked = usuarioData.Roles.ITPerms;
+
+            // Asignar los valores del usuario seleccionado a los controles del formulario
+            
+            //Detalles del Usuario
+            cbActiveState.Checked = usuarioData.ActiveStateU;
+            lblCreationDate.Text = usuarioData.CreationDate.ToString();
+            lblLastUpdatedDate.Text = lblLastUpdatedDate != null ? usuarioData.LastUpdatedDate.ToString() : "N/A";
+            lblDeactivationDate.Text = usuarioData.DeactivationDate != null ? usuarioData.DeactivationDate.ToString() : "N/A";
+            lblReactivationDate.Text = usuarioData.ReactivationDate != null ? usuarioData.ReactivationDate.ToString() : "N/A";
+
+            //Datos Generales
+            tbName.Text = usuarioData.Name;
+            tbLastname.Text = usuarioData.Lastname;
+            cmbDepartamento.SelectedItem = usuarioData.Departamento;
+
+            //Credenciales
+            tbEmail.Text = usuarioData.Email;
+            txtUsername.Text = usuarioData.Username;
+            cbAdmin.Checked = usuarioData.Roles.AdminPerms;
+            cbEmpleado.Checked = usuarioData.Roles.BasicPerms;
+            cbIT.Checked = usuarioData.Roles.ITPerms;
 
             usuario = usuarioData;
 
@@ -112,6 +123,8 @@ namespace OctagonHelpdesk.Formularios
                 usuario.Roles.AdminPerms = cbAdmin.Checked ? true : false;
                 usuario.Roles.BasicPerms = cbEmpleado.Checked ? true : false;
                 UsuarioCreated?.Invoke(usuario);
+                
+                
 
                 this.Close();
 
@@ -120,7 +133,7 @@ namespace OctagonHelpdesk.Formularios
             {
                 MessageBox.Show("Revise el formato de los datos ingresados, no se admiten campos vacíos. Mínimo uno de los permisos debe estar activo", "¡Cuidado!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            
+
         }
         //****HABILITACION Y DESHABILITACION DE USUARIO****//
         private void cbActiveState_CheckStateChanged(object sender, EventArgs e)
@@ -131,6 +144,7 @@ namespace OctagonHelpdesk.Formularios
                 cbActiveState.BackColor = Color.MediumSeaGreen;
                 cbActiveState.Text = "Activo";
                 usuario.ReactivationDate = DateTime.Now;
+                
             }
             else
             {
@@ -160,10 +174,11 @@ namespace OctagonHelpdesk.Formularios
                 usuario.Lastname = tbLastname.Text.Trim();
                 usuario.Departamento = (Departament)cmbDepartamento.SelectedItem;
                 usuario.SetUsername();
+                
                 txtUsername.Text = usuario.Username;
                 txtUsername.Enabled = false;
-                usuario.SetPassword(txtPassword.Text);
-                txtPassword.Text = usuario.EncryptedPassword;
+                
+               
             }
             else
             {
@@ -184,7 +199,7 @@ namespace OctagonHelpdesk.Formularios
         //Validar las credenciales
         public bool ValidarLogUser()
         {
-            if (string.IsNullOrEmpty(txtUsername.Text) || string.IsNullOrEmpty(txtPassword.Text))
+            if (string.IsNullOrEmpty(txtUsername.Text) || string.IsNullOrEmpty(usuario.EncryptedPassword))
             {
                 return false;
             }
@@ -201,7 +216,7 @@ namespace OctagonHelpdesk.Formularios
             return false;
         }
 
-        
+
 
         public void LoadCDepartamento()
         {
@@ -209,10 +224,82 @@ namespace OctagonHelpdesk.Formularios
             cmbDepartamento.DataSource = Enum.GetValues(typeof(Departament));
         }
 
-        
+        private void btnGeneratePassword_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("¿Deseas generar automaticamente tu contraseña y guardarla?", "Confirmación", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                txtPassword.Text = usuario.GeneratePassword();
+            }
+            else
+            {
+                txtPassword.Clear();
+                tbEmail.Focus();
+            }
 
-        
+        }
 
-        
+        private void txtPassword_Leave(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("¿Deseas guardar esta contraseña como tu nueva clave?", "Confirmación", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                usuario.SetPassword(txtPassword.Text.Trim());
+            }
+            else
+            {
+                txtPassword.Clear();
+                tbEmail.Focus();
+            }
+        }
+
+        private void btnActividad_Click(object sender, EventArgs e)
+        {
+            if (pnlActivity.Visible)
+            {
+                pnlActivity.Visible = false;
+            }
+            else
+            {
+                pnlActivity.Visible = true;
+
+            }
+
+        }
+
+        //****ENTER Y EVENTOS RELACIONADOS****//
+        private void txtUsername_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                txtPassword.Focus();
+            }
+        }
+
+        private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                if (txtPassword != null)
+                {
+                    tbEmail.Focus();
+                }
+                else
+                {
+                    btnGeneratePassword_Click(sender, e);
+                }
+
+            }
+        }
+
+        //private void tbEmail_KeyPress(object sender, KeyPressEventArgs e)
+        //{
+        //    if (true)
+        //    {
+
+        //    }
+        //}
+
+        //public bool ValidarEmail()
     }
 }
