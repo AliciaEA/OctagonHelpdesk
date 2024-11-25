@@ -123,6 +123,16 @@ namespace OctagonHelpdesk.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap GoldBackground {
+            get {
+                object obj = ResourceManager.GetObject("GoldBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap historial {
             get {
                 object obj = ResourceManager.GetObject("historial", resourceCulture);
@@ -203,6 +213,16 @@ namespace OctagonHelpdesk.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Octagon {
+            get {
+                object obj = ResourceManager.GetObject("Octagon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap password {
             get {
                 object obj = ResourceManager.GetObject("password", resourceCulture);
@@ -266,6 +286,16 @@ namespace OctagonHelpdesk.Properties {
         internal static System.Drawing.Bitmap stacked_waves_haikei_720p_ {
             get {
                 object obj = ResourceManager.GetObject("stacked_waves_haikei_720p_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Ticket {
+            get {
+                object obj = ResourceManager.GetObject("Ticket", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

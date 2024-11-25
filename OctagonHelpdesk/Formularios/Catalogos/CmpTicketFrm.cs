@@ -151,5 +151,55 @@ namespace OctagonHelpdesk.Formularios
                 InitializeFormWithoutTicketData();
             }
         }
+
+        private void txtCreatedBy_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                txtSubject.Focus();
+            }
+        }
+
+        private void txtSubject_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                txtDescription.Focus();
+            }
+        }
+
+        private void txtDescription_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                cmbPriority.Focus();
+            }
+        }
+
+        private void cmbPriority_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                cmbState.Focus();
+            }
+        }
+
+        private void cmbState_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                cmbAsigned.Focus();
+            }
+        }
+
+        private void cmbAsigned_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                btnSave.Focus();
+            }
+        }
+
+        
     }
 }

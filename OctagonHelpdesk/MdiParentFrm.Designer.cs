@@ -54,23 +54,23 @@
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel,
             this.lblHora});
-            this.statusStrip.Location = new System.Drawing.Point(0, 603);
+            this.statusStrip.Location = new System.Drawing.Point(0, 613);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Padding = new System.Windows.Forms.Padding(2, 0, 21, 0);
-            this.statusStrip.Size = new System.Drawing.Size(855, 32);
+            this.statusStrip.Size = new System.Drawing.Size(855, 22);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
             // 
             // toolStripStatusLabel
             // 
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(66, 25);
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(42, 17);
             this.toolStripStatusLabel.Text = "Estado";
             // 
             // lblHora
             // 
             this.lblHora.Name = "lblHora";
-            this.lblHora.Size = new System.Drawing.Size(179, 25);
+            this.lblHora.Size = new System.Drawing.Size(118, 17);
             this.lblHora.Text = "toolStripStatusLabel1";
             // 
             // animationTimer
@@ -97,7 +97,7 @@
             this.sidebar.Location = new System.Drawing.Point(0, 0);
             this.sidebar.Name = "sidebar";
             this.sidebar.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
-            this.sidebar.Size = new System.Drawing.Size(75, 603);
+            this.sidebar.Size = new System.Drawing.Size(75, 613);
             this.sidebar.TabIndex = 4;
             this.sidebar.Text = "toolStrip1";
             // 
@@ -107,7 +107,6 @@
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(71, 4);
-            this.toolStripButton1.Text = "toolStripButton1";
             // 
             // btnMenu
             // 
@@ -118,7 +117,7 @@
             this.btnMenu.Name = "btnMenu";
             this.btnMenu.Size = new System.Drawing.Size(63, 40);
             this.btnMenu.Text = "toolStripButton2";
-            this.btnMenu.ToolTipText = "Menu";
+            this.btnMenu.ToolTipText = "Menú";
             this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
             this.btnMenu.MouseHover += new System.EventHandler(this.btnMenu_MouseHover);
             // 
@@ -171,7 +170,7 @@
             this.btnLogOut.Name = "btnLogOut";
             this.btnLogOut.Size = new System.Drawing.Size(63, 40);
             this.btnLogOut.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnLogOut.ToolTipText = "Cerrar Sesion";
+            this.btnLogOut.ToolTipText = "Cerrar Sesión";
             this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
             // btnVerPerfil

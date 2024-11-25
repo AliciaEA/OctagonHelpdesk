@@ -372,7 +372,7 @@
             this.btnmenu.Name = "btnmenu";
             this.btnmenu.Size = new System.Drawing.Size(285, 126);
             this.btnmenu.TabIndex = 1;
-            this.btnmenu.Text = "     Menu";
+            this.btnmenu.Text = "     Menú";
             this.btnmenu.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnmenu.UseVisualStyleBackColor = false;
             this.btnmenu.Click += new System.EventHandler(this.Menu_Click);

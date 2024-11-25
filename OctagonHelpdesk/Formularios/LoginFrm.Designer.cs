@@ -68,8 +68,9 @@
             this.txbuser.Font = new System.Drawing.Font("MingLiU-ExtB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbuser.Location = new System.Drawing.Point(106, 208);
             this.txbuser.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txbuser.MaxLength = 20;
             this.txbuser.Name = "txbuser";
-            this.txbuser.Size = new System.Drawing.Size(399, 34);
+            this.txbuser.Size = new System.Drawing.Size(399, 23);
             this.txbuser.TabIndex = 0;
             this.txbuser.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbuser_KeyPress);
             // 
@@ -79,9 +80,10 @@
             this.txbpassword.Font = new System.Drawing.Font("MingLiU-ExtB", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbpassword.Location = new System.Drawing.Point(110, 283);
             this.txbpassword.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txbpassword.MaxLength = 12;
             this.txbpassword.Name = "txbpassword";
             this.txbpassword.PasswordChar = '*';
-            this.txbpassword.Size = new System.Drawing.Size(399, 34);
+            this.txbpassword.Size = new System.Drawing.Size(399, 23);
             this.txbpassword.TabIndex = 1;
             this.txbpassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbpassword_KeyPress);
             // 
