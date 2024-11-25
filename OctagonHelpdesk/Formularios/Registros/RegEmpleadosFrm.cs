@@ -12,6 +12,8 @@ using OctagonHelpdesk.Models;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 using OctagonHelpdesk.Models.Enum;
 using OctagonHelpdesk.DataSet;
+using Microsoft.Reporting.WinForms;
+using OctagonHelpdesk.Reportes;
 
 namespace OctagonHelpdesk.Formularios
 {
@@ -37,23 +39,7 @@ namespace OctagonHelpdesk.Formularios
         }
 
         //Inicializa los filtros de busqueda
-        private void InitializeFilters()
-        {
-            // Llenar ComboBox de Departamento
-            cmbFilterDepartment.DataSource = Enum.GetValues(typeof(Departament));
-
-            // Llenar ComboBox de Roles
-            cmbFilterRole.Items.Add("Admin");
-            cmbFilterRole.Items.Add("IT");
-            cmbFilterRole.Items.Add("Empleado");
-
-            // Llenar ComboBox de Estado
-            cmbFilterState.Items.Add("Todos");
-            cmbFilterState.Items.Add("Activo");
-            cmbFilterState.Items.Add("Inactivo");
-            cmbFilterState.SelectedIndex = 0; // Seleccionar "Todos" por defecto
-        }
-
+       
         //Cada que se guarda un usuario, se analiza, guarda y actualiza en la lista de usuarios
         private void OnUsuarioCreated(UserModel usuario)
         {
@@ -140,75 +126,24 @@ namespace OctagonHelpdesk.Formularios
             bindingNavigatorDeleteItem.Enabled = true;
         }
 
-        //****FILTRO DE BUSQUEDA****//
-        private void ApplyFilters()
-        {
-            List<string> filters = new List<string>();
-
-            if (cmbFilterDepartment.SelectedIndex != -1)
-            {
-                filters.Add($"Departamento = '{cmbFilterDepartment.SelectedItem}'");
-            }
-
-            if (cmbFilterRole.SelectedIndex != -1)
-            {
-                string role = cmbFilterRole.SelectedItem.ToString();
-                if (role == "Admin")
-                {
-                    filters.Add("Roles.AdminPerms = true");
-                }
-                else if (role == "IT")
-                {
-                    filters.Add("Roles.ITPerms = true");
-                }
-                else if (role == "Empleado")
-                {
-                    filters.Add("Roles.BasicPerms = true");
-                }
-            }
-
-            if (cmbFilterState.SelectedIndex != 0) // Si no es "Todos"
-            {
-                if (cmbFilterState.SelectedItem.ToString() == "Activo")
-                {
-                    filters.Add("ActiveStateU = true");
-                }
-                else if (cmbFilterState.SelectedItem.ToString() == "Inactivo")
-                {
-                    filters.Add("ActiveStateU = false");
-                }
-            }
-
-            bindingSource1.Filter = string.Join(" AND ", filters);
-        }
-
-        private void btnApplyFilters_Click(object sender, EventArgs e)
-        {
-            ApplyFilters();
-        }
+       
 
         private void GenerateReport()
         {
-            DsDatos dsDatos = new DsDatos();
-            foreach (DataGridViewRow row in DgvRegUsuarios.Rows)
-            {
-                if (row.DataBoundItem is DataRowView dataRowView)
-                {
-                    dsDatos.UsersDT.ImportRow(dataRowView.Row);
-                }
-            }
+            
 
-            RprUsers rds = new ReportDataSource("DsDatos", dsDatos.Tables["UsersDT"]);
-            ReportViewer reportViewer = new ReportViewer();
-            reportViewer.LocalReport.ReportPath = "Reportes/RptUsers.rdlc";
-            reportViewer.LocalReport.DataSources.Clear();
-            reportViewer.LocalReport.DataSources.Add(rds);
-            reportViewer.RefreshReport();
+            ReportDataSource rds = new ReportDataSource("DsDatos", usuarios.GetUsuarios());
+            RptVistaPrevia reporte = new RptVistaPrevia();
+            reporte.reportViewer1.LocalReport.DataSources.Clear();
+            reporte.reportViewer1.LocalReport.DataSources.Add(rds);
+            reporte.reportViewer1.LocalReport.ReportEmbeddedResource = "OctagonHelpdesk.Reportes.RptUsers.rdlc";
+            reporte.reportViewer1.RefreshReport();
+            reporte.ShowDialog();
+        }
 
-            Form reportForm = new Form();
-            reportForm.Controls.Add(reportViewer);
-            reportViewer.Dock = DockStyle.Fill;
-            reportForm.ShowDialog();
+        private void btnReportesVistaPrevia_Click(object sender, EventArgs e)
+        {
+            GenerateReport();
         }
     }
 }

@@ -16,5 +16,11 @@ namespace OctagonHelpdesk.Reportes
         {
             InitializeComponent();
         }
+
+        private void RptVistaPrevia_Load(object sender, EventArgs e)
+        {
+
+            this.reportViewer1.RefreshReport();
+        }
     }
 }
