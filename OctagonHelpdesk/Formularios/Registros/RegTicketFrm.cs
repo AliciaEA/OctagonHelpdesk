@@ -1,4 +1,6 @@
-﻿using OctagonHelpdesk.Models;
+﻿using Microsoft.Reporting.WinForms;
+using OctagonHelpdesk.Models;
+using OctagonHelpdesk.Reportes;
 using OctagonHelpdesk.Services;
 using System;
 using System.Collections.Generic;
@@ -130,6 +132,22 @@ namespace OctagonHelpdesk.Formularios
             {
                 FilterMyTickets();
             }
+        }
+
+        private void GenerateReport()
+        {
+            ReportDataSource rds = new ReportDataSource("DsDatos", tickets.GetTickets());
+            RptVistaPrevia reporte = new RptVistaPrevia();
+            reporte.reportViewer1.LocalReport.DataSources.Clear();
+            reporte.reportViewer1.LocalReport.DataSources.Add(rds);
+            reporte.reportViewer1.LocalReport.ReportEmbeddedResource = "OctagonHelpdesk.Reportes.RptTickets.rdlc";
+            reporte.reportViewer1.RefreshReport();
+            reporte.ShowDialog();
+        }
+        private void btnReportesVistaPrevia_Click(object sender, EventArgs e)
+        {
+            GenerateReport();
+
         }
     }
 }

@@ -191,6 +191,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reportes\RptTickets.rdlc" />
     <EmbeddedResource Include="Reportes\RptUsers.rdlc" />
     <EmbeddedResource Include="Reportes\RptVistaPrevia.resx">
       <DependentUpon>RptVistaPrevia.cs</DependentUpon>

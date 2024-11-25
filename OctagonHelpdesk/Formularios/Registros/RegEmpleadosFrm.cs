@@ -130,8 +130,6 @@ namespace OctagonHelpdesk.Formularios
 
         private void GenerateReport()
         {
-            
-
             ReportDataSource rds = new ReportDataSource("DsDatos", usuarios.GetUsuarios());
             RptVistaPrevia reporte = new RptVistaPrevia();
             reporte.reportViewer1.LocalReport.DataSources.Clear();
