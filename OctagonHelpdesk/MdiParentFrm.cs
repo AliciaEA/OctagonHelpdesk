@@ -53,6 +53,7 @@ namespace OctagonHelpdesk
                 if (loginForm.ShowDialog(this) == DialogResult.OK)
                 {
                     currentUser = loginForm.CurrentUser;
+                    this.Show();
                     // Aquí puedes agregar lógica adicional para manejar el usuario logueado
                     Home home = Application.OpenForms.OfType<Home>().FirstOrDefault();
                     /*busca si ya existe una instancia de RegTicketFrm abierta. Si encuentra una, la asigna a regTicketFrm.*/
@@ -278,7 +279,19 @@ namespace OctagonHelpdesk
             UpdateTime();
         }
 
-       
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            // Cerrar todos los formularios hijos
+            foreach (Form childForm in this.MdiChildren)
+            {
+                childForm.Close();
+            }
+            
+            this.Hide(); // Ocultar el formulario principal
+
+            // Volver a llamar al método On_Load para mostrar el formulario de inicio de sesión
+            On_Load(sender, e);
+        }
     }
 }
 

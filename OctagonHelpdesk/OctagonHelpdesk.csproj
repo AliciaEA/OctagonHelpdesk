@@ -233,6 +233,7 @@
     <Content Include="Assets\stacked-waves-haikei%28720p%29.png" />
     <Content Include="Assets\stacked-waves-haikei.png" />
     <Content Include="Assets\wavebckg.jpg" />
+    <None Include="Resources\cerrar-sesion.png" />
     <None Include="Resources\reportesIcon.png" />
     <None Include="Resources\historial.png" />
     <None Include="Resources\FotoPerfil.png" />

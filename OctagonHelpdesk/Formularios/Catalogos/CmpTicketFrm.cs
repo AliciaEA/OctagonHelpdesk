@@ -11,18 +11,21 @@ namespace OctagonHelpdesk.Formularios
     {
         public event Action<Ticket> TicketCreated;
         private readonly TicketDao ticketDaoLocal;
-        UserModel currentUser { get; set; }
         public Ticket ticket = new Ticket();
         public Ticket ticketSel = new Ticket();
+        UserModel currentUser { get; set; }
+        
 
         // Constructor para crear un nuevo ticket
         public CmpTicketFrm(TicketDao ticketDao, UserModel currentUser)
         {
             InitializeComponent();
             ticketDaoLocal = ticketDao;
-            InitializeFormWithoutTicketData();
             this.currentUser = currentUser;
             txtCreatedBy.Text = currentUser.Name;
+            InitializeFormWithoutTicketData();
+            
+            
         }
 
         // Constructor para editar un ticket existente
@@ -139,9 +142,13 @@ namespace OctagonHelpdesk.Formularios
             LoadComboBox();
 
             // Inicializar el formulario con los datos del ticket seleccionado
-            if (ticketSel != null)
+            if (ticketSel != null && ticketSel.IDTicket != 0)
             {
                 InitializeFormWithTicketData();
+            }
+            else
+            {
+                InitializeFormWithoutTicketData();
             }
         }
     }

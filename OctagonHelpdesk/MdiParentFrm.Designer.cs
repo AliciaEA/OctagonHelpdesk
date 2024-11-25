@@ -41,7 +41,9 @@
             this.btnHome = new System.Windows.Forms.ToolStripButton();
             this.btnRegTickets = new System.Windows.Forms.ToolStripButton();
             this.btnRegUsuarios = new System.Windows.Forms.ToolStripButton();
+            this.btnLogOut = new System.Windows.Forms.ToolStripButton();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.statusStrip.SuspendLayout();
             this.sidebar.SuspendLayout();
             this.SuspendLayout();
@@ -79,6 +81,7 @@
             // 
             this.sidebar.AutoSize = false;
             this.sidebar.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.sidebar.BackgroundImage = global::OctagonHelpdesk.Properties.Resources.wavebckg;
             this.sidebar.Dock = System.Windows.Forms.DockStyle.Left;
             this.sidebar.Font = new System.Drawing.Font("MingLiU-ExtB", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sidebar.ImageScalingSize = new System.Drawing.Size(24, 24);
@@ -87,7 +90,9 @@
             this.btnMenu,
             this.btnHome,
             this.btnRegTickets,
-            this.btnRegUsuarios});
+            this.btnRegUsuarios,
+            this.btnLogOut,
+            this.toolStripButton3});
             this.sidebar.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.sidebar.Location = new System.Drawing.Point(0, 0);
             this.sidebar.Name = "sidebar";
@@ -156,9 +161,32 @@
             this.btnRegUsuarios.Click += new System.EventHandler(this.btnRegUsuarios_Click);
             this.btnRegUsuarios.MouseHover += new System.EventHandler(this.btnRegUsuarios_MouseHover);
             // 
+            // btnLogOut
+            // 
+            this.btnLogOut.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnLogOut.AutoSize = false;
+            this.btnLogOut.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnLogOut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnLogOut.Image = global::OctagonHelpdesk.Properties.Resources.cerrar_sesion;
+            this.btnLogOut.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnLogOut.Name = "btnLogOut";
+            this.btnLogOut.Size = new System.Drawing.Size(63, 40);
+            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
+            // 
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripButton3.AutoSize = false;
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton3.Image = global::OctagonHelpdesk.Properties.Resources.user;
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(63, 40);
+            this.toolStripButton3.Text = "toolStripButton3";
             // 
             // MdiParentFrm
             // 
@@ -197,6 +225,8 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStripStatusLabel lblHora;
         private System.Windows.Forms.ToolStripButton btnHome;
+        private System.Windows.Forms.ToolStripButton btnLogOut;
+        private System.Windows.Forms.ToolStripButton toolStripButton3;
     }
 }
 

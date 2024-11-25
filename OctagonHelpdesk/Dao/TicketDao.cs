@@ -10,28 +10,18 @@ namespace OctagonHelpdesk.Services
     public class TicketDao
     {
         public List<Ticket> tickets = new List<Ticket>();
+        TicketFileHelper ticketFileHelper = new TicketFileHelper();
 
         public TicketDao() 
         {
-            FillTickets();
-        }
-
-        private void FillTickets()
-        {
-            TicketFileHelper ticketFileHelper = new TicketFileHelper();
-            tickets = ticketFileHelper.GetTickets(); 
-        }
-
-        public void SaveTicketstoDisk(List<Ticket> tickets)
-        {
-            TicketFileHelper ticketFileHelper = new TicketFileHelper();
-            ticketFileHelper.SaveTickets(tickets);
+            tickets = ticketFileHelper.GetTickets();
         }
 
         //Añado el ticket a la lista de tickets
         public void AddTicket(Ticket ticket)
         {
             tickets.Add(ticket);
+            ticketFileHelper.SaveTickets(tickets);
         }
 
         //Para eliminar, busco su posicion y solo desactivo o inhabilito el estado del ticket
@@ -40,6 +30,7 @@ namespace OctagonHelpdesk.Services
             int position = FindPosition(ticket.IDTicket);
             tickets[position].ActiveState = false;
             tickets[position].DeactivationDate = DateTime.Now;
+            ticketFileHelper.SaveTickets(tickets);
         }
         
         //Para actualizar, busco la posición del ticket y lo actualizo
@@ -48,6 +39,7 @@ namespace OctagonHelpdesk.Services
             int position = FindPosition(ticket.IDTicket);
             tickets[position] = ticket;
             tickets[position].LastUpdatedDate = DateTime.Now;
+            ticketFileHelper.SaveTickets(tickets);
         }
         
         //Busco la posicion del ticket en la lista

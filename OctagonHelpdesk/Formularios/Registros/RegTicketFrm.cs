@@ -13,13 +13,13 @@ namespace OctagonHelpdesk.Formularios
     public partial class RegTicketFrm : Form
     {
         public TicketDao tickets = new TicketDao();
-        public List<Ticket> ticketsList;
+        
         public UserModel currentUser { get; set; }
 
 
         public RegTicketFrm(UserModel currentUser)
         {
-            ticketsList = tickets.tickets;
+            
             InitializeComponent();
             InitializeBinding();
             this.currentUser = currentUser;
@@ -79,7 +79,7 @@ namespace OctagonHelpdesk.Formularios
                 tickets.AddTicket(ticket);
             }
             bindingSource.ResetBindings(false);
-            tickets.SaveTicketstoDisk(ticketsList);
+            
         }
 
         //FUNCIONES DE APOYO
@@ -121,17 +121,17 @@ namespace OctagonHelpdesk.Formularios
         }
 
         //****FILTRO DE BUSQUEDA****//
-        public void FilterMyTickets()
-        {
-            bindingSource.Filter = $"IDUser = {currentUser.IDUser}";
-        }
+        //public void FilterMyTickets()
+        //{
+        //    bindingSource.Filter = $"IDUser = {currentUser.IDUser}";
+        //}
 
         private void RegTicketFrm_Load(object sender, EventArgs e)
         {
-            if (!currentUser.Roles.ITPerms || !currentUser.Roles.AdminPerms)
-            {
-                FilterMyTickets();
-            }
+            //if (!currentUser.Roles.ITPerms || !currentUser.Roles.AdminPerms)
+            //{
+            //    FilterMyTickets();
+            //}
         }
 
         private void GenerateReport()
