@@ -80,11 +80,7 @@ namespace OctagonHelpdesk.Services
                                 DeactivationDate = ParseDate(lector.ReadString()),
                                 ReactivationDate = ParseDate(lector.ReadString()),
                                 CloseDate = ParseDate(lector.ReadString()),
-                                ticketimage = new TicketImage
-                                {
-                                    IDTicket = lector.ReadInt32(),
-                                    Imagepath = lector.ReadString()
-                                }
+                                imagepath = lector.ReadString()
                             };
 
                             tickets.Add(ticket);
