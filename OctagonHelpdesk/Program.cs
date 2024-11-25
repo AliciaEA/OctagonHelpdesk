@@ -12,7 +12,10 @@ namespace OctagonHelpdesk
 {
     internal static class Program
     {
+        private static string rutaDirImages = @"data\images";
         private static string rutaArchivoUsuarios = @"data\data.dat";
+        private static string rutaArchivoTickets = @"data\tickets.dat";
+
 
         /// <summary>
         /// Punto de entrada principal para la aplicación.
@@ -30,8 +33,39 @@ namespace OctagonHelpdesk
                 CrearUsuarioAdminPorDefecto();
             }
 
+            FileVerification();
+
             Application.Run(new MdiParentFrm());
         }
+
+        private static void FileVerification()
+        {
+            if (!Directory.Exists("data"))
+            {
+                Directory.CreateDirectory("data");
+            }
+
+            if (!Directory.Exists(rutaDirImages))
+            {
+                Directory.CreateDirectory(rutaDirImages);
+            }
+
+            if (!File.Exists(rutaArchivoUsuarios))
+            {
+                using (FileStream fs = File.Create(rutaArchivoUsuarios))
+                {
+                }
+            }           
+
+            //Si no existe el archivo de tickets, lo crea
+            if (!File.Exists(rutaArchivoTickets))
+            {
+                using (FileStream fs = File.Create(rutaArchivoTickets))
+                {
+                }
+            }
+        }
+
 
         private static void CrearUsuarioAdminPorDefecto()
         {

@@ -120,6 +120,7 @@
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Sesion.cs" />
     <Compile Include="Models\Ticket.cs" />
+    <Compile Include="Models\TicketImage.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -133,6 +134,7 @@
     <Compile Include="Services\FileHelper.cs" />
     <Compile Include="Services\HelperPassword.cs" />
     <Compile Include="Dao\TicketDao.cs" />
+    <Compile Include="Services\ImageHelper.cs" />
     <Compile Include="Services\TicketFileHelper.cs" />
     <Compile Include="Services\UserRolesService.cs" />
     <Compile Include="Dao\UsuarioDao.cs" />

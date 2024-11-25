@@ -45,8 +45,11 @@
             this.label7 = new System.Windows.Forms.Label();
             this.lblTicketID = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.filelabel = new System.Windows.Forms.Label();
+            this.filepicturebox = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.filepicturebox)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -55,7 +58,7 @@
             this.label2.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(46, 38);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(107, 18);
+            this.label2.Size = new System.Drawing.Size(71, 12);
             this.label2.TabIndex = 1;
             this.label2.Text = "Creado por:";
             // 
@@ -65,7 +68,7 @@
             this.label1.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 9F);
             this.label1.Location = new System.Drawing.Point(51, 86);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 18);
+            this.label1.Size = new System.Drawing.Size(47, 12);
             this.label1.TabIndex = 2;
             this.label1.Text = "Asunto:";
             // 
@@ -75,7 +78,7 @@
             this.label3.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 9F);
             this.label3.Location = new System.Drawing.Point(46, 129);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(116, 18);
+            this.label3.Size = new System.Drawing.Size(77, 12);
             this.label3.TabIndex = 3;
             this.label3.Text = "Descripción:";
             // 
@@ -85,7 +88,7 @@
             this.label4.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 9F);
             this.label4.Location = new System.Drawing.Point(51, 291);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(71, 18);
+            this.label4.Size = new System.Drawing.Size(47, 12);
             this.label4.TabIndex = 4;
             this.label4.Text = "Estado:";
             // 
@@ -95,7 +98,7 @@
             this.label5.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 9F);
             this.label5.Location = new System.Drawing.Point(51, 344);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(107, 18);
+            this.label5.Size = new System.Drawing.Size(71, 12);
             this.label5.TabIndex = 5;
             this.label5.Text = "Asignado a:";
             // 
@@ -105,7 +108,7 @@
             this.txtCreatedBy.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCreatedBy.Location = new System.Drawing.Point(198, 38);
             this.txtCreatedBy.Name = "txtCreatedBy";
-            this.txtCreatedBy.Size = new System.Drawing.Size(363, 29);
+            this.txtCreatedBy.Size = new System.Drawing.Size(363, 22);
             this.txtCreatedBy.TabIndex = 6;
             // 
             // txtSubject
@@ -113,7 +116,7 @@
             this.txtSubject.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.txtSubject.Location = new System.Drawing.Point(198, 84);
             this.txtSubject.Name = "txtSubject";
-            this.txtSubject.Size = new System.Drawing.Size(363, 29);
+            this.txtSubject.Size = new System.Drawing.Size(363, 22);
             this.txtSubject.TabIndex = 0;
             // 
             // txtDescription
@@ -132,7 +135,7 @@
             this.cmbState.FormattingEnabled = true;
             this.cmbState.Location = new System.Drawing.Point(198, 289);
             this.cmbState.Name = "cmbState";
-            this.cmbState.Size = new System.Drawing.Size(363, 29);
+            this.cmbState.Size = new System.Drawing.Size(363, 21);
             this.cmbState.TabIndex = 3;
             // 
             // cmbAsigned
@@ -142,14 +145,14 @@
             this.cmbAsigned.FormattingEnabled = true;
             this.cmbAsigned.Location = new System.Drawing.Point(198, 341);
             this.cmbAsigned.Name = "cmbAsigned";
-            this.cmbAsigned.Size = new System.Drawing.Size(363, 29);
+            this.cmbAsigned.Size = new System.Drawing.Size(363, 21);
             this.cmbAsigned.TabIndex = 10;
             // 
             // btnSave
             // 
             this.btnSave.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnSave.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(254, 475);
+            this.btnSave.Location = new System.Drawing.Point(257, 636);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(146, 54);
             this.btnSave.TabIndex = 11;
@@ -160,6 +163,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.panel1.Controls.Add(this.filepicturebox);
+            this.panel1.Controls.Add(this.filelabel);
             this.panel1.Controls.Add(this.btnAttachments);
             this.panel1.Controls.Add(this.cmbPriority);
             this.panel1.Controls.Add(this.label7);
@@ -176,18 +181,19 @@
             this.panel1.Controls.Add(this.label5);
             this.panel1.Location = new System.Drawing.Point(167, 54);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(592, 546);
+            this.panel1.Size = new System.Drawing.Size(592, 714);
             this.panel1.TabIndex = 14;
             // 
             // btnAttachments
             // 
             this.btnAttachments.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.btnAttachments.Image = global::OctagonHelpdesk.Properties.Resources.adjuntar_archivo;
-            this.btnAttachments.Location = new System.Drawing.Point(58, 399);
+            this.btnAttachments.Location = new System.Drawing.Point(53, 390);
             this.btnAttachments.Name = "btnAttachments";
             this.btnAttachments.Size = new System.Drawing.Size(55, 46);
             this.btnAttachments.TabIndex = 16;
             this.btnAttachments.UseVisualStyleBackColor = false;
+            this.btnAttachments.Click += new System.EventHandler(this.btnAttachments_Click);
             // 
             // cmbPriority
             // 
@@ -195,7 +201,7 @@
             this.cmbPriority.FormattingEnabled = true;
             this.cmbPriority.Location = new System.Drawing.Point(198, 230);
             this.cmbPriority.Name = "cmbPriority";
-            this.cmbPriority.Size = new System.Drawing.Size(363, 29);
+            this.cmbPriority.Size = new System.Drawing.Size(363, 21);
             this.cmbPriority.TabIndex = 2;
             // 
             // label7
@@ -204,7 +210,7 @@
             this.label7.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 9F);
             this.label7.Location = new System.Drawing.Point(51, 232);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(98, 18);
+            this.label7.Size = new System.Drawing.Size(65, 12);
             this.label7.TabIndex = 14;
             this.label7.Text = "Prioridad:";
             // 
@@ -215,7 +221,7 @@
             this.lblTicketID.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTicketID.Location = new System.Drawing.Point(207, 9);
             this.lblTicketID.Name = "lblTicketID";
-            this.lblTicketID.Size = new System.Drawing.Size(235, 32);
+            this.lblTicketID.Size = new System.Drawing.Size(166, 22);
             this.lblTicketID.TabIndex = 16;
             this.lblTicketID.Text = "Crear Ticket:";
             // 
@@ -225,15 +231,31 @@
             this.pictureBox1.Image = global::OctagonHelpdesk.Properties.Resources.wavebckg;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(132, 622);
+            this.pictureBox1.Size = new System.Drawing.Size(132, 780);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 17;
             this.pictureBox1.TabStop = false;
             // 
+            // filelabel
+            // 
+            this.filelabel.AutoSize = true;
+            this.filelabel.Location = new System.Drawing.Point(160, 390);
+            this.filelabel.Name = "filelabel";
+            this.filelabel.Size = new System.Drawing.Size(0, 13);
+            this.filelabel.TabIndex = 17;
+            // 
+            // filepicturebox
+            // 
+            this.filepicturebox.Location = new System.Drawing.Point(153, 417);
+            this.filepicturebox.Name = "filepicturebox";
+            this.filepicturebox.Size = new System.Drawing.Size(408, 213);
+            this.filepicturebox.TabIndex = 18;
+            this.filepicturebox.TabStop = false;
+            // 
             // CmpTicketFrm
             // 
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(783, 622);
+            this.ClientSize = new System.Drawing.Size(783, 780);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblTicketID);
             this.Controls.Add(this.panel1);
@@ -245,6 +267,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.filepicturebox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -267,5 +290,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnAttachments;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox filepicturebox;
+        private System.Windows.Forms.Label filelabel;
     }
 }

@@ -17,19 +17,6 @@ namespace OctagonHelpdesk.Services
         public TicketFileHelper()
         {
 
-            string path = rutaArchivo;
-            if (!Directory.Exists("data"))
-            {
-                Directory.CreateDirectory("data");
-            }
-            string filePath = rutaArchivo;
-
-            if (!File.Exists(filePath))
-            {
-                using (FileStream fs = File.Create(filePath))
-                {
-                }
-            }
         }
 
         private DateTime dateformater(string date)
@@ -58,6 +45,8 @@ namespace OctagonHelpdesk.Services
                         escritor.Write(ticket.DeactivationDate.ToString("dd/MM/yyyy"));
                         escritor.Write(ticket.ReactivationDate.ToString("dd/MM/yyyy"));
                         escritor.Write(ticket.CloseDate.ToString("dd/MM/yyyy"));
+                      //  escritor.Write(ticket.ticketimage.IDTicket);
+                      //  escritor.Write(ticket.ticketimage.Imagepath);
                     }
                 }
             }
@@ -90,7 +79,12 @@ namespace OctagonHelpdesk.Services
                                 LastUpdatedDate = ParseDate(lector.ReadString()),
                                 DeactivationDate = ParseDate(lector.ReadString()),
                                 ReactivationDate = ParseDate(lector.ReadString()),
-                                CloseDate = ParseDate(lector.ReadString())
+                                CloseDate = ParseDate(lector.ReadString()),
+                                ticketimage = new TicketImage
+                                {
+                                    IDTicket = lector.ReadInt32(),
+                                    Imagepath = lector.ReadString()
+                                }
                             };
 
                             tickets.Add(ticket);

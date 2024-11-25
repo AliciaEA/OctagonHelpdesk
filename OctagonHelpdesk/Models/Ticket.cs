@@ -1,5 +1,6 @@
 ﻿using OctagonHelpdesk.Models.Enum;
 using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,13 +24,15 @@ namespace OctagonHelpdesk.Models
         public DateTime ReactivationDate { get; set; }
         public DateTime CloseDate { get; set; }
 
+        public TicketImage ticketimage { get; set; }
+        
 
 
 
 
         public Ticket()
         {
-
+           
         }
 
         public Ticket(int creadorPorID)

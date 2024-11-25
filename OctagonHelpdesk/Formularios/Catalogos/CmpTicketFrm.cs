@@ -3,6 +3,7 @@ using OctagonHelpdesk.Models.Enum;
 using OctagonHelpdesk.Services;
 using System;
 using System.Linq;
+using System.IO;
 using System.Windows.Forms;
 
 namespace OctagonHelpdesk.Formularios
@@ -14,6 +15,8 @@ namespace OctagonHelpdesk.Formularios
         UserModel currentUser { get; set; }
         public Ticket ticket = new Ticket();
         public Ticket ticketSel = new Ticket();
+
+
 
         // Constructor para crear un nuevo ticket
         public CmpTicketFrm(TicketDao ticketDao, UserModel currentUser)
@@ -89,6 +92,7 @@ namespace OctagonHelpdesk.Formularios
                         ticket.CloseDate = DateTime.Now;
                     }
 
+                    File.Copy(sourceFilePath, targetFilePath, true);
                     TicketCreated?.Invoke(ticket);
                     this.Close();
                 }
@@ -99,7 +103,7 @@ namespace OctagonHelpdesk.Formularios
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al guardar el ticket", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error al guardar el ticket: {ex.ToString()}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -142,6 +146,43 @@ namespace OctagonHelpdesk.Formularios
             if (ticketSel != null)
             {
                 InitializeFormWithTicketData();
+            }
+        }
+
+
+        string sourceFilePath;
+        string targetFilePath;
+        private void btnAttachments_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Title = "Select a file";
+                openFileDialog.Filter = "All files (*.*)|*.*";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    sourceFilePath = openFileDialog.FileName;
+                    string targetDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data", "images");
+
+                    // Ensure the target directory exists
+                    if (!Directory.Exists(targetDirectory))
+                    {
+                        Directory.CreateDirectory(targetDirectory);
+                    }
+
+                    // Get the file name and trim spaces
+                    string fileName = Path.GetFileName(sourceFilePath).Replace(" ", "");
+
+                    // Combine the target directory and the trimmed file name
+                    targetFilePath = Path.Combine(targetDirectory, fileName);
+                    
+                   
+
+                    // Store the trimmed path
+                    filelabel.Text = targetFilePath;
+                    Console.WriteLine("New Filepath: ");
+                    filepicturebox.ImageLocation = targetFilePath;
+                }
             }
         }
     }
