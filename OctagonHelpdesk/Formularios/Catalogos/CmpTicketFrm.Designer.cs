@@ -40,16 +40,17 @@
             this.cmbAsigned = new System.Windows.Forms.ComboBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.filepicturebox = new System.Windows.Forms.PictureBox();
+            this.filelabel = new System.Windows.Forms.Label();
             this.btnAttachments = new System.Windows.Forms.Button();
             this.cmbPriority = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.lblTicketID = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.filelabel = new System.Windows.Forms.Label();
-            this.filepicturebox = new System.Windows.Forms.PictureBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.filepicturebox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -152,7 +153,7 @@
             // 
             this.btnSave.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnSave.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(257, 636);
+            this.btnSave.Location = new System.Drawing.Point(415, 684);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(146, 54);
             this.btnSave.TabIndex = 11;
@@ -163,6 +164,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.filepicturebox);
             this.panel1.Controls.Add(this.filelabel);
             this.panel1.Controls.Add(this.btnAttachments);
@@ -181,8 +183,26 @@
             this.panel1.Controls.Add(this.label5);
             this.panel1.Location = new System.Drawing.Point(167, 54);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(592, 714);
+            this.panel1.Size = new System.Drawing.Size(592, 753);
             this.panel1.TabIndex = 14;
+            // 
+            // filepicturebox
+            // 
+            this.filepicturebox.Location = new System.Drawing.Point(153, 465);
+            this.filepicturebox.Name = "filepicturebox";
+            this.filepicturebox.Size = new System.Drawing.Size(408, 213);
+            this.filepicturebox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.filepicturebox.TabIndex = 18;
+            this.filepicturebox.TabStop = false;
+            // 
+            // filelabel
+            // 
+            this.filelabel.AutoSize = true;
+            this.filelabel.Location = new System.Drawing.Point(50, 439);
+            this.filelabel.Name = "filelabel";
+            this.filelabel.Size = new System.Drawing.Size(36, 13);
+            this.filelabel.TabIndex = 17;
+            this.filelabel.Text = "Path: ";
             // 
             // btnAttachments
             // 
@@ -231,31 +251,24 @@
             this.pictureBox1.Image = global::OctagonHelpdesk.Properties.Resources.wavebckg;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(132, 780);
+            this.pictureBox1.Size = new System.Drawing.Size(132, 835);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 17;
             this.pictureBox1.TabStop = false;
             // 
-            // filelabel
+            // label6
             // 
-            this.filelabel.AutoSize = true;
-            this.filelabel.Location = new System.Drawing.Point(160, 390);
-            this.filelabel.Name = "filelabel";
-            this.filelabel.Size = new System.Drawing.Size(0, 13);
-            this.filelabel.TabIndex = 17;
-            // 
-            // filepicturebox
-            // 
-            this.filepicturebox.Location = new System.Drawing.Point(153, 417);
-            this.filepicturebox.Name = "filepicturebox";
-            this.filepicturebox.Size = new System.Drawing.Size(408, 213);
-            this.filepicturebox.TabIndex = 18;
-            this.filepicturebox.TabStop = false;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(150, 390);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(42, 13);
+            this.label6.TabIndex = 19;
+            this.label6.Text = "Media:";
             // 
             // CmpTicketFrm
             // 
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(783, 780);
+            this.ClientSize = new System.Drawing.Size(783, 835);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblTicketID);
             this.Controls.Add(this.panel1);
@@ -266,8 +279,8 @@
             this.Load += new System.EventHandler(this.CmpTicketFrm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.filepicturebox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -292,5 +305,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox filepicturebox;
         private System.Windows.Forms.Label filelabel;
+        private System.Windows.Forms.Label label6;
     }
 }

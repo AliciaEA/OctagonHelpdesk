@@ -5,6 +5,7 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Windows.Forms;
+using System.Linq.Expressions;
 
 namespace OctagonHelpdesk.Formularios
 {
@@ -16,7 +17,9 @@ namespace OctagonHelpdesk.Formularios
         public Ticket ticket = new Ticket();
         public Ticket ticketSel = new Ticket();
 
-
+        string sourceFilePath;
+        string targetFilePath;
+        bool later;
 
         // Constructor para crear un nuevo ticket
         public CmpTicketFrm(TicketDao ticketDao, UserModel currentUser)
@@ -36,6 +39,21 @@ namespace OctagonHelpdesk.Formularios
             ticketSel = ticketSelected;
             this.currentUser = currentUser;
             txtCreatedBy.Text = currentUser.Name;
+
+            if (!File.Exists(ticketSelected.Imagepath))
+            {
+                filelabel.Text = "File non existent";
+            }
+            else
+            {
+                filepicturebox.ImageLocation = ticketSelected.Imagepath;
+
+
+                filelabel.Text = "Path: " + ticketSelected.Imagepath;
+            }
+
+           
+
         }
         
         
@@ -48,6 +66,7 @@ namespace OctagonHelpdesk.Formularios
             ticket.CreationDate = DateTime.Now;
             ticket.ActiveState = true;
             cmbAsigned.SelectedValue = 0;
+            later = false;
         }
 
         // Inicializar el formulario para editar un ticket existente
@@ -62,6 +81,9 @@ namespace OctagonHelpdesk.Formularios
                 txtDescription.Text = ticketSel.Descripcion;
                 cmbState.SelectedItem = ticketSel.StateProcess;
                 cmbPriority.SelectedItem = ticketSel.Prioridad;
+                later = true;
+
+                
 
                 // Asignar el valor seleccionado después de que el ComboBox esté cargado
                 cmbAsigned.SelectedValue = ticketSel.AsignadoA;
@@ -92,7 +114,24 @@ namespace OctagonHelpdesk.Formularios
                         ticket.CloseDate = DateTime.Now;
                     }
 
-                    File.Copy(sourceFilePath, targetFilePath, true);
+                    ticket.Imagepath = targetFilePath;
+                    Console.WriteLine("TargetFilepath: "+ticket.Imagepath);
+
+                    try
+                    {
+                        if (!later)
+                        {
+                            File.Copy(sourceFilePath, targetFilePath, true);       
+                        }
+                        
+                    }
+                    catch(Exception ex) 
+                    {
+                        Console.WriteLine("Debug #04: "+ex.ToString());
+                    }
+                   
+                    
+                    
                     TicketCreated?.Invoke(ticket);
                     this.Close();
                 }
@@ -128,6 +167,7 @@ namespace OctagonHelpdesk.Formularios
             cmbAsigned.DataSource = filteredUsers;
             cmbAsigned.DisplayMember = "Username";
             cmbAsigned.ValueMember = "IDUser";
+
         }
 
         private void CmpTicketFrm_Load(object sender, EventArgs e)
@@ -150,19 +190,25 @@ namespace OctagonHelpdesk.Formularios
         }
 
 
-        string sourceFilePath;
-        string targetFilePath;
+        
         private void btnAttachments_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.Title = "Select a file";
-                openFileDialog.Filter = "All files (*.*)|*.*";
+                openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png, *.bmp)|*.jpg;*.jpeg;*.png;*.bmp|All files (*.*)|*.*";
+
+                string globalpath = AppDomain.CurrentDomain.BaseDirectory;
+                string localpath = Path.Combine(globalpath, @"..\..\Data");
+                string targetDirectory = @"images";
+                targetDirectory = Path.Combine(localpath,targetDirectory);
+
+                targetDirectory = @"data\images";
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     sourceFilePath = openFileDialog.FileName;
-                    string targetDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "data", "images");
+                   
 
                     // Ensure the target directory exists
                     if (!Directory.Exists(targetDirectory))
@@ -170,18 +216,14 @@ namespace OctagonHelpdesk.Formularios
                         Directory.CreateDirectory(targetDirectory);
                     }
 
-                    // Get the file name and trim spaces
+ 
                     string fileName = Path.GetFileName(sourceFilePath).Replace(" ", "");
-
-                    // Combine the target directory and the trimmed file name
                     targetFilePath = Path.Combine(targetDirectory, fileName);
+ 
+                    filelabel.Text ="Path: "+ openFileDialog.FileName;
+                    Console.WriteLine("Debug #02"+targetDirectory);
+                    filepicturebox.ImageLocation = sourceFilePath;
                     
-                   
-
-                    // Store the trimmed path
-                    filelabel.Text = targetFilePath;
-                    Console.WriteLine("New Filepath: ");
-                    filepicturebox.ImageLocation = targetFilePath;
                 }
             }
         }

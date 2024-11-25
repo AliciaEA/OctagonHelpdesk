@@ -24,8 +24,8 @@ namespace OctagonHelpdesk.Models
         public DateTime ReactivationDate { get; set; }
         public DateTime CloseDate { get; set; }
 
-        public TicketImage ticketimage { get; set; }
-        
+        // public TicketImage ticketimage { get; set; }
+        public string Imagepath { get; set; }
 
 
 

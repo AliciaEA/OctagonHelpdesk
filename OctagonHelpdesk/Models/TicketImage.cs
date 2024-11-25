@@ -8,6 +8,7 @@ namespace OctagonHelpdesk.Models
 {
     public class TicketImage
     {
+        // For future use
         public int IDTicket { get; set; }
         public string Imagepath;
 

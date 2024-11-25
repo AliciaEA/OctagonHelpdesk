@@ -10,11 +10,14 @@ namespace OctagonHelpdesk.Services
     internal class FileHelper
     {
         private string rutaArchivo = @"data\data.dat";
-
+        
         public FileHelper()
         {
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string targetDirectory = Path.Combine(baseDirectory, @"..\..\Data");
+
             //Ruta del archivo
-            string path = rutaArchivo;
+            // string path = rutaArchivo;
 
             //Si no existe el directorio, lo crea
             if (!Directory.Exists("data"))
@@ -25,12 +28,12 @@ namespace OctagonHelpdesk.Services
             //Si no existe el archivo, lo crea
             string filePath = rutaArchivo;
 
-            if (!File.Exists(filePath))
-            {
-                using (FileStream fs = File.Create(filePath))
+           if (!File.Exists(filePath))
+           {
+               using (FileStream fs = File.Create(filePath))
                 {
                 }
-            }
+           }
         }
 
         private DateTime dateformater(string date)

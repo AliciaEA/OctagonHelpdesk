@@ -7,17 +7,37 @@ using System.Text;
 using System.Threading.Tasks;
 using OctagonHelpdesk.Models.Enum;
 using OctagonHelpdesk.Models;
+using System.Security.AccessControl;
 
 namespace OctagonHelpdesk.Services
 {
     public class TicketFileHelper
     {
         private string rutaArchivo = @"data\tickets.dat";
+        //string rutaArchivo = @"tickets.dat";
+        string globalpath = AppDomain.CurrentDomain.BaseDirectory;
+        string localpath;
+
+
 
         public TicketFileHelper()
         {
+         /*   localpath = Path.Combine(globalpath, @"..\..\Data");
+            rutaArchivo = Path.Combine(localpath, rutaArchivo);
 
+            Console.WriteLine(rutaArchivo);
+
+            DirectoryInfo dInfo = new DirectoryInfo(rutaArchivo);
+            DirectorySecurity dSecurity = dInfo.GetAccessControl();
+            dSecurity.AddAccessRule(new FileSystemAccessRule(
+                "Everyone",
+                FileSystemRights.FullControl,
+                InheritanceFlags.ContainerInherit | InheritanceFlags.ObjectInherit,
+                PropagationFlags.None,
+                AccessControlType.Allow));
+            dInfo.SetAccessControl(dSecurity); */
         }
+
 
         private DateTime dateformater(string date)
         {
@@ -47,6 +67,7 @@ namespace OctagonHelpdesk.Services
                         escritor.Write(ticket.CloseDate.ToString("dd/MM/yyyy"));
                       //  escritor.Write(ticket.ticketimage.IDTicket);
                       //  escritor.Write(ticket.ticketimage.Imagepath);
+                        escritor.Write(ticket.Imagepath ?? string.Empty);
                     }
                 }
             }
@@ -80,12 +101,15 @@ namespace OctagonHelpdesk.Services
                                 DeactivationDate = ParseDate(lector.ReadString()),
                                 ReactivationDate = ParseDate(lector.ReadString()),
                                 CloseDate = ParseDate(lector.ReadString()),
-                                ticketimage = new TicketImage
-                                {
-                                    IDTicket = lector.ReadInt32(),
-                                    Imagepath = lector.ReadString()
-                                }
+                                //ticketimage = new TicketImage
+                                //{
+                                //   IDTicket = lector.ReadInt32(),
+                                //    Imagepath = lector.ReadString()
+                                //}
+                                Imagepath = lector.ReadString()
                             };
+
+                            Console.WriteLine("Debug #05: "+ticket.Imagepath);
 
                             tickets.Add(ticket);
                         }
