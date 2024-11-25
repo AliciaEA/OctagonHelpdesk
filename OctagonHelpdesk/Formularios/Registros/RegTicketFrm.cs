@@ -136,13 +136,21 @@ namespace OctagonHelpdesk.Formularios
 
         private void GenerateReport()
         {
-            ReportDataSource rds = new ReportDataSource("DsDatos", tickets.GetTickets());
-            RptVistaPrevia reporte = new RptVistaPrevia();
-            reporte.reportViewer1.LocalReport.DataSources.Clear();
-            reporte.reportViewer1.LocalReport.DataSources.Add(rds);
-            reporte.reportViewer1.LocalReport.ReportEmbeddedResource = "OctagonHelpdesk.Reportes.RptTickets.rdlc";
-            reporte.reportViewer1.RefreshReport();
-            reporte.ShowDialog();
+            if (tickets.GetTickets() != null)
+            {
+                ReportDataSource rds = new ReportDataSource("DsDatos", tickets.GetTickets());
+                RptVistaPrevia reporte = new RptVistaPrevia();
+                reporte.reportViewer1.LocalReport.DataSources.Clear();
+                reporte.reportViewer1.LocalReport.DataSources.Add(rds);
+                reporte.reportViewer1.LocalReport.ReportEmbeddedResource = "OctagonHelpdesk.Reportes.RptTickets.rdlc";
+                reporte.reportViewer1.RefreshReport();
+                reporte.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("No hay tickets para mostrar", "¡Cuidado!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
         }
         private void btnReportesVistaPrevia_Click(object sender, EventArgs e)
         {

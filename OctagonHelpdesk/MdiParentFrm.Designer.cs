@@ -42,8 +42,8 @@
             this.btnRegTickets = new System.Windows.Forms.ToolStripButton();
             this.btnRegUsuarios = new System.Windows.Forms.ToolStripButton();
             this.btnLogOut = new System.Windows.Forms.ToolStripButton();
+            this.btnVerPerfil = new System.Windows.Forms.ToolStripButton();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.statusStrip.SuspendLayout();
             this.sidebar.SuspendLayout();
             this.SuspendLayout();
@@ -92,7 +92,7 @@
             this.btnRegTickets,
             this.btnRegUsuarios,
             this.btnLogOut,
-            this.toolStripButton3});
+            this.btnVerPerfil});
             this.sidebar.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.sidebar.Location = new System.Drawing.Point(0, 0);
             this.sidebar.Name = "sidebar";
@@ -166,27 +166,30 @@
             this.btnLogOut.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.btnLogOut.AutoSize = false;
             this.btnLogOut.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnLogOut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnLogOut.Image = global::OctagonHelpdesk.Properties.Resources.cerrar_sesion;
             this.btnLogOut.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnLogOut.Name = "btnLogOut";
             this.btnLogOut.Size = new System.Drawing.Size(63, 40);
+            this.btnLogOut.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnLogOut.ToolTipText = "Cerrar Sesion";
             this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
+            // 
+            // btnVerPerfil
+            // 
+            this.btnVerPerfil.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnVerPerfil.AutoSize = false;
+            this.btnVerPerfil.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnVerPerfil.Image = global::OctagonHelpdesk.Properties.Resources.user;
+            this.btnVerPerfil.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnVerPerfil.Name = "btnVerPerfil";
+            this.btnVerPerfil.Size = new System.Drawing.Size(63, 40);
+            this.btnVerPerfil.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnVerPerfil.ToolTipText = "Ver perfil";
+            this.btnVerPerfil.Click += new System.EventHandler(this.btnVerPerfil_Click);
             // 
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // toolStripButton3
-            // 
-            this.toolStripButton3.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripButton3.AutoSize = false;
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = global::OctagonHelpdesk.Properties.Resources.user;
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(63, 40);
-            this.toolStripButton3.Text = "toolStripButton3";
             // 
             // MdiParentFrm
             // 
@@ -226,7 +229,7 @@
         private System.Windows.Forms.ToolStripStatusLabel lblHora;
         private System.Windows.Forms.ToolStripButton btnHome;
         private System.Windows.Forms.ToolStripButton btnLogOut;
-        private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.ToolStripButton btnVerPerfil;
     }
 }
 

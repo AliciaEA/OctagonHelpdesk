@@ -204,11 +204,15 @@ namespace OctagonHelpdesk
                     btnRegTickets.Text = "";
                     btnMenu.Text = "";
                     btnRegUsuarios.Text = "";
+                    btnLogOut.Text = "";
+                    btnVerPerfil.Text = "";
 
                     // Ajustar el ancho de los botones
                     btnRegTickets.Width = sidebarWidthCollapsed;
                     btnMenu.Width = sidebarWidthCollapsed;
                     btnRegUsuarios.Width = sidebarWidthCollapsed;
+                    btnLogOut.Width = sidebarWidthCollapsed;
+                    btnVerPerfil.Width = sidebarWidthCollapsed;
 
                     animationTimer.Stop();
 
@@ -227,12 +231,16 @@ namespace OctagonHelpdesk
                     btnRegTickets.Text = "Tickets";
                     btnMenu.Text = "Menu";
                     btnRegUsuarios.Text = "Usuarios";
+                    btnLogOut.Text = "Cerrar Sesión";
+                    btnVerPerfil.Text = $"{ currentUser.Name} {currentUser.Lastname}";
+
+
 
                     // Ajustar el ancho de los botones
                     btnRegTickets.Width = sidebarWidthExpanded;
                     btnRegUsuarios.Width = sidebarWidthExpanded;
-
-
+                    btnLogOut.Width = sidebarWidthExpanded;
+                    btnVerPerfil.Width = sidebarWidthExpanded;
                     btnMenu.Width = sidebarWidthExpanded;
 
                     animationTimer.Stop();
@@ -291,6 +299,13 @@ namespace OctagonHelpdesk
 
             // Volver a llamar al método On_Load para mostrar el formulario de inicio de sesión
             On_Load(sender, e);
+        }
+
+        private void btnVerPerfil_Click(object sender, EventArgs e)
+        {
+            CrearUsuarioForm perfilFrm = new CrearUsuarioForm(currentUser);
+            perfilFrm.ShowDialog();
+
         }
     }
 }

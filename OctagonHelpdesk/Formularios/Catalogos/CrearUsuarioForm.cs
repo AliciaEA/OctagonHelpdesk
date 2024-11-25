@@ -50,6 +50,9 @@ namespace OctagonHelpdesk.Formularios
             SharedLoad(currentUser);
             usuario = currentUser;
             InitializeFormWithUserData(currentUser);
+            DeshabilitarControlesAlVerPerfil();
+            Text = "Perfil de Usuario";
+            lblTitulo.Text = "Mi Perfil";
 
         }
         private void CrearUsuarioForm_Load_1(object sender, EventArgs e)
@@ -290,6 +293,22 @@ namespace OctagonHelpdesk.Formularios
                 }
 
             }
+        }
+
+        public void DeshabilitarControlesAlVerPerfil()
+        {
+            tbName.Enabled = false;
+            tbLastname.Enabled = false;
+            cmbDepartamento.Enabled = false;
+            tbEmail.Enabled = true;
+            txtUsername.Enabled = false;
+            txtPassword.Enabled = true;
+            cbAdmin.Enabled = false;
+            cbEmpleado.Enabled = false;
+            cbIT.Enabled = false;
+            btnGeneratePassword.Enabled = true;
+            btnConfirmUserCreation.Enabled = true;
+            cbActiveState.Enabled = false;
         }
 
         //private void tbEmail_KeyPress(object sender, KeyPressEventArgs e)

@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CrearUsuarioForm));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblTitulo = new System.Windows.Forms.Label();
             this.gbDatosGenerales = new System.Windows.Forms.GroupBox();
             this.tbLastname = new System.Windows.Forms.TextBox();
             this.btnUserLogDat = new System.Windows.Forms.Button();
@@ -52,21 +52,21 @@
             this.btnConfirmUserCreation = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.gbUserLog = new System.Windows.Forms.GroupBox();
+            this.btnGeneratePassword = new System.Windows.Forms.Button();
             this.btnDatosGenerales = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.cbActiveState = new System.Windows.Forms.CheckBox();
             this.btnActividad = new System.Windows.Forms.Button();
             this.pnlActivity = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.lblCreationDate = new System.Windows.Forms.Label();
-            this.lblLastUpdatedDate = new System.Windows.Forms.Label();
-            this.lblDeactivationDate = new System.Windows.Forms.Label();
             this.lblReactivationDate = new System.Windows.Forms.Label();
+            this.lblDeactivationDate = new System.Windows.Forms.Label();
+            this.lblLastUpdatedDate = new System.Windows.Forms.Label();
+            this.lblCreationDate = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.btnGeneratePassword = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.gbDatosGenerales.SuspendLayout();
             this.gbUserLog.SuspendLayout();
@@ -84,16 +84,16 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // label1
+            // lblTitulo
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 16F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(233, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(235, 32);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Crear Usuario";
+            this.lblTitulo.AutoSize = true;
+            this.lblTitulo.BackColor = System.Drawing.Color.Transparent;
+            this.lblTitulo.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 16F, System.Drawing.FontStyle.Bold);
+            this.lblTitulo.Location = new System.Drawing.Point(233, 9);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.Size = new System.Drawing.Size(235, 32);
+            this.lblTitulo.TabIndex = 1;
+            this.lblTitulo.Text = "Crear Usuario";
             // 
             // gbDatosGenerales
             // 
@@ -183,7 +183,6 @@
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(334, 26);
             this.tbEmail.TabIndex = 4;
-            //this.tbEmail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbEmail_KeyPress);
             // 
             // label4
             // 
@@ -311,6 +310,19 @@
             this.gbUserLog.TabStop = false;
             this.gbUserLog.Visible = false;
             // 
+            // btnGeneratePassword
+            // 
+            this.btnGeneratePassword.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.btnGeneratePassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGeneratePassword.Location = new System.Drawing.Point(421, 81);
+            this.btnGeneratePassword.Name = "btnGeneratePassword";
+            this.btnGeneratePassword.Size = new System.Drawing.Size(46, 37);
+            this.btnGeneratePassword.TabIndex = 3;
+            this.btnGeneratePassword.Text = "↻";
+            this.btnGeneratePassword.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnGeneratePassword.UseVisualStyleBackColor = false;
+            this.btnGeneratePassword.Click += new System.EventHandler(this.btnGeneratePassword_Click);
+            // 
             // btnDatosGenerales
             // 
             this.btnDatosGenerales.BackColor = System.Drawing.Color.CornflowerBlue;
@@ -376,71 +388,16 @@
             this.pnlActivity.Size = new System.Drawing.Size(224, 266);
             this.pnlActivity.TabIndex = 8;
             // 
-            // label2
+            // lblReactivationDate
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 15);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 16);
-            this.label2.TabIndex = 20;
-            this.label2.Text = "Creado: ";
-            this.toolTip1.SetToolTip(this.label2, "Fecha de Creacion");
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(3, 71);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(196, 16);
-            this.label10.TabIndex = 21;
-            this.label10.Text = "Ultima Modificacion: ";
-            this.toolTip1.SetToolTip(this.label10, "Fecha de Ultima Modificacion");
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(0, 129);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(142, 16);
-            this.label11.TabIndex = 22;
-            this.label11.Text = "Desactivacion: ";
-            this.toolTip1.SetToolTip(this.label11, "Fecha de Desactivacion");
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(3, 191);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(115, 16);
-            this.label12.TabIndex = 23;
-            this.label12.Text = "Reactivacion";
-            this.toolTip1.SetToolTip(this.label12, "Fecha de Reactivacio");
-            // 
-            // lblCreationDate
-            // 
-            this.lblCreationDate.AutoSize = true;
-            this.lblCreationDate.Font = new System.Drawing.Font("MingLiU-ExtB", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCreationDate.Location = new System.Drawing.Point(3, 38);
-            this.lblCreationDate.Name = "lblCreationDate";
-            this.lblCreationDate.Size = new System.Drawing.Size(63, 16);
-            this.lblCreationDate.TabIndex = 24;
-            this.lblCreationDate.Text = "label13";
-            this.toolTip1.SetToolTip(this.lblCreationDate, "Fecha de Creacion");
-            // 
-            // lblLastUpdatedDate
-            // 
-            this.lblLastUpdatedDate.AutoSize = true;
-            this.lblLastUpdatedDate.Font = new System.Drawing.Font("MingLiU-ExtB", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLastUpdatedDate.Location = new System.Drawing.Point(3, 96);
-            this.lblLastUpdatedDate.Name = "lblLastUpdatedDate";
-            this.lblLastUpdatedDate.Size = new System.Drawing.Size(63, 16);
-            this.lblLastUpdatedDate.TabIndex = 25;
-            this.lblLastUpdatedDate.Text = "label13";
-            this.toolTip1.SetToolTip(this.lblLastUpdatedDate, "Fecha de Ultima Modificacion");
+            this.lblReactivationDate.AutoSize = true;
+            this.lblReactivationDate.Font = new System.Drawing.Font("MingLiU-ExtB", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReactivationDate.Location = new System.Drawing.Point(3, 220);
+            this.lblReactivationDate.Name = "lblReactivationDate";
+            this.lblReactivationDate.Size = new System.Drawing.Size(63, 16);
+            this.lblReactivationDate.TabIndex = 27;
+            this.lblReactivationDate.Text = "label13";
+            this.toolTip1.SetToolTip(this.lblReactivationDate, "Fecha de Reactivacio");
             // 
             // lblDeactivationDate
             // 
@@ -453,29 +410,71 @@
             this.lblDeactivationDate.Text = "label13";
             this.toolTip1.SetToolTip(this.lblDeactivationDate, "Fecha de Desactivacio");
             // 
-            // lblReactivationDate
+            // lblLastUpdatedDate
             // 
-            this.lblReactivationDate.AutoSize = true;
-            this.lblReactivationDate.Font = new System.Drawing.Font("MingLiU-ExtB", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReactivationDate.Location = new System.Drawing.Point(3, 220);
-            this.lblReactivationDate.Name = "lblReactivationDate";
-            this.lblReactivationDate.Size = new System.Drawing.Size(63, 16);
-            this.lblReactivationDate.TabIndex = 27;
-            this.lblReactivationDate.Text = "label13";
-            this.toolTip1.SetToolTip(this.lblReactivationDate, "Fecha de Reactivacio");
+            this.lblLastUpdatedDate.AutoSize = true;
+            this.lblLastUpdatedDate.Font = new System.Drawing.Font("MingLiU-ExtB", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLastUpdatedDate.Location = new System.Drawing.Point(3, 96);
+            this.lblLastUpdatedDate.Name = "lblLastUpdatedDate";
+            this.lblLastUpdatedDate.Size = new System.Drawing.Size(63, 16);
+            this.lblLastUpdatedDate.TabIndex = 25;
+            this.lblLastUpdatedDate.Text = "label13";
+            this.toolTip1.SetToolTip(this.lblLastUpdatedDate, "Fecha de Ultima Modificacion");
             // 
-            // btnGeneratePassword
+            // lblCreationDate
             // 
-            this.btnGeneratePassword.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.btnGeneratePassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGeneratePassword.Location = new System.Drawing.Point(421, 81);
-            this.btnGeneratePassword.Name = "btnGeneratePassword";
-            this.btnGeneratePassword.Size = new System.Drawing.Size(46, 37);
-            this.btnGeneratePassword.TabIndex = 3;
-            this.btnGeneratePassword.Text = "↻";
-            this.btnGeneratePassword.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnGeneratePassword.UseVisualStyleBackColor = false;
-            this.btnGeneratePassword.Click += new System.EventHandler(this.btnGeneratePassword_Click);
+            this.lblCreationDate.AutoSize = true;
+            this.lblCreationDate.Font = new System.Drawing.Font("MingLiU-ExtB", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCreationDate.Location = new System.Drawing.Point(3, 38);
+            this.lblCreationDate.Name = "lblCreationDate";
+            this.lblCreationDate.Size = new System.Drawing.Size(63, 16);
+            this.lblCreationDate.TabIndex = 24;
+            this.lblCreationDate.Text = "label13";
+            this.toolTip1.SetToolTip(this.lblCreationDate, "Fecha de Creacion");
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(3, 191);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(115, 16);
+            this.label12.TabIndex = 23;
+            this.label12.Text = "Reactivacion";
+            this.toolTip1.SetToolTip(this.label12, "Fecha de Reactivacio");
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(0, 129);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(142, 16);
+            this.label11.TabIndex = 22;
+            this.label11.Text = "Desactivacion: ";
+            this.toolTip1.SetToolTip(this.label11, "Fecha de Desactivacion");
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(3, 71);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(196, 16);
+            this.label10.TabIndex = 21;
+            this.label10.Text = "Ultima Modificacion: ";
+            this.toolTip1.SetToolTip(this.label10, "Fecha de Ultima Modificacion");
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(3, 15);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(79, 16);
+            this.label2.TabIndex = 20;
+            this.label2.Text = "Creado: ";
+            this.toolTip1.SetToolTip(this.label2, "Fecha de Creacion");
             // 
             // CrearUsuarioForm
             // 
@@ -489,7 +488,7 @@
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.gbUserLog);
             this.Controls.Add(this.gbDatosGenerales);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.pictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -512,7 +511,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.GroupBox gbDatosGenerales;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
