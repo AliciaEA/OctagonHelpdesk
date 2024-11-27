@@ -54,10 +54,9 @@
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel,
             this.lblHora});
-            this.statusStrip.Location = new System.Drawing.Point(0, 613);
+            this.statusStrip.Location = new System.Drawing.Point(0, 659);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Padding = new System.Windows.Forms.Padding(2, 0, 21, 0);
-            this.statusStrip.Size = new System.Drawing.Size(855, 22);
+            this.statusStrip.Size = new System.Drawing.Size(1264, 22);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
             // 
@@ -96,8 +95,8 @@
             this.sidebar.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
             this.sidebar.Location = new System.Drawing.Point(0, 0);
             this.sidebar.Name = "sidebar";
-            this.sidebar.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
-            this.sidebar.Size = new System.Drawing.Size(75, 613);
+            this.sidebar.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
+            this.sidebar.Size = new System.Drawing.Size(50, 659);
             this.sidebar.TabIndex = 4;
             this.sidebar.Text = "toolStrip1";
             // 
@@ -106,7 +105,7 @@
             this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(71, 4);
+            this.toolStripButton1.Size = new System.Drawing.Size(47, 4);
             // 
             // btnMenu
             // 
@@ -192,15 +191,15 @@
             // 
             // MdiParentFrm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(855, 635);
+            this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.sidebar);
             this.Controls.Add(this.statusStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.MaximumSize = new System.Drawing.Size(2866, 1622);
+            this.MaximumSize = new System.Drawing.Size(1916, 1068);
+            this.MinimumSize = new System.Drawing.Size(1280, 720);
             this.Name = "MdiParentFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Octagon Helpdesk";
