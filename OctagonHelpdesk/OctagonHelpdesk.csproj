@@ -233,6 +233,7 @@
     <Content Include="Assets\stacked-waves-haikei%28720p%29.png" />
     <Content Include="Assets\stacked-waves-haikei.png" />
     <Content Include="Assets\wavebckg.jpg" />
+    <None Include="Resources\images.jpg" />
     <None Include="Resources\Octagon-Helpdesk.png" />
     <None Include="Resources\Ticket.png" />
     <None Include="Resources\GoldBackground.png" />

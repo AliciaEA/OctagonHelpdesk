@@ -57,7 +57,7 @@
             this.lblGreeting.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lblGreeting.Location = new System.Drawing.Point(26, 35);
             this.lblGreeting.Name = "lblGreeting";
-            this.lblGreeting.Size = new System.Drawing.Size(116, 32);
+            this.lblGreeting.Size = new System.Drawing.Size(170, 48);
             this.lblGreeting.TabIndex = 0;
             this.lblGreeting.Text = "label1";
             // 
@@ -84,7 +84,7 @@
             this.lblDate.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.lblDate.Location = new System.Drawing.Point(62, 83);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(46, 17);
+            this.lblDate.Size = new System.Drawing.Size(64, 25);
             this.lblDate.TabIndex = 1;
             this.lblDate.Text = "label1";
             // 
@@ -118,7 +118,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.BackgroundImage = global::OctagonHelpdesk.Properties.Resources.GoldBackground;
+            this.pictureBox2.BackgroundImage = global::OctagonHelpdesk.Properties.Resources.images;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox2.Image = global::OctagonHelpdesk.Properties.Resources.Octagon;
@@ -131,7 +131,7 @@
             // 
             // panel3
             // 
-            this.panel3.BackgroundImage = global::OctagonHelpdesk.Properties.Resources.GoldBackground;
+            this.panel3.BackgroundImage = global::OctagonHelpdesk.Properties.Resources.images;
             this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.pictureBox3);
@@ -148,7 +148,7 @@
             this.label1.ForeColor = System.Drawing.Color.Goldenrod;
             this.label1.Location = new System.Drawing.Point(248, 97);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(215, 11);
+            this.label1.Size = new System.Drawing.Size(308, 17);
             this.label1.TabIndex = 1;
             this.label1.Text = "Creación de Tickets de Soporte";
             // 
