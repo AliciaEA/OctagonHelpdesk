@@ -55,9 +55,10 @@
             this.lblGreeting.BackColor = System.Drawing.Color.Transparent;
             this.lblGreeting.Font = new System.Drawing.Font("MingLiU-ExtB", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGreeting.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblGreeting.Location = new System.Drawing.Point(26, 35);
+            this.lblGreeting.Location = new System.Drawing.Point(17, 23);
+            this.lblGreeting.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblGreeting.Name = "lblGreeting";
-            this.lblGreeting.Size = new System.Drawing.Size(170, 48);
+            this.lblGreeting.Size = new System.Drawing.Size(116, 32);
             this.lblGreeting.TabIndex = 0;
             this.lblGreeting.Text = "label1";
             // 
@@ -70,8 +71,9 @@
             this.panel1.Controls.Add(this.lblGreeting);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(757, 147);
+            this.panel1.Size = new System.Drawing.Size(505, 96);
             this.panel1.TabIndex = 2;
             // 
             // lblDate
@@ -82,9 +84,10 @@
             this.lblDate.BackColor = System.Drawing.Color.Transparent;
             this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDate.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblDate.Location = new System.Drawing.Point(62, 83);
+            this.lblDate.Location = new System.Drawing.Point(41, 54);
+            this.lblDate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(64, 25);
+            this.lblDate.Size = new System.Drawing.Size(46, 17);
             this.lblDate.TabIndex = 1;
             this.lblDate.Text = "label1";
             // 
@@ -97,9 +100,10 @@
             this.pictureBox1.ErrorImage = null;
             this.pictureBox1.Image = global::OctagonHelpdesk.Properties.Resources.bienvenida;
             this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(660, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(440, 0);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(97, 147);
+            this.pictureBox1.Size = new System.Drawing.Size(65, 96);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
@@ -111,9 +115,11 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.pictureBox2);
-            this.panel2.Location = new System.Drawing.Point(-7, 146);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 96);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(773, 214);
+            this.panel2.Size = new System.Drawing.Size(505, 139);
             this.panel2.TabIndex = 3;
             // 
             // pictureBox2
@@ -123,8 +129,9 @@
             this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox2.Image = global::OctagonHelpdesk.Properties.Resources.Octagon;
             this.pictureBox2.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(773, 214);
+            this.pictureBox2.Size = new System.Drawing.Size(505, 139);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
@@ -135,9 +142,11 @@
             this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.pictureBox3);
-            this.panel3.Location = new System.Drawing.Point(-7, 358);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 235);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(773, 211);
+            this.panel3.Size = new System.Drawing.Size(505, 130);
             this.panel3.TabIndex = 4;
             // 
             // label1
@@ -146,9 +155,10 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("MingLiU-ExtB", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Goldenrod;
-            this.label1.Location = new System.Drawing.Point(248, 97);
+            this.label1.Location = new System.Drawing.Point(165, 63);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(308, 17);
+            this.label1.Size = new System.Drawing.Size(215, 11);
             this.label1.TabIndex = 1;
             this.label1.Text = "Creación de Tickets de Soporte";
             // 
@@ -157,21 +167,23 @@
             this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox3.BackgroundImage = global::OctagonHelpdesk.Properties.Resources.Ticket;
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(15, 8);
+            this.pictureBox3.Location = new System.Drawing.Point(10, 5);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(156, 183);
+            this.pictureBox3.Size = new System.Drawing.Size(104, 119);
             this.pictureBox3.TabIndex = 0;
             this.pictureBox3.TabStop = false;
             // 
             // Home
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(757, 561);
+            this.ClientSize = new System.Drawing.Size(505, 365);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Home";
             this.Text = "Bienvenido a Octagon Helpdesk";
             this.panel1.ResumeLayout(false);
