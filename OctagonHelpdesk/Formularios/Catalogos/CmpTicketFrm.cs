@@ -2,6 +2,7 @@
 using OctagonHelpdesk.Models.Enum;
 using OctagonHelpdesk.Services;
 using System;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -14,7 +15,11 @@ namespace OctagonHelpdesk.Formularios
         public Ticket ticket = new Ticket();
         public Ticket ticketSel = new Ticket();
         UserModel currentUser { get; set; }
-        
+        string sourceFilePath;
+        string targetFilePath;
+        string editedFilepath;
+        bool preloadedticket;
+        bool ticketimage_wompwomp;
 
         // Constructor para crear un nuevo ticket
         public CmpTicketFrm(TicketDao ticketDao, UserModel currentUser)
@@ -25,7 +30,7 @@ namespace OctagonHelpdesk.Formularios
             txtCreatedBy.Text = currentUser.Name;
             InitializeFormWithoutTicketData();
             
-            
+
         }
 
         // Constructor para editar un ticket existente
@@ -36,6 +41,7 @@ namespace OctagonHelpdesk.Formularios
             ticketSel = ticketSelected;
             this.currentUser = currentUser;
             txtCreatedBy.Text = currentUser.Name;
+           
         }
         
         
@@ -62,6 +68,21 @@ namespace OctagonHelpdesk.Formularios
                 txtDescription.Text = ticketSel.Descripcion;
                 cmbState.SelectedItem = ticketSel.StateProcess;
                 cmbPriority.SelectedItem = ticketSel.Prioridad;
+
+                if (File.Exists(Path.Combine("data\\images", ticket.imagepath))) {
+                    filepicturebox.ImageLocation = Path.Combine("data\\images", ticket.imagepath);
+                    Console.WriteLine("Debug #3" + filepicturebox.ImageLocation.ToString());
+                }
+                else
+                {
+                    filelabel.Text = "File non existent";
+                    ticket.imagepath = string.Empty;
+                    ticketimage_wompwomp = true;
+                    Console.WriteLine($"Debug #3.1: ticket with ID {ticket.IDTicket} invalid filepath, setting to empty on save");
+                    
+
+                }
+                
 
                 // Asignar el valor seleccionado después de que el ComboBox esté cargado
                 cmbAsigned.SelectedValue = ticketSel.AsignadoA;
@@ -102,7 +123,7 @@ namespace OctagonHelpdesk.Formularios
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al guardar el ticket", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al guardar el ticket"+ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -145,10 +166,12 @@ namespace OctagonHelpdesk.Formularios
             if (ticketSel != null && ticketSel.IDTicket != 0)
             {
                 InitializeFormWithTicketData();
+                preloadedticket = true;
             }
             else
             {
                 InitializeFormWithoutTicketData();
+                preloadedticket= false;
             }
         }
 
@@ -200,6 +223,55 @@ namespace OctagonHelpdesk.Formularios
             }
         }
 
-        
+        private void btnAttachments_Click(object sender, EventArgs e)
+        {
+            string fileName;
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Title = "Select a file";
+                openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png, *.bmp)|*.jpg;*.jpeg;*.png;*.bmp|All files (*.*)|*.*";
+
+                string globalpath = AppDomain.CurrentDomain.BaseDirectory;
+                string localpath = Path.Combine(globalpath, @"..\..\Data");
+                string targetDirectory = @"images";
+                targetDirectory = Path.Combine(localpath, targetDirectory);
+
+                targetDirectory = @"data\images";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    sourceFilePath = openFileDialog.FileName;
+
+                    fileName = Path.GetFileName(sourceFilePath).Replace(" ", "");
+                    targetFilePath = Path.Combine(targetDirectory, fileName);
+
+                    filelabel.Text = "Path: " + openFileDialog.FileName;
+                    Console.WriteLine("Debug #02: " + targetDirectory);
+                    filepicturebox.ImageLocation = sourceFilePath;
+
+                    if(preloadedticket)
+                    {
+                        if (fileName != ticket.imagepath && fileName != string.Empty)
+                        {
+                            ticket.imagepath = fileName;
+                            File.Copy(sourceFilePath, targetFilePath, true);
+                        }
+                        
+                    } else
+                    {
+                        ticket.imagepath = fileName;
+                        File.Copy(sourceFilePath, targetFilePath, true);
+                    }
+
+                }
+            }
+
+          
+        }
+
+        private void fileUpload()
+        {
+            
+        }
     }
 }

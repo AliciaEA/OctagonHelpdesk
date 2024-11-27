@@ -40,12 +40,16 @@
             this.cmbAsigned = new System.Windows.Forms.ComboBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.filelabel = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.filepicturebox = new System.Windows.Forms.PictureBox();
             this.btnAttachments = new System.Windows.Forms.Button();
             this.cmbPriority = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.lblTicketID = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.filepicturebox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -156,7 +160,7 @@
             // 
             this.btnSave.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnSave.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(254, 475);
+            this.btnSave.Location = new System.Drawing.Point(415, 751);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(146, 54);
             this.btnSave.TabIndex = 7;
@@ -167,6 +171,9 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.panel1.Controls.Add(this.filelabel);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.filepicturebox);
             this.panel1.Controls.Add(this.btnAttachments);
             this.panel1.Controls.Add(this.cmbPriority);
             this.panel1.Controls.Add(this.label7);
@@ -183,18 +190,45 @@
             this.panel1.Controls.Add(this.label5);
             this.panel1.Location = new System.Drawing.Point(167, 54);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(592, 546);
+            this.panel1.Size = new System.Drawing.Size(592, 818);
             this.panel1.TabIndex = 14;
+            // 
+            // filelabel
+            // 
+            this.filelabel.AutoSize = true;
+            this.filelabel.Location = new System.Drawing.Point(164, 424);
+            this.filelabel.Name = "filelabel";
+            this.filelabel.Size = new System.Drawing.Size(0, 13);
+            this.filelabel.TabIndex = 17;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(161, 392);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(33, 13);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "Path:";
+            // 
+            // filepicturebox
+            // 
+            this.filepicturebox.Location = new System.Drawing.Point(198, 471);
+            this.filepicturebox.Name = "filepicturebox";
+            this.filepicturebox.Size = new System.Drawing.Size(363, 244);
+            this.filepicturebox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.filepicturebox.TabIndex = 15;
+            this.filepicturebox.TabStop = false;
             // 
             // btnAttachments
             // 
             this.btnAttachments.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.btnAttachments.Image = global::OctagonHelpdesk.Properties.Resources.adjuntar_archivo;
-            this.btnAttachments.Location = new System.Drawing.Point(58, 399);
+            this.btnAttachments.Location = new System.Drawing.Point(48, 392);
             this.btnAttachments.Name = "btnAttachments";
             this.btnAttachments.Size = new System.Drawing.Size(55, 46);
             this.btnAttachments.TabIndex = 6;
             this.btnAttachments.UseVisualStyleBackColor = false;
+            this.btnAttachments.Click += new System.EventHandler(this.btnAttachments_Click);
             // 
             // cmbPriority
             // 
@@ -233,7 +267,7 @@
             this.pictureBox1.Image = global::OctagonHelpdesk.Properties.Resources.wavebckg;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(132, 622);
+            this.pictureBox1.Size = new System.Drawing.Size(132, 930);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 17;
             this.pictureBox1.TabStop = false;
@@ -241,7 +275,7 @@
             // CmpTicketFrm
             // 
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(783, 622);
+            this.ClientSize = new System.Drawing.Size(783, 930);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblTicketID);
             this.Controls.Add(this.panel1);
@@ -252,6 +286,7 @@
             this.Load += new System.EventHandler(this.CmpTicketFrm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.filepicturebox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -275,5 +310,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnAttachments;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label filelabel;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.PictureBox filepicturebox;
     }
 }

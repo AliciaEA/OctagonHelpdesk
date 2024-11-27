@@ -7,26 +7,26 @@ using System.Text;
 using System.Threading.Tasks;
 using OctagonHelpdesk.Models.Enum;
 using OctagonHelpdesk.Models;
+using System.Drawing.Drawing2D;
 
 namespace OctagonHelpdesk.Services
 {
     public class TicketFileHelper
     {
         private string rutaArchivo = @"data\tickets.dat";
+        private string rutaDataArchivo;
 
         public TicketFileHelper()
         {
+           // rutaArchivo =  @"..\..\Data";
+          //  rutaDataArchivo = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, rutaArchivo);
 
             string path = rutaArchivo;
-            if (!Directory.Exists("data"))
+          //  rutaArchivo = rutaDataArchivo;
+            
+           if (!File.Exists(rutaArchivo))
             {
-                Directory.CreateDirectory("data");
-            }
-            string filePath = rutaArchivo;
-
-            if (!File.Exists(filePath))
-            {
-                using (FileStream fs = File.Create(filePath))
+                using (FileStream fs = File.Create(rutaArchivo))
                 {
                 }
             }
@@ -58,6 +58,7 @@ namespace OctagonHelpdesk.Services
                         escritor.Write(ticket.DeactivationDate.ToString("dd/MM/yyyy"));
                         escritor.Write(ticket.ReactivationDate.ToString("dd/MM/yyyy"));
                         escritor.Write(ticket.CloseDate.ToString("dd/MM/yyyy"));
+                        escritor.Write(ticket.imagepath);
                     }
                 }
             }
@@ -90,7 +91,8 @@ namespace OctagonHelpdesk.Services
                                 LastUpdatedDate = ParseDate(lector.ReadString()),
                                 DeactivationDate = ParseDate(lector.ReadString()),
                                 ReactivationDate = ParseDate(lector.ReadString()),
-                                CloseDate = ParseDate(lector.ReadString())
+                                CloseDate = ParseDate(lector.ReadString()),
+                                imagepath = lector.ReadString()
                             };
 
                             tickets.Add(ticket);

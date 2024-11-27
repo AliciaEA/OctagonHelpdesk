@@ -22,7 +22,7 @@ namespace OctagonHelpdesk.Models
         public DateTime DeactivationDate { get; set; }
         public DateTime ReactivationDate { get; set; }
         public DateTime CloseDate { get; set; }
-
+        public string imagepath { get; set; }
 
 
 

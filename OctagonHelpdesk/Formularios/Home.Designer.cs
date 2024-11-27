@@ -124,7 +124,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.BackgroundImage = global::OctagonHelpdesk.Properties.Resources.GoldBackground;
+            this.pictureBox2.BackgroundImage = global::OctagonHelpdesk.Properties.Resources.images;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Top;
             this.pictureBox2.Image = global::OctagonHelpdesk.Properties.Resources.Octagon;
@@ -138,7 +138,7 @@
             // 
             // panel3
             // 
-            this.panel3.BackgroundImage = global::OctagonHelpdesk.Properties.Resources.GoldBackground;
+            this.panel3.BackgroundImage = global::OctagonHelpdesk.Properties.Resources.images;
             this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.pictureBox3);
