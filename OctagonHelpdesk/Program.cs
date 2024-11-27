@@ -33,7 +33,7 @@ namespace OctagonHelpdesk
                 // Crear el usuario por defecto (admin)
                 CrearUsuarioAdminPorDefecto();
             }
-
+            //hola
             FileVerification();
             string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
             string targetDirectory = Path.Combine(baseDirectory, @"..\..\Data");
