@@ -126,7 +126,7 @@
             // 
             this.pictureBox2.BackgroundImage = global::OctagonHelpdesk.Properties.Resources.images;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Top;
             this.pictureBox2.Image = global::OctagonHelpdesk.Properties.Resources.Octagon;
             this.pictureBox2.Location = new System.Drawing.Point(0, 0);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
