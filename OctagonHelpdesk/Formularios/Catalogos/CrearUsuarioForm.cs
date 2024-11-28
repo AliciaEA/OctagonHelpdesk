@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using OctagonHelpdesk.Models;
 using OctagonHelpdesk.Models.Enum;
 using System.Xml.Linq;
+using System.Security.Cryptography;
 
 namespace OctagonHelpdesk.Formularios
 {
@@ -61,7 +62,7 @@ namespace OctagonHelpdesk.Formularios
 
         }
 
-        //Elementos Escenciales del Form
+        //Elementos Esenciales del Form
         public void SharedLoad(UserModel currentUser)
         {
             LoadCDepartamento();
@@ -88,7 +89,7 @@ namespace OctagonHelpdesk.Formularios
         {
 
             // Asignar los valores del usuario seleccionado a los controles del formulario
-            
+
             //Detalles del Usuario
             cbActiveState.Checked = usuarioData.ActiveStateU;
             lblCreationDate.Text = usuarioData.CreationDate.ToString();
@@ -115,26 +116,24 @@ namespace OctagonHelpdesk.Formularios
         //Boton para GUARDAR los datos del usuario
         private void btnConfirmUserCreation_Click(object sender, EventArgs e)
         {
-
-            bool usuarioValid = false;
-            usuarioValid = ValidarDatosGenerales() && ValidarPermisos() && ValidarLogUser(); //Validar los datos ingresados
-            if (usuarioValid)
+            try
             {
+                ValidarDatosGenerales();
+                ValidarPermisos();
+                ValidarLogUser();
+
                 string email = tbEmail.Text.Trim();
                 usuario.Email = email;
                 usuario.Roles.ITPerms = cbIT.Checked ? true : false;
                 usuario.Roles.AdminPerms = cbAdmin.Checked ? true : false;
                 usuario.Roles.BasicPerms = cbEmpleado.Checked ? true : false;
                 UsuarioCreated?.Invoke(usuario);
-                
-                
 
                 this.Close();
-
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Revise el formato de los datos ingresados, no se admiten campos vacíos. Mínimo uno de los permisos debe estar activo", "¡Cuidado!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Error al guardar los datos del usuario. " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -147,7 +146,7 @@ namespace OctagonHelpdesk.Formularios
                 cbActiveState.BackColor = Color.MediumSeaGreen;
                 cbActiveState.Text = "Activo";
                 usuario.ReactivationDate = DateTime.Now;
-                
+
             }
             else
             {
@@ -157,19 +156,22 @@ namespace OctagonHelpdesk.Formularios
             }
         }
         //****BOTONES DE NAVEGACION****//
-        //Boton para regresar a la ventana de datos generales
+        //Botón para regresar a la ventana de datos generales
         private void btnDatosGenerales_Click(object sender, EventArgs e)
         {
             gbDatosGenerales.Visible = true;
             gbUserLog.Visible = false;
+            tbName.Focus();
         }
 
-        //Boton para ir a la ventana de credenciales
+        //Botón para ir a la ventana de credenciales
         private void btnUserLogDat_Click(object sender, EventArgs e)
         {
-
-            if (ValidarDatosGenerales())
+            try
             {
+
+                ValidarDatosGenerales();
+
                 gbDatosGenerales.Visible = false;
                 gbUserLog.Visible = true;
 
@@ -177,46 +179,53 @@ namespace OctagonHelpdesk.Formularios
                 usuario.Lastname = tbLastname.Text.Trim();
                 usuario.Departamento = (Departament)cmbDepartamento.SelectedItem;
                 usuario.SetUsername();
-                
+
                 txtUsername.Text = usuario.Username;
                 txtUsername.Enabled = false;
-                
-               
+                txtPassword.Focus();
+
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Para generar las credenciales del empleado, se necesita rellenar estos campos. No se admiten campos vacíos", "¡Espera!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Error al validar los datos generales. " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         //****VALIDACIONES****//
         //Validar los datos generales
-        public bool ValidarDatosGenerales()
+        public void ValidarDatosGenerales()
         {
-            if (string.IsNullOrEmpty(tbName.Text) || string.IsNullOrEmpty(tbLastname.Text) || cmbDepartamento.SelectedIndex == -1)
+            if (string.IsNullOrEmpty(tbName.Text.Trim()) || string.IsNullOrEmpty(tbLastname.Text.Trim()) || cmbDepartamento.SelectedIndex == -1)
             {
-                return false;
+                throw new Exception("Los datos generales no pueden estar vacíos.");
+
             }
-            return true;
+
         }
+
         //Validar las credenciales
-        public bool ValidarLogUser()
+        public void ValidarLogUser()
         {
-            if (string.IsNullOrEmpty(txtUsername.Text) || string.IsNullOrEmpty(usuario.EncryptedPassword))
+            if (string.IsNullOrEmpty(usuario.Username.Trim()) || string.IsNullOrEmpty(usuario.EncryptedPassword))
             {
-                return false;
+                throw new Exception("La contraseña no puede estar vacía.");
             }
-            return true;
+            else if (string.IsNullOrEmpty(tbEmail.Text.Trim()))
+            {
+                throw new Exception("El correo electrónico no puede estar vacío.");
+            }
+
+
         }
 
         //Validar los permisos 
-        public bool ValidarPermisos()
+        public void ValidarPermisos()
         {
-            if (cbAdmin.Checked || cbEmpleado.Checked || cbIT.Checked)
+            if (!cbAdmin.Checked && !cbEmpleado.Checked && !cbIT.Checked)
             {
-                return true;
+                throw new Exception("Debe seleccionar al menos un permiso.");
             }
-            return false;
+
         }
 
 
@@ -229,10 +238,12 @@ namespace OctagonHelpdesk.Formularios
 
         private void btnGeneratePassword_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("¿Deseas generar automaticamente tu contraseña y guardarla?", "Confirmación", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("¿Deseas generar automáticamente tu contraseña y guardarla?", "Confirmación", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
                 txtPassword.Text = usuario.GeneratePassword();
+                tbEmail.Focus();
+
             }
             else
             {
@@ -247,7 +258,18 @@ namespace OctagonHelpdesk.Formularios
             DialogResult result = MessageBox.Show("¿Deseas guardar esta contraseña como tu nueva clave?", "Confirmación", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                usuario.SetPassword(txtPassword.Text.Trim());
+                if (!string.IsNullOrEmpty(txtPassword.Text.Trim()))
+                {
+                    usuario.SetPassword(txtPassword.Text.Trim());
+                    
+                }
+                else
+                {
+                    MessageBox.Show("La contraseña no puede estar vacía.", "¡Espera!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                   
+                    txtPassword.Clear();
+                    txtPassword.Focus();
+                }
             }
             else
             {
