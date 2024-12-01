@@ -94,7 +94,7 @@ namespace OctagonHelpdesk.Formularios
         //Manda a llamar al formulario de edición de tickets
         public void EditarTicket(Ticket ticketSel)
         {
-            CmpTicketFrm ticketFrm = new CmpTicketFrm(tickets, ticketSel, currentUser);
+            CmpTicketFrm ticketFrm = new CmpTicketFrm(ticketSel, currentUser);
             ticketFrm.TicketCreated += OnTicketCreated;
             ticketFrm.ShowDialog();
         }

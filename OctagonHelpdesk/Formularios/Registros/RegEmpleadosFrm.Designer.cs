@@ -33,7 +33,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
@@ -46,6 +45,10 @@
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.DgvRegUsuarios = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnReportesVistaPrevia = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.iDUserDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.activeStateUDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.usernameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,15 +60,12 @@
             this.lastUpdatedDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.deactivationDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.reactivationDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnReportesVistaPrevia = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvRegUsuarios)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
@@ -74,9 +74,9 @@
             this.panel2.Controls.Add(this.bindingNavigator1);
             this.panel2.Controls.Add(this.DgvRegUsuarios);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 233);
+            this.panel2.Location = new System.Drawing.Point(0, 206);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1166, 655);
+            this.panel2.Size = new System.Drawing.Size(1166, 682);
             this.panel2.TabIndex = 20;
             // 
             // bindingNavigator1
@@ -109,10 +109,6 @@
             this.bindingNavigator1.Size = new System.Drawing.Size(1166, 33);
             this.bindingNavigator1.TabIndex = 1;
             this.bindingNavigator1.Text = "bindingNavigator1";
-            // 
-            // bindingSource1
-            // 
-            this.bindingSource1.DataSource = typeof(OctagonHelpdesk.Models.UserModel);
             // 
             // bindingNavigatorCountItem
             // 
@@ -234,10 +230,50 @@
             this.DgvRegUsuarios.RowHeadersWidth = 62;
             this.DgvRegUsuarios.RowTemplate.Height = 28;
             this.DgvRegUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgvRegUsuarios.Size = new System.Drawing.Size(1166, 584);
+            this.DgvRegUsuarios.Size = new System.Drawing.Size(1166, 611);
             this.DgvRegUsuarios.TabIndex = 1;
             this.DgvRegUsuarios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvRegUsuarios_CellClick);
             this.DgvRegUsuarios.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvRegUsuarios_CellDoubleClick);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.panel1.Controls.Add(this.btnReportesVistaPrevia);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1166, 206);
+            this.panel1.TabIndex = 19;
+            // 
+            // btnReportesVistaPrevia
+            // 
+            this.btnReportesVistaPrevia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReportesVistaPrevia.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnReportesVistaPrevia.Image = global::OctagonHelpdesk.Properties.Resources.reportesIcon;
+            this.btnReportesVistaPrevia.Location = new System.Drawing.Point(1042, 86);
+            this.btnReportesVistaPrevia.Name = "btnReportesVistaPrevia";
+            this.btnReportesVistaPrevia.Size = new System.Drawing.Size(102, 101);
+            this.btnReportesVistaPrevia.TabIndex = 0;
+            this.btnReportesVistaPrevia.UseVisualStyleBackColor = false;
+            this.btnReportesVistaPrevia.Click += new System.EventHandler(this.btnReportesVistaPrevia_Click);
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(36, 19);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(429, 54);
+            this.label6.TabIndex = 17;
+            this.label6.Text = "Registro de Empleados";
+            // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataSource = typeof(OctagonHelpdesk.Models.UserModel);
             // 
             // iDUserDataGridViewTextBoxColumn
             // 
@@ -337,42 +373,6 @@
             this.reactivationDateDataGridViewTextBoxColumn.ReadOnly = true;
             this.reactivationDateDataGridViewTextBoxColumn.ToolTipText = "Fecha de Reactivacion del Empleado";
             // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.panel1.Controls.Add(this.btnReportesVistaPrevia);
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1166, 233);
-            this.panel1.TabIndex = 19;
-            // 
-            // btnReportesVistaPrevia
-            // 
-            this.btnReportesVistaPrevia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnReportesVistaPrevia.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.btnReportesVistaPrevia.Image = global::OctagonHelpdesk.Properties.Resources.reportesIcon;
-            this.btnReportesVistaPrevia.Location = new System.Drawing.Point(1053, 101);
-            this.btnReportesVistaPrevia.Name = "btnReportesVistaPrevia";
-            this.btnReportesVistaPrevia.Size = new System.Drawing.Size(88, 89);
-            this.btnReportesVistaPrevia.TabIndex = 0;
-            this.btnReportesVistaPrevia.UseVisualStyleBackColor = false;
-            this.btnReportesVistaPrevia.Click += new System.EventHandler(this.btnReportesVistaPrevia_Click);
-            // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(36, 19);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(429, 54);
-            this.label6.TabIndex = 17;
-            this.label6.Text = "Registro de Empleados";
-            // 
             // RegEmpleadosFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -389,10 +389,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DgvRegUsuarios)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
