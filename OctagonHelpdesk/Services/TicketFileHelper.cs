@@ -7,7 +7,7 @@ using System;
 
 public class TicketFileHelper
 {
-    private string rutaArchivo;
+    private readonly string rutaArchivo;
 
     public TicketFileHelper()
     {
@@ -31,7 +31,7 @@ public class TicketFileHelper
         }
     }
 
-    private DateTime dateformater(string date)
+    private DateTime DateFormater(string date)
     {
         return DateTime.ParseExact(date, "dd/MM/yyyy", CultureInfo.InvariantCulture);
     }
@@ -51,7 +51,7 @@ public class TicketFileHelper
                     escritor.Write(ticket.Descripcion);
                     escritor.Write((int)ticket.StateProcess);
                     escritor.Write((int)ticket.Prioridad);
-                    escritor.Write(ticket.AsignadoA);
+                    escritor.Write(ticket.AsignadoA.HasValue ? ticket.AsignadoA.Value : -1); // Manejar nulo
                     escritor.Write(ticket.CreationDate.ToString("dd/MM/yyyy"));
                     escritor.Write(ticket.LastUpdatedDate.ToString("dd/MM/yyyy"));
                     escritor.Write(ticket.DeactivationDate.ToString("dd/MM/yyyy"));
@@ -85,7 +85,7 @@ public class TicketFileHelper
                             Descripcion = lector.ReadString(),
                             StateProcess = (State)lector.ReadInt32(),
                             Prioridad = (Priority)lector.ReadInt32(),
-                            AsignadoA = lector.ReadInt32(),
+                            AsignadoA = lector.ReadInt32() == -1 ? (int?)null : lector.ReadInt32(),
                             CreationDate = ParseDate(lector.ReadString()),
                             LastUpdatedDate = ParseDate(lector.ReadString()),
                             DeactivationDate = ParseDate(lector.ReadString()),
@@ -135,4 +135,5 @@ public class TicketFileHelper
         tickets.Add(ticket);
         SaveTickets(tickets);
     }
+
 }

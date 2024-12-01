@@ -143,5 +143,6 @@ namespace OctagonHelpdesk.Formularios
         {
             GenerateReport();
         }
+
     }
 }

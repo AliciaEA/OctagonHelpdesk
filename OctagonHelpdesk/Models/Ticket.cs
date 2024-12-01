@@ -16,7 +16,7 @@ namespace OctagonHelpdesk.Models
         public string Descripcion { get; set; }
         public State StateProcess { get; set; }
         public Priority Prioridad { get; set; }
-        public int AsignadoA { get; set; }
+        public int? AsignadoA { get; set; } = null;
         public DateTime CreationDate { get; set; }
         public DateTime LastUpdatedDate { get; set; }
         public DateTime DeactivationDate { get; set; }

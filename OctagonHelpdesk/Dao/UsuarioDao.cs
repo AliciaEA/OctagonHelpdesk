@@ -11,18 +11,23 @@ namespace OctagonHelpdesk.Services
 {
     public class UsuarioDao
     {
-        private List<UserModel> usuarios = new List<UserModel>();
+        public List<UserModel> usuarios = new List<UserModel>();
         FileHelper fileHelper = new FileHelper();
 
         public UsuarioDao() 
         {
             //MassFillLocal();
             //fileHelper.SaveUser(usuarios,true);
+            
             usuarios = fileHelper.GetUsers();
         }
 
         
-
+        public void InsertU(int index, UserModel usuario)
+        {
+            usuarios.Insert(index, usuario);
+           
+        }
 
         public void Fillusers(List<UserModel> usuariosL)
         {
@@ -69,16 +74,18 @@ namespace OctagonHelpdesk.Services
 
         public List<UserModel> GetUsuarios()
         {
-
+            usuarios = fileHelper.GetUsers();
             return usuarios;
         }
 
         public UserModel GetUsuario(int id)
         {
+           
             return usuarios.Find(usuario => usuario.IDUser == id);
         }
         public UserModel GetUsuario(string username)
         {
+            usuarios = fileHelper.GetUsers();
             return usuarios.Find(usuario => usuario.Username == username);
         }
 
@@ -93,6 +100,7 @@ namespace OctagonHelpdesk.Services
         }
         public int FindPosition(int id)
         {
+            
             return usuarios.FindIndex(usuario => usuario.IDUser == id);
 
         }

@@ -94,7 +94,7 @@ namespace OctagonHelpdesk.Formularios
             }
 
             // Asignar el valor seleccionado después de que el ComboBox esté cargado
-            cmbAsigned.SelectedValue = ticketSel.AsignadoA;
+            cmbAsigned.SelectedValue = ticketSel.AsignadoA is null ? 0:ticket.AsignadoA ;
 
         }
 
@@ -115,7 +115,19 @@ namespace OctagonHelpdesk.Formularios
                     ticket.Descripcion = description;
                     ticket.StateProcess = cmbState.SelectedItem != null ? (State)cmbState.SelectedItem : State.Creado;
                     ticket.Prioridad = (Priority)cmbPriority.SelectedItem;
-                    ticket.AsignadoA = (int)cmbAsigned.SelectedValue;
+
+                    var selectedValue = cmbAsigned.SelectedValue;
+                    if (selectedValue is null || (int)selectedValue == 0)
+                    {
+                        ticket.AsignadoA = null;
+                    }
+                    else
+                    {
+                        ticket.AsignadoA = (int)selectedValue;
+                    }
+
+
+
 
                     if (ticket.StateProcess == State.Cerrado)
                     {
@@ -158,7 +170,7 @@ namespace OctagonHelpdesk.Formularios
                 .Where(u => u.Roles.ITPerms == true || u.Roles.AdminPerms == true)
                 .Select(u => new { u.IDUser, u.Username })
                 .ToList();
-            filteredUsers.Insert(0, new { IDUser = 0, Username = "No Asignado" });
+           
 
             cmbAsigned.DataSource = filteredUsers;
             cmbAsigned.DisplayMember = "Username";

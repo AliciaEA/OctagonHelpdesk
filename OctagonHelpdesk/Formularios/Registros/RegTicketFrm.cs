@@ -1,4 +1,5 @@
 ﻿using Microsoft.Reporting.WinForms;
+using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 using OctagonHelpdesk.Models;
 using OctagonHelpdesk.Reportes;
 using OctagonHelpdesk.Services;
@@ -6,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 
 namespace OctagonHelpdesk.Formularios
@@ -13,16 +15,18 @@ namespace OctagonHelpdesk.Formularios
     public partial class RegTicketFrm : Form
     {
         public TicketDao tickets = new TicketDao();
-        
+        UsuarioDao usuarios = new UsuarioDao();
+
+
         public UserModel currentUser { get; set; }
 
 
-        public RegTicketFrm(UserModel currentUser)
+        public RegTicketFrm(UserModel usuario)
         {
             
             InitializeComponent();
             InitializeBinding();
-            this.currentUser = currentUser;
+            this.currentUser = usuario;
 
         }
         //Inicializa el BindingSource
@@ -32,8 +36,15 @@ namespace OctagonHelpdesk.Formularios
             DgvRegTickets.DataSource = bindingSource;
             bindingNavigator1.BindingSource = bindingSource;
             bindingNavigatorDeleteItem.Enabled = false;
+           
+            userModelBindingSource.DataSource = usuarios.GetUsuarios();
         }
-
+        private void UpdateLists()
+        {
+            bindingSource.ResetBindings(false);
+            userModelBindingSource.DataSource = usuarios.GetUsuarios();
+            userModelBindingSource.ResetBindings(false); // Actualiza tanto los enlaces de datos como la lista de datos subyacente
+        }
         //BOTONES DE LA BARRA DE HERRAMIENTAS
         //Boton de Agregar
         private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
@@ -58,7 +69,7 @@ namespace OctagonHelpdesk.Formularios
             {
                 tickets.RemoveTicket(SelectedTicketRow());
                 MessageBox.Show("Ticket eliminado correctamente", "Eliminación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                bindingSource.ResetBindings(false);
+                UpdateLists();
             }
             else
             {
@@ -78,8 +89,8 @@ namespace OctagonHelpdesk.Formularios
             {
                 tickets.AddTicket(ticket);
             }
-            bindingSource.ResetBindings(false);
-            
+            UpdateLists();
+
         }
 
         //FUNCIONES DE APOYO
@@ -156,6 +167,15 @@ namespace OctagonHelpdesk.Formularios
         {
             GenerateReport();
 
+        }
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            // Limpiar el DataGridView y su DataSource
+            DgvRegTickets.DataSource = null;
+            bindingSource.DataSource = null;
+            userModelBindingSource.DataSource = null;
+
+            base.OnFormClosing(e);
         }
     }
 }

@@ -45,6 +45,7 @@ namespace OctagonHelpdesk.Services
         //Busco la posicion del ticket en la lista
         public int FindPosition(int IDTicket)
         {
+            
             int position = tickets.FindIndex(ticket => ticket.IDTicket == IDTicket);
             return position;
         }
@@ -52,11 +53,13 @@ namespace OctagonHelpdesk.Services
         //Retorno la lista de tickets
         public List<Ticket> GetTickets()
         {
+           
             return tickets;
         }
 
         public Ticket GetTicket(int IDTicket)
         {
+            
             return tickets.Find(ticket => ticket.IDTicket == IDTicket);
         }
         public int AutogeneradorID()
