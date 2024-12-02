@@ -1,9 +1,9 @@
-﻿using OctagonHelpdesk.Models.Enum;
-using OctagonHelpdesk.Models;
+﻿using OctagonHelpdesk.Models;
+using OctagonHelpdesk.Models.Enum;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System;
 
 public class TicketFileHelper
 {
@@ -46,13 +46,38 @@ public class TicketFileHelper
                     escritor.Write(ticket.Description);
                     escritor.Write((int)ticket.StateProcess);
                     escritor.Write((int)ticket.Prioridad);
-                    escritor.Write(ticket.AsignadoA.HasValue ? ticket.AsignadoA.Value : -1); // Manejar nulo
+                    escritor.Write(ticket.AsignadoA.HasValue); // Escribir si AsignadoA tiene un valor
+                    if (ticket.AsignadoA.HasValue)
+                    {
+                        escritor.Write(ticket.AsignadoA.Value); // Escribir el valor de AsignadoA
+                    }
                     escritor.Write(ticket.CreationDate.ToString("dd/MM/yyyy HH:mm:ss"));
-                    escritor.Write(ticket.LastUpdatedDate.HasValue ? ticket.LastUpdatedDate.Value.ToString("dd/MM/yyyy HH:mm:ss") : string.Empty);
-                    escritor.Write(ticket.DeactivationDate.HasValue ? ticket.DeactivationDate.Value.ToString("dd/MM/yyyy HH:mm:ss") : string.Empty);
-                    escritor.Write(ticket.ReactivationDate.HasValue ? ticket.ReactivationDate.Value.ToString("dd/MM/yyyy HH:mm:ss") : string.Empty);
-                    escritor.Write(ticket.CloseDate.HasValue ? ticket.CloseDate.Value.ToString("dd/MM/yyyy HH:mm:ss") : string.Empty);
-                    escritor.Write(ticket.imagepath ?? string.Empty); // Manejar nulo
+                    // Escribir LastUpdatedDate
+                    escritor.Write(ticket.LastUpdatedDate.HasValue);
+                    if (ticket.LastUpdatedDate.HasValue)
+                    {
+                        escritor.Write(ticket.LastUpdatedDate.Value.ToString("dd/MM/yyyy HH:mm:ss"));
+                    }
+
+                    // Escribir DeactivationDate
+                    escritor.Write(ticket.DeactivationDate.HasValue);
+                    if (ticket.DeactivationDate.HasValue)
+                    {
+                        escritor.Write(ticket.DeactivationDate.Value.ToString("dd/MM/yyyy HH:mm:ss"));
+                    }
+
+                    // Escribir ReactivationDate
+                    escritor.Write(ticket.ReactivationDate.HasValue);
+                    if (ticket.ReactivationDate.HasValue)
+                    {
+                        escritor.Write(ticket.ReactivationDate.Value.ToString("dd/MM/yyyy HH:mm:ss"));
+                    }
+                    escritor.Write(ticket.CloseDate.HasValue);
+                    if (ticket.CloseDate.HasValue)
+                    {
+                        escritor.Write(ticket.CloseDate.Value.ToString("dd/MM/yyyy HH:mm:ss"));
+                    }
+                    escritor.Write(ticket.imagepath ?? string.Empty);
                 }
             }
         }
@@ -80,15 +105,32 @@ public class TicketFileHelper
                             Description = lector.ReadString(),
                             StateProcess = (State)lector.ReadInt32(),
                             Prioridad = (Priority)lector.ReadInt32(),
-                            AsignadoA = lector.ReadInt32() == -1 ? (int?)null : lector.ReadInt32(),
-                            CreationDate = ParseDate(lector.ReadString()),
-                            LastUpdatedDate = string.IsNullOrEmpty(lector.ReadString()) ? (DateTime?)null : ParseDate(lector.ReadString()),
-                            DeactivationDate = string.IsNullOrEmpty(lector.ReadString()) ? (DateTime?)null : ParseDate(lector.ReadString()),
-                            ReactivationDate = string.IsNullOrEmpty(lector.ReadString()) ? (DateTime?)null : ParseDate(lector.ReadString()),
-                            CloseDate = string.IsNullOrEmpty(lector.ReadString()) ? (DateTime?)null : ParseDate(lector.ReadString()),
-                            imagepath = lector.ReadString()
+                            
                         };
 
+                        bool hasAsignadoA = lector.ReadBoolean(); // Leer si AsignadoA tiene un valor
+                        ticket.AsignadoA = hasAsignadoA ? lector.ReadInt32() : (int?)null; // Leer el valor de AsignadoA si no es nulo
+
+                        ticket.CreationDate = ParseDate(lector.ReadString());
+                        if (lector.ReadBoolean())
+                        {
+                            ticket.LastUpdatedDate = SafeParseDate(lector.ReadString());
+                        }
+
+                        if (lector.ReadBoolean())
+                        {
+                            ticket.DeactivationDate = SafeParseDate(lector.ReadString());
+                        }
+
+                        if (lector.ReadBoolean())
+                        {
+                            ticket.ReactivationDate = SafeParseDate(lector.ReadString());
+                        }
+                        if (lector.ReadBoolean())
+                        {
+                            ticket.CloseDate = SafeParseDate(lector.ReadString());
+                        }
+                        ticket.imagepath = lector.ReadString();
                         // Manejar el caso en el que imagepath es una cadena vacía
                         if (string.IsNullOrEmpty(ticket.imagepath))
                         {

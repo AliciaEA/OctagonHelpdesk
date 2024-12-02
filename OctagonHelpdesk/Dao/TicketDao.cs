@@ -53,7 +53,8 @@ namespace OctagonHelpdesk.Services
         //Retorno la lista de tickets
         public List<Ticket> GetTickets()
         {
-           
+
+            tickets = ticketFileHelper.GetTickets();
             return tickets;
         }
 
@@ -72,6 +73,7 @@ namespace OctagonHelpdesk.Services
         }
         public List<Ticket> GetTicketsByUserID(int userID)
         {
+            tickets = ticketFileHelper.GetTickets();
             return tickets.Where(ticket => ticket.CreatedBy == userID).ToList();
         }
 

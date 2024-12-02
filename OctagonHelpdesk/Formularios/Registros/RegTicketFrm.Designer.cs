@@ -39,6 +39,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnReportTicket = new System.Windows.Forms.Button();
             this.btnReportesVistaPrevia = new System.Windows.Forms.Button();
             this.cmbFilterQuick = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -57,13 +58,13 @@
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.DgvRegTickets = new System.Windows.Forms.DataGridView();
+            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iDTicketDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.activeStateDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.createdByDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.userModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.subjectDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descripcionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stateProcessDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.prioridadDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.asignadoADataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -72,7 +73,6 @@
             this.deactivationDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.reactivationDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.closeDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnReportTicket = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
@@ -95,6 +95,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1086, 203);
             this.panel1.TabIndex = 0;
+            // 
+            // btnReportTicket
+            // 
+            this.btnReportTicket.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReportTicket.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnReportTicket.Image = global::OctagonHelpdesk.Properties.Resources.reportesIcon;
+            this.btnReportTicket.Location = new System.Drawing.Point(956, 58);
+            this.btnReportTicket.Name = "btnReportTicket";
+            this.btnReportTicket.Size = new System.Drawing.Size(102, 101);
+            this.btnReportTicket.TabIndex = 19;
+            this.btnReportTicket.UseVisualStyleBackColor = false;
+            this.btnReportTicket.Click += new System.EventHandler(this.btnReportTicket_Click);
             // 
             // btnReportesVistaPrevia
             // 
@@ -288,7 +300,7 @@
             this.activeStateDataGridViewCheckBoxColumn,
             this.createdByDataGridViewTextBoxColumn,
             this.subjectDataGridViewTextBoxColumn,
-            this.descripcionDataGridViewTextBoxColumn,
+            this.Description,
             this.stateProcessDataGridViewTextBoxColumn,
             this.prioridadDataGridViewTextBoxColumn,
             this.asignadoADataGridViewTextBoxColumn,
@@ -318,6 +330,14 @@
             this.DgvRegTickets.TabIndex = 2;
             this.DgvRegTickets.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvRegTickets_CellClick);
             this.DgvRegTickets.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvRegTickets_CellDoubleClick);
+            // 
+            // Description
+            // 
+            this.Description.DataPropertyName = "Description";
+            this.Description.HeaderText = "Description";
+            this.Description.MinimumWidth = 8;
+            this.Description.Name = "Description";
+            this.Description.ReadOnly = true;
             // 
             // bindingSource
             // 
@@ -373,15 +393,6 @@
             this.subjectDataGridViewTextBoxColumn.Name = "subjectDataGridViewTextBoxColumn";
             this.subjectDataGridViewTextBoxColumn.ReadOnly = true;
             this.subjectDataGridViewTextBoxColumn.ToolTipText = "Asunto del Ticket";
-            // 
-            // descripcionDataGridViewTextBoxColumn
-            // 
-            this.descripcionDataGridViewTextBoxColumn.DataPropertyName = "Descripcion";
-            this.descripcionDataGridViewTextBoxColumn.HeaderText = "Descripcion";
-            this.descripcionDataGridViewTextBoxColumn.MinimumWidth = 8;
-            this.descripcionDataGridViewTextBoxColumn.Name = "descripcionDataGridViewTextBoxColumn";
-            this.descripcionDataGridViewTextBoxColumn.ReadOnly = true;
-            this.descripcionDataGridViewTextBoxColumn.ToolTipText = "Descripcion del Ticket";
             // 
             // stateProcessDataGridViewTextBoxColumn
             // 
@@ -471,18 +482,6 @@
             this.closeDateDataGridViewTextBoxColumn.ReadOnly = true;
             this.closeDateDataGridViewTextBoxColumn.ToolTipText = "Fecha de finalizacion del Ticket";
             // 
-            // btnReportTicket
-            // 
-            this.btnReportTicket.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnReportTicket.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.btnReportTicket.Image = global::OctagonHelpdesk.Properties.Resources.reportesIcon;
-            this.btnReportTicket.Location = new System.Drawing.Point(956, 58);
-            this.btnReportTicket.Name = "btnReportTicket";
-            this.btnReportTicket.Size = new System.Drawing.Size(102, 101);
-            this.btnReportTicket.TabIndex = 19;
-            this.btnReportTicket.UseVisualStyleBackColor = false;
-            this.btnReportTicket.Click += new System.EventHandler(this.btnReportTicket_Click);
-            // 
             // RegTicketFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -535,11 +534,13 @@
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.Button btnReportesVistaPrevia;
         private System.Windows.Forms.BindingSource userModelBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descripcionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button btnReportTicket;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDTicketDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn activeStateDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn createdByDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn subjectDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descripcionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Description;
         private System.Windows.Forms.DataGridViewTextBoxColumn stateProcessDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn prioridadDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn asignadoADataGridViewTextBoxColumn;
@@ -548,6 +549,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn deactivationDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn reactivationDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn closeDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Button btnReportTicket;
     }
 }

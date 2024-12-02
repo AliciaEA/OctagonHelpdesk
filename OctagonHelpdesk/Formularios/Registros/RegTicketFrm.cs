@@ -32,6 +32,7 @@ namespace OctagonHelpdesk.Formularios
         //Inicializa el BindingSource
         private void InitializeBinding()
         {
+
             bindingSource.DataSource = !currentUser.Roles.ITPerms || !currentUser.Roles.AdminPerms ? tickets.GetTicketsByUserID(currentUser.IDUser) : tickets.GetTickets();
             DgvRegTickets.DataSource = bindingSource;
             bindingNavigator1.BindingSource = bindingSource;
@@ -69,7 +70,9 @@ namespace OctagonHelpdesk.Formularios
             {
                 tickets.RemoveTicket(SelectedTicketRow());
                 MessageBox.Show("Ticket eliminado correctamente", "Eliminación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                UpdateLists();
+                bindingSource.ResetBindings(false);
+                userModelBindingSource.DataSource = usuarios.GetUsuarios();
+                userModelBindingSource.ResetBindings(false); // Actualiza tanto los enlaces de datos como la lista de datos subyacente
             }
             else
             {
@@ -89,7 +92,9 @@ namespace OctagonHelpdesk.Formularios
             {
                 tickets.AddTicket(ticket);
             }
-            UpdateLists();
+            bindingSource.ResetBindings(false);
+            userModelBindingSource.DataSource = usuarios.GetUsuarios();
+            userModelBindingSource.ResetBindings(false); // Actualiza tanto los enlaces de datos como la lista de datos subyacente
 
         }
 

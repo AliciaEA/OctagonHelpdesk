@@ -65,15 +65,17 @@ namespace OctagonHelpdesk.Formularios
         }
 
         // Inicializar el formulario para editar un ticket existente
+        // Inicializar el formulario para editar un ticket existente
         private void InitializeFormWithTicketData(Ticket ticketSel)
         {
             ticket = ticketSel;
 
-            lblTicketID.Text = $"Ticket # {ticketSel.IDTicket}";
-            txtSubject.Text = ticketSel.Subject;
-            txtDescription.Text = ticketSel.Description;
-            cmbState.SelectedItem = ticketSel.StateProcess;
-            cmbPriority.SelectedItem = ticketSel.Prioridad;
+            lblTicketID.Text = $"Ticket # {ticket.IDTicket}";
+            txtSubject.Text = ticket.Subject;
+            
+            txtDescription.Text = ticket.Description;
+            cmbState.SelectedItem = ticket.StateProcess;
+            cmbPriority.SelectedItem = ticket.Prioridad;
 
             // Ruta relativa a la carpeta "Data/images" fuera del directorio bin
             string globalpath = AppDomain.CurrentDomain.BaseDirectory;
@@ -88,13 +90,13 @@ namespace OctagonHelpdesk.Formularios
             else
             {
                 filelabel.Text = "File non existent";
-                ticket.imagepath = string.Empty;
+                ticket.imagepath = null;
                 ticketimage_wompwomp = true;
                 Console.WriteLine($"Debug #3.1: ticket with ID {ticket.IDTicket} invalid filepath, setting to empty on save");
             }
 
             // Asignar el valor seleccionado después de que el ComboBox esté cargado
-            cmbAsigned.SelectedValue = ticketSel.AsignadoA is null ? 0:ticket.AsignadoA ;
+            cmbAsigned.SelectedValue = ticketSel.AsignadoA is null ? 0 : ticket.AsignadoA;
 
         }
 
