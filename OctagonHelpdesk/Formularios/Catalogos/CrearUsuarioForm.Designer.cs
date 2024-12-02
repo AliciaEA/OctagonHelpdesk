@@ -67,6 +67,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.cbPassVisible = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.gbDatosGenerales.SuspendLayout();
             this.gbUserLog.SuspendLayout();
@@ -91,7 +92,7 @@
             this.lblTitulo.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 16F, System.Drawing.FontStyle.Bold);
             this.lblTitulo.Location = new System.Drawing.Point(233, 9);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(166, 22);
+            this.lblTitulo.Size = new System.Drawing.Size(235, 32);
             this.lblTitulo.TabIndex = 1;
             this.lblTitulo.Text = "Crear Usuario";
             // 
@@ -135,7 +136,7 @@
             this.label7.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 9F);
             this.label7.Location = new System.Drawing.Point(10, 97);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(59, 12);
+            this.label7.Size = new System.Drawing.Size(89, 18);
             this.label7.TabIndex = 15;
             this.label7.Text = "Apellido:";
             // 
@@ -162,7 +163,7 @@
             this.label5.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 9F);
             this.label5.Location = new System.Drawing.Point(10, 157);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(83, 12);
+            this.label5.Size = new System.Drawing.Size(125, 18);
             this.label5.TabIndex = 3;
             this.label5.Text = "Departamento:";
             // 
@@ -172,7 +173,7 @@
             this.label3.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 9F);
             this.label3.Location = new System.Drawing.Point(10, 38);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 12);
+            this.label3.Size = new System.Drawing.Size(71, 18);
             this.label3.TabIndex = 1;
             this.label3.Text = "Nombre:";
             // 
@@ -183,7 +184,7 @@
             this.tbEmail.MaxLength = 50;
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(334, 26);
-            this.tbEmail.TabIndex = 5;
+            this.tbEmail.TabIndex = 6;
             // 
             // label4
             // 
@@ -191,7 +192,7 @@
             this.label4.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 9F);
             this.label4.Location = new System.Drawing.Point(10, 150);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 12);
+            this.label4.Size = new System.Drawing.Size(62, 18);
             this.label4.TabIndex = 2;
             this.label4.Text = "Email:";
             // 
@@ -201,7 +202,7 @@
             this.label9.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 9F);
             this.label9.Location = new System.Drawing.Point(8, 93);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(71, 12);
+            this.label9.Size = new System.Drawing.Size(107, 18);
             this.label9.TabIndex = 19;
             this.label9.Text = "Contraseña:";
             // 
@@ -211,7 +212,7 @@
             this.label8.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 9F);
             this.label8.Location = new System.Drawing.Point(8, 34);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(53, 12);
+            this.label8.Size = new System.Drawing.Size(80, 18);
             this.label8.TabIndex = 18;
             this.label8.Text = "Usuario:";
             // 
@@ -221,10 +222,10 @@
             this.txtPassword.Location = new System.Drawing.Point(134, 88);
             this.txtPassword.MaxLength = 12;
             this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(292, 26);
             this.txtPassword.TabIndex = 3;
             this.txtPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassword_KeyPress);
-            this.txtPassword.Leave += new System.EventHandler(this.txtPassword_Leave);
             // 
             // txtUsername
             // 
@@ -242,8 +243,8 @@
             this.cbEmpleado.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbEmpleado.Location = new System.Drawing.Point(360, 207);
             this.cbEmpleado.Name = "cbEmpleado";
-            this.cbEmpleado.Size = new System.Drawing.Size(72, 15);
-            this.cbEmpleado.TabIndex = 8;
+            this.cbEmpleado.Size = new System.Drawing.Size(97, 21);
+            this.cbEmpleado.TabIndex = 9;
             this.cbEmpleado.Text = "Empleado";
             this.cbEmpleado.UseVisualStyleBackColor = true;
             // 
@@ -253,8 +254,8 @@
             this.cbIT.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbIT.Location = new System.Drawing.Point(234, 207);
             this.cbIT.Name = "cbIT";
-            this.cbIT.Size = new System.Drawing.Size(84, 15);
-            this.cbIT.TabIndex = 7;
+            this.cbIT.Size = new System.Drawing.Size(113, 21);
+            this.cbIT.TabIndex = 8;
             this.cbIT.Text = "Tecnico IT";
             this.cbIT.UseVisualStyleBackColor = true;
             // 
@@ -264,8 +265,8 @@
             this.cbAdmin.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbAdmin.Location = new System.Drawing.Point(134, 207);
             this.cbAdmin.Name = "cbAdmin";
-            this.cbAdmin.Size = new System.Drawing.Size(54, 15);
-            this.cbAdmin.TabIndex = 6;
+            this.cbAdmin.Size = new System.Drawing.Size(73, 21);
+            this.cbAdmin.TabIndex = 7;
             this.cbAdmin.Text = "Admin";
             this.cbAdmin.UseVisualStyleBackColor = true;
             // 
@@ -287,12 +288,13 @@
             this.label6.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 9F);
             this.label6.Location = new System.Drawing.Point(6, 207);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(59, 12);
+            this.label6.Size = new System.Drawing.Size(89, 18);
             this.label6.TabIndex = 5;
             this.label6.Text = "Permisos:";
             // 
             // gbUserLog
             // 
+            this.gbUserLog.Controls.Add(this.cbPassVisible);
             this.gbUserLog.Controls.Add(this.btnGeneratePassword);
             this.gbUserLog.Controls.Add(this.btnDatosGenerales);
             this.gbUserLog.Controls.Add(this.label9);
@@ -320,7 +322,7 @@
             this.btnGeneratePassword.Location = new System.Drawing.Point(421, 81);
             this.btnGeneratePassword.Name = "btnGeneratePassword";
             this.btnGeneratePassword.Size = new System.Drawing.Size(46, 37);
-            this.btnGeneratePassword.TabIndex = 4;
+            this.btnGeneratePassword.TabIndex = 5;
             this.btnGeneratePassword.Text = "↻";
             this.btnGeneratePassword.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnGeneratePassword.UseVisualStyleBackColor = false;
@@ -332,7 +334,7 @@
             this.btnDatosGenerales.Location = new System.Drawing.Point(11, 266);
             this.btnDatosGenerales.Name = "btnDatosGenerales";
             this.btnDatosGenerales.Size = new System.Drawing.Size(47, 45);
-            this.btnDatosGenerales.TabIndex = 9;
+            this.btnDatosGenerales.TabIndex = 12;
             this.btnDatosGenerales.Text = "←";
             this.btnDatosGenerales.UseVisualStyleBackColor = false;
             this.btnDatosGenerales.Click += new System.EventHandler(this.btnDatosGenerales_Click);
@@ -355,7 +357,7 @@
             this.cbActiveState.Location = new System.Drawing.Point(308, 228);
             this.cbActiveState.Name = "cbActiveState";
             this.cbActiveState.Padding = new System.Windows.Forms.Padding(3);
-            this.cbActiveState.Size = new System.Drawing.Size(72, 21);
+            this.cbActiveState.Size = new System.Drawing.Size(93, 27);
             this.cbActiveState.TabIndex = 1;
             this.cbActiveState.Text = "Activo";
             this.cbActiveState.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -369,7 +371,7 @@
             this.btnActividad.Location = new System.Drawing.Point(507, 12);
             this.btnActividad.Name = "btnActividad";
             this.btnActividad.Size = new System.Drawing.Size(61, 61);
-            this.btnActividad.TabIndex = 0;
+            this.btnActividad.TabIndex = 11;
             this.btnActividad.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolTip1.SetToolTip(this.btnActividad, "Auditoria");
             this.btnActividad.UseVisualStyleBackColor = false;
@@ -397,7 +399,7 @@
             this.lblReactivationDate.Font = new System.Drawing.Font("MingLiU-ExtB", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblReactivationDate.Location = new System.Drawing.Point(3, 220);
             this.lblReactivationDate.Name = "lblReactivationDate";
-            this.lblReactivationDate.Size = new System.Drawing.Size(47, 11);
+            this.lblReactivationDate.Size = new System.Drawing.Size(63, 16);
             this.lblReactivationDate.TabIndex = 27;
             this.lblReactivationDate.Text = "label13";
             this.toolTip1.SetToolTip(this.lblReactivationDate, "Fecha de Reactivacio");
@@ -408,7 +410,7 @@
             this.lblDeactivationDate.Font = new System.Drawing.Font("MingLiU-ExtB", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDeactivationDate.Location = new System.Drawing.Point(3, 157);
             this.lblDeactivationDate.Name = "lblDeactivationDate";
-            this.lblDeactivationDate.Size = new System.Drawing.Size(47, 11);
+            this.lblDeactivationDate.Size = new System.Drawing.Size(63, 16);
             this.lblDeactivationDate.TabIndex = 26;
             this.lblDeactivationDate.Text = "label13";
             this.toolTip1.SetToolTip(this.lblDeactivationDate, "Fecha de Desactivacio");
@@ -419,7 +421,7 @@
             this.lblLastUpdatedDate.Font = new System.Drawing.Font("MingLiU-ExtB", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLastUpdatedDate.Location = new System.Drawing.Point(3, 96);
             this.lblLastUpdatedDate.Name = "lblLastUpdatedDate";
-            this.lblLastUpdatedDate.Size = new System.Drawing.Size(47, 11);
+            this.lblLastUpdatedDate.Size = new System.Drawing.Size(63, 16);
             this.lblLastUpdatedDate.TabIndex = 25;
             this.lblLastUpdatedDate.Text = "label13";
             this.toolTip1.SetToolTip(this.lblLastUpdatedDate, "Fecha de Ultima Modificacion");
@@ -430,7 +432,7 @@
             this.lblCreationDate.Font = new System.Drawing.Font("MingLiU-ExtB", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCreationDate.Location = new System.Drawing.Point(3, 38);
             this.lblCreationDate.Name = "lblCreationDate";
-            this.lblCreationDate.Size = new System.Drawing.Size(47, 11);
+            this.lblCreationDate.Size = new System.Drawing.Size(63, 16);
             this.lblCreationDate.TabIndex = 24;
             this.lblCreationDate.Text = "label13";
             this.toolTip1.SetToolTip(this.lblCreationDate, "Fecha de Creacion");
@@ -441,7 +443,7 @@
             this.label12.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.Location = new System.Drawing.Point(3, 191);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(89, 11);
+            this.label12.Size = new System.Drawing.Size(115, 16);
             this.label12.TabIndex = 23;
             this.label12.Text = "Reactivacion";
             this.toolTip1.SetToolTip(this.label12, "Fecha de Reactivacio");
@@ -452,7 +454,7 @@
             this.label11.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.Location = new System.Drawing.Point(0, 129);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(110, 11);
+            this.label11.Size = new System.Drawing.Size(142, 16);
             this.label11.TabIndex = 22;
             this.label11.Text = "Desactivacion: ";
             this.toolTip1.SetToolTip(this.label11, "Fecha de Desactivacion");
@@ -463,7 +465,7 @@
             this.label10.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(3, 71);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(152, 11);
+            this.label10.Size = new System.Drawing.Size(196, 16);
             this.label10.TabIndex = 21;
             this.label10.Text = "Ultima Modificacion: ";
             this.toolTip1.SetToolTip(this.label10, "Fecha de Ultima Modificacion");
@@ -474,10 +476,20 @@
             this.label2.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(3, 15);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 11);
+            this.label2.Size = new System.Drawing.Size(79, 16);
             this.label2.TabIndex = 20;
             this.label2.Text = "Creado: ";
             this.toolTip1.SetToolTip(this.label2, "Fecha de Creacion");
+            // 
+            // cbPassVisible
+            // 
+            this.cbPassVisible.AutoSize = true;
+            this.cbPassVisible.Location = new System.Drawing.Point(399, 91);
+            this.cbPassVisible.Name = "cbPassVisible";
+            this.cbPassVisible.Size = new System.Drawing.Size(22, 21);
+            this.cbPassVisible.TabIndex = 4;
+            this.cbPassVisible.UseVisualStyleBackColor = true;
+            this.cbPassVisible.CheckedChanged += new System.EventHandler(this.cbPassVisible_CheckedChanged);
             // 
             // CrearUsuarioForm
             // 
@@ -550,5 +562,6 @@
         private System.Windows.Forms.Label lblLastUpdatedDate;
         private System.Windows.Forms.Label lblCreationDate;
         private System.Windows.Forms.Button btnGeneratePassword;
+        private System.Windows.Forms.CheckBox cbPassVisible;
     }
 }

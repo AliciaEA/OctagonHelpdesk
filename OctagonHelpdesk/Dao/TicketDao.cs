@@ -70,6 +70,11 @@ namespace OctagonHelpdesk.Services
             }
             return tickets.Last().IDTicket + 1;
         }
+        public List<Ticket> GetTicketsByUserID(int userID)
+        {
+            return tickets.Where(ticket => ticket.CreatedBy == userID).ToList();
+        }
+
 
     }
 }

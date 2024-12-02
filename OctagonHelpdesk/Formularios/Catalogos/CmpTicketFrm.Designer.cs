@@ -160,7 +160,7 @@
             // 
             this.btnSave.BackColor = System.Drawing.Color.CornflowerBlue;
             this.btnSave.Font = new System.Drawing.Font("MingLiU_HKSCS-ExtB", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(415, 751);
+            this.btnSave.Location = new System.Drawing.Point(18, 444);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(146, 54);
             this.btnSave.TabIndex = 7;
@@ -190,7 +190,7 @@
             this.panel1.Controls.Add(this.label5);
             this.panel1.Location = new System.Drawing.Point(167, 54);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(592, 818);
+            this.panel1.Size = new System.Drawing.Size(592, 651);
             this.panel1.TabIndex = 14;
             // 
             // filelabel
@@ -204,7 +204,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(161, 392);
+            this.label6.Location = new System.Drawing.Point(164, 373);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(43, 21);
             this.label6.TabIndex = 16;
@@ -212,9 +212,9 @@
             // 
             // filepicturebox
             // 
-            this.filepicturebox.Location = new System.Drawing.Point(198, 471);
+            this.filepicturebox.Location = new System.Drawing.Point(189, 397);
             this.filepicturebox.Name = "filepicturebox";
-            this.filepicturebox.Size = new System.Drawing.Size(363, 244);
+            this.filepicturebox.Size = new System.Drawing.Size(284, 194);
             this.filepicturebox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.filepicturebox.TabIndex = 15;
             this.filepicturebox.TabStop = false;
@@ -267,7 +267,7 @@
             this.pictureBox1.Image = global::OctagonHelpdesk.Properties.Resources.wavebckg;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(132, 893);
+            this.pictureBox1.Size = new System.Drawing.Size(132, 711);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 17;
             this.pictureBox1.TabStop = false;
@@ -275,7 +275,7 @@
             // CmpTicketFrm
             // 
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(783, 893);
+            this.ClientSize = new System.Drawing.Size(783, 711);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblTicketID);
             this.Controls.Add(this.panel1);

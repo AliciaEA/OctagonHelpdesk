@@ -40,6 +40,7 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.cbPassVisible = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel2.SuspendLayout();
@@ -70,7 +71,7 @@
             this.txbuser.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbuser.MaxLength = 20;
             this.txbuser.Name = "txbuser";
-            this.txbuser.Size = new System.Drawing.Size(399, 23);
+            this.txbuser.Size = new System.Drawing.Size(399, 34);
             this.txbuser.TabIndex = 0;
             this.txbuser.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbuser_KeyPress);
             // 
@@ -83,7 +84,7 @@
             this.txbpassword.MaxLength = 12;
             this.txbpassword.Name = "txbpassword";
             this.txbpassword.PasswordChar = '*';
-            this.txbpassword.Size = new System.Drawing.Size(399, 23);
+            this.txbpassword.Size = new System.Drawing.Size(399, 34);
             this.txbpassword.TabIndex = 1;
             this.txbpassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbpassword_KeyPress);
             // 
@@ -141,6 +142,7 @@
             // panel2
             // 
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel2.Controls.Add(this.cbPassVisible);
             this.panel2.Controls.Add(this.pictureBox3);
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.label1);
@@ -198,6 +200,16 @@
             this.label1.Text = "Ingresa a tu cuenta";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // cbPassVisible
+            // 
+            this.cbPassVisible.AutoSize = true;
+            this.cbPassVisible.Location = new System.Drawing.Point(483, 290);
+            this.cbPassVisible.Name = "cbPassVisible";
+            this.cbPassVisible.Size = new System.Drawing.Size(22, 21);
+            this.cbPassVisible.TabIndex = 2;
+            this.cbPassVisible.UseVisualStyleBackColor = true;
+            this.cbPassVisible.CheckedChanged += new System.EventHandler(this.cbPassVisible_CheckedChanged);
+            // 
             // LoginFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -234,5 +246,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.CheckBox cbPassVisible;
     }
 }

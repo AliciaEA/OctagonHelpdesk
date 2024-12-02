@@ -768,8 +768,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox26</rd:DefaultName>
-        <Top>1.52259cm</Top>
-        <Left>8.81912cm</Left>
+        <Top>1.80481cm</Top>
+        <Left>12.80078cm</Left>
         <Height>1.35847cm</Height>
         <Width>5.65736cm</Width>
         <ZIndex>1</ZIndex>
@@ -784,11 +784,31 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>2.36806in</Height>
+    <Height>4.46528in</Height>
     <Style />
   </Body>
   <Width>11.41232in</Width>
   <Page>
+    <PageHeader>
+      <Height>2.54cm</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageHeader>
+    <PageFooter>
+      <Height>2.54cm</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageFooter>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>
     <LeftMargin>2cm</LeftMargin>

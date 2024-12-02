@@ -23,20 +23,20 @@ namespace OctagonHelpdesk.Formularios
 
         public RegTicketFrm(UserModel usuario)
         {
-            
+            this.currentUser = usuario;
             InitializeComponent();
             InitializeBinding();
-            this.currentUser = usuario;
+
 
         }
         //Inicializa el BindingSource
         private void InitializeBinding()
         {
-            bindingSource.DataSource = tickets.GetTickets();
+            bindingSource.DataSource = !currentUser.Roles.ITPerms || !currentUser.Roles.AdminPerms ? tickets.GetTicketsByUserID(currentUser.IDUser) : tickets.GetTickets();
             DgvRegTickets.DataSource = bindingSource;
             bindingNavigator1.BindingSource = bindingSource;
             bindingNavigatorDeleteItem.Enabled = false;
-           
+
             userModelBindingSource.DataSource = usuarios.GetUsuarios();
         }
         private void UpdateLists()
@@ -132,30 +132,55 @@ namespace OctagonHelpdesk.Formularios
         }
 
         //****FILTRO DE BUSQUEDA****//
-        //public void FilterMyTickets()
-        //{
-        //    bindingSource.Filter = $"IDUser = {currentUser.IDUser}";
-        //}
+
 
         private void RegTicketFrm_Load(object sender, EventArgs e)
         {
-            //if (!currentUser.Roles.ITPerms || !currentUser.Roles.AdminPerms)
-            //{
-            //    FilterMyTickets();
-            //}
+            if (!currentUser.Roles.ITPerms || !currentUser.Roles.AdminPerms)
+            {
+                cmbFilterQuick.Enabled = false;
+                cmbFilterQuick.SelectedItem = "Mis Tickets";
+            }
+            else
+            {
+                cmbFilterQuick.Enabled = true;
+                cmbFilterQuick.SelectedItem = "Todos";
+            }
         }
 
         private void GenerateReport()
         {
+            List<Ticket> ticketsFiltered = new List<Ticket>();
+
+
             if (tickets.GetTickets() != null)
             {
-                ReportDataSource rds = new ReportDataSource("DsDatos", tickets.GetTickets());
+                if (!currentUser.Roles.ITPerms || !currentUser.Roles.AdminPerms)
+                {
+                    ticketsFiltered = tickets.GetTicketsByUserID(currentUser.IDUser);
+
+                }
+                else
+                {
+
+
+                    if (cmbFilterQuick.SelectedItem.ToString() == "Todos")
+                    {
+                        ticketsFiltered = tickets.GetTickets();
+                    }
+                    else
+                    {
+                        ticketsFiltered = tickets.GetTicketsByUserID(currentUser.IDUser);
+                    }
+                }
+                ReportDataSource rds = new ReportDataSource("DsDatos", ticketsFiltered);
                 RptVistaPrevia reporte = new RptVistaPrevia();
                 reporte.reportViewer1.LocalReport.DataSources.Clear();
                 reporte.reportViewer1.LocalReport.DataSources.Add(rds);
                 reporte.reportViewer1.LocalReport.ReportEmbeddedResource = "OctagonHelpdesk.Reportes.RptTickets.rdlc";
                 reporte.reportViewer1.RefreshReport();
                 reporte.ShowDialog();
+
             }
             else
             {
@@ -176,6 +201,23 @@ namespace OctagonHelpdesk.Formularios
             userModelBindingSource.DataSource = null;
 
             base.OnFormClosing(e);
+        }
+
+        private void cmbFilterQuick_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbFilterQuick.SelectedItem.ToString() == "Todos")
+            {
+                bindingSource.DataSource = tickets.GetTickets();
+            }
+            else
+            {
+                bindingSource.DataSource = tickets.GetTicketsByUserID(currentUser.IDUser);
+            }
+        }
+
+        private void btnReportTicket_Click(object sender, EventArgs e)
+        {
+            GenerateReport();
         }
     }
 }

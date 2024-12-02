@@ -31,13 +31,16 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegTicketFrm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnReportesVistaPrevia = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbFilterQuick = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -69,6 +72,7 @@
             this.deactivationDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.reactivationDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.closeDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnReportTicket = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
@@ -81,8 +85,9 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.panel1.Controls.Add(this.btnReportTicket);
             this.panel1.Controls.Add(this.btnReportesVistaPrevia);
-            this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Controls.Add(this.cmbFilterQuick);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -103,23 +108,28 @@
             this.btnReportesVistaPrevia.UseVisualStyleBackColor = false;
             this.btnReportesVistaPrevia.Click += new System.EventHandler(this.btnReportesVistaPrevia_Click);
             // 
-            // comboBox1
+            // cmbFilterQuick
             // 
-            this.comboBox1.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(106, 91);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(134, 28);
-            this.comboBox1.TabIndex = 0;
+            this.cmbFilterQuick.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.cmbFilterQuick.FormattingEnabled = true;
+            this.cmbFilterQuick.Items.AddRange(new object[] {
+            "Todos",
+            "Mis Tickets"});
+            this.cmbFilterQuick.Location = new System.Drawing.Point(24, 114);
+            this.cmbFilterQuick.Name = "cmbFilterQuick";
+            this.cmbFilterQuick.Size = new System.Drawing.Size(134, 28);
+            this.cmbFilterQuick.TabIndex = 0;
+            this.cmbFilterQuick.SelectedIndexChanged += new System.EventHandler(this.cmbFilterQuick_SelectedIndexChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 94);
+            this.label1.Font = new System.Drawing.Font("MingLiU-ExtB", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(20, 82);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 20);
+            this.label1.Size = new System.Drawing.Size(135, 16);
             this.label1.TabIndex = 18;
-            this.label1.Text = "Filtrar por:";
+            this.label1.Text = "Filtrado Rapido:";
             // 
             // label6
             // 
@@ -168,14 +178,14 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(1086, 38);
+            this.bindingNavigator1.Size = new System.Drawing.Size(1086, 33);
             this.bindingNavigator1.TabIndex = 1;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(57, 33);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(57, 28);
             this.bindingNavigatorCountItem.Text = "de {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Número total de elementos";
             // 
@@ -185,7 +195,7 @@
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(34, 33);
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(34, 28);
             this.bindingNavigatorMoveFirstItem.Text = "Mover primero";
             // 
             // bindingNavigatorMovePreviousItem
@@ -194,13 +204,13 @@
             this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
             this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
             this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(34, 33);
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(34, 28);
             this.bindingNavigatorMovePreviousItem.Text = "Mover anterior";
             // 
             // bindingNavigatorSeparator
             // 
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 38);
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 33);
             // 
             // bindingNavigatorPositionItem
             // 
@@ -215,7 +225,7 @@
             // bindingNavigatorSeparator1
             // 
             this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 38);
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 33);
             // 
             // bindingNavigatorMoveNextItem
             // 
@@ -223,7 +233,7 @@
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(34, 33);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(34, 28);
             this.bindingNavigatorMoveNextItem.Text = "Mover siguiente";
             // 
             // bindingNavigatorMoveLastItem
@@ -232,13 +242,13 @@
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(34, 33);
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(34, 28);
             this.bindingNavigatorMoveLastItem.Text = "Mover último";
             // 
             // bindingNavigatorSeparator2
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 38);
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 33);
             // 
             // bindingNavigatorAddNewItem
             // 
@@ -246,7 +256,7 @@
             this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(34, 33);
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(34, 28);
             this.bindingNavigatorAddNewItem.Text = "Agregar nuevo";
             this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
             // 
@@ -256,7 +266,7 @@
             this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
             this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(34, 33);
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(34, 28);
             this.bindingNavigatorDeleteItem.Text = "Eliminar";
             this.bindingNavigatorDeleteItem.Click += new System.EventHandler(this.bindingNavigatorDeleteItem_Click);
             // 
@@ -288,21 +298,20 @@
             this.reactivationDateDataGridViewTextBoxColumn,
             this.closeDateDataGridViewTextBoxColumn});
             this.DgvRegTickets.DataSource = this.bindingSource;
-            this.DgvRegTickets.Location = new System.Drawing.Point(3, 63);
+            this.DgvRegTickets.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
+            this.DgvRegTickets.Location = new System.Drawing.Point(10, 63);
             this.DgvRegTickets.Name = "DgvRegTickets";
             this.DgvRegTickets.ReadOnly = true;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.NullValue = "No encontrado";
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvRegTickets.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.NullValue = "No encontrado";
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvRegTickets.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.DgvRegTickets.RowHeadersWidth = 62;
-            dataGridViewCellStyle5.NullValue = "No encontrado";
-            this.DgvRegTickets.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.DgvRegTickets.RowTemplate.Height = 28;
             this.DgvRegTickets.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvRegTickets.Size = new System.Drawing.Size(1083, 544);
@@ -421,6 +430,8 @@
             // lastUpdatedDateDataGridViewTextBoxColumn
             // 
             this.lastUpdatedDateDataGridViewTextBoxColumn.DataPropertyName = "LastUpdatedDate";
+            dataGridViewCellStyle4.NullValue = "N/A";
+            this.lastUpdatedDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
             this.lastUpdatedDateDataGridViewTextBoxColumn.HeaderText = "Actualizado";
             this.lastUpdatedDateDataGridViewTextBoxColumn.MinimumWidth = 8;
             this.lastUpdatedDateDataGridViewTextBoxColumn.Name = "lastUpdatedDateDataGridViewTextBoxColumn";
@@ -430,6 +441,8 @@
             // deactivationDateDataGridViewTextBoxColumn
             // 
             this.deactivationDateDataGridViewTextBoxColumn.DataPropertyName = "DeactivationDate";
+            dataGridViewCellStyle5.NullValue = "N/A";
+            this.deactivationDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
             this.deactivationDateDataGridViewTextBoxColumn.HeaderText = "Desactivacion";
             this.deactivationDateDataGridViewTextBoxColumn.MinimumWidth = 8;
             this.deactivationDateDataGridViewTextBoxColumn.Name = "deactivationDateDataGridViewTextBoxColumn";
@@ -439,6 +452,8 @@
             // reactivationDateDataGridViewTextBoxColumn
             // 
             this.reactivationDateDataGridViewTextBoxColumn.DataPropertyName = "ReactivationDate";
+            dataGridViewCellStyle6.NullValue = "N/A";
+            this.reactivationDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
             this.reactivationDateDataGridViewTextBoxColumn.HeaderText = "Reactivacion";
             this.reactivationDateDataGridViewTextBoxColumn.MinimumWidth = 8;
             this.reactivationDateDataGridViewTextBoxColumn.Name = "reactivationDateDataGridViewTextBoxColumn";
@@ -448,11 +463,25 @@
             // closeDateDataGridViewTextBoxColumn
             // 
             this.closeDateDataGridViewTextBoxColumn.DataPropertyName = "CloseDate";
+            dataGridViewCellStyle7.NullValue = "N/A";
+            this.closeDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
             this.closeDateDataGridViewTextBoxColumn.HeaderText = "Finalización";
             this.closeDateDataGridViewTextBoxColumn.MinimumWidth = 8;
             this.closeDateDataGridViewTextBoxColumn.Name = "closeDateDataGridViewTextBoxColumn";
             this.closeDateDataGridViewTextBoxColumn.ReadOnly = true;
             this.closeDateDataGridViewTextBoxColumn.ToolTipText = "Fecha de finalizacion del Ticket";
+            // 
+            // btnReportTicket
+            // 
+            this.btnReportTicket.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReportTicket.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnReportTicket.Image = global::OctagonHelpdesk.Properties.Resources.reportesIcon;
+            this.btnReportTicket.Location = new System.Drawing.Point(956, 58);
+            this.btnReportTicket.Name = "btnReportTicket";
+            this.btnReportTicket.Size = new System.Drawing.Size(102, 101);
+            this.btnReportTicket.TabIndex = 19;
+            this.btnReportTicket.UseVisualStyleBackColor = false;
+            this.btnReportTicket.Click += new System.EventHandler(this.btnReportTicket_Click);
             // 
             // RegTicketFrm
             // 
@@ -489,7 +518,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridView DgvRegTickets;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbFilterQuick;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.BindingSource bindingSource;
         private System.Windows.Forms.BindingNavigator bindingNavigator1;
@@ -519,5 +548,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn deactivationDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn reactivationDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn closeDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button btnReportTicket;
     }
 }

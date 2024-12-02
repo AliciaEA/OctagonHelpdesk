@@ -328,7 +328,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Last Updated Date</Value>
+                              <Value>LastUpdated Date</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>

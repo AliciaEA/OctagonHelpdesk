@@ -18,14 +18,7 @@ namespace OctagonHelpdesk.Services
             string dataStorePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, rutaDataArchivo);
             rutaArchivo = dataStorePath;
 
-
             string path = rutaArchivo;
-
-        }
-
-        private DateTime dateformater(string date)
-        {
-            return DateTime.ParseExact(date, "dd/MM/yyyy", CultureInfo.InvariantCulture);
         }
 
         public void SaveUsers(List<UserModel> userLists)
@@ -46,34 +39,33 @@ namespace OctagonHelpdesk.Services
                         escritor.Write(user.Lastname);
                         escritor.Write(user.Email);
                         escritor.Write((int)user.Departamento);
-                        escritor.Write(user.CreationDate.ToString("dd/MM/yyyy"));
+                        escritor.Write(user.CreationDate.ToString("dd/MM/yyyy HH:mm:ss"));
                         escritor.Write(user.EncryptedPassword); // Guardar la contraseña encriptada
 
                         // Escribir LastUpdatedDate
                         escritor.Write(user.LastUpdatedDate.HasValue);
                         if (user.LastUpdatedDate.HasValue)
                         {
-                            escritor.Write(user.LastUpdatedDate.Value.ToString("dd/MM/yyyy"));
+                            escritor.Write(user.LastUpdatedDate.Value.ToString("dd/MM/yyyy HH:mm:ss"));
                         }
 
                         // Escribir DeactivationDate
                         escritor.Write(user.DeactivationDate.HasValue);
                         if (user.DeactivationDate.HasValue)
                         {
-                            escritor.Write(user.DeactivationDate.Value.ToString("dd/MM/yyyy"));
+                            escritor.Write(user.DeactivationDate.Value.ToString("dd/MM/yyyy HH:mm:ss"));
                         }
 
                         // Escribir ReactivationDate
                         escritor.Write(user.ReactivationDate.HasValue);
                         if (user.ReactivationDate.HasValue)
                         {
-                            escritor.Write(user.ReactivationDate.Value.ToString("dd/MM/yyyy"));
+                            escritor.Write(user.ReactivationDate.Value.ToString("dd/MM/yyyy HH:mm:ss"));
                         }
                     }
                 }
             }
         }
-
 
         public List<UserModel> GetUsers()
         {
@@ -108,23 +100,23 @@ namespace OctagonHelpdesk.Services
 
                             userModel.SetEncryptedPassword(lector.ReadString()); // Leer la contraseña encriptada
 
-                            // Leer LastUpdatedDate
+
                             if (lector.ReadBoolean())
                             {
-                                userModel.LastUpdatedDate = DateTime.ParseExact(lector.ReadString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                                userModel.LastUpdatedDate = SafeParseDate(lector.ReadString());
                             }
 
-                            // Leer DeactivationDate
                             if (lector.ReadBoolean())
                             {
-                                userModel.DeactivationDate = DateTime.ParseExact(lector.ReadString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                                userModel.DeactivationDate = SafeParseDate(lector.ReadString());
                             }
 
-                            // Leer ReactivationDate
                             if (lector.ReadBoolean())
                             {
-                                userModel.ReactivationDate = DateTime.ParseExact(lector.ReadString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                                userModel.ReactivationDate = SafeParseDate(lector.ReadString());
                             }
+
+                           
 
                             userModels.Add(userModel);
                         }
@@ -140,13 +132,25 @@ namespace OctagonHelpdesk.Services
 
         private DateTime ParseDate(string dateString)
         {
-            if (DateTime.TryParseExact(dateString, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime date))
+            if (DateTime.TryParseExact(dateString, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime date))
             {
                 return date;
             }
             else
             {
                 throw new FormatException($"La cadena '{dateString}' no es una fecha válida.");
+            }
+        }
+        private DateTime? SafeParseDate(string dateString)
+        {
+            if (DateTime.TryParseExact(dateString, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime date))
+            {
+                return date;
+            }
+            else
+            {
+                // Manejar el error de fecha no válida
+                return null;
             }
         }
         public void SaveUser(UserModel user)

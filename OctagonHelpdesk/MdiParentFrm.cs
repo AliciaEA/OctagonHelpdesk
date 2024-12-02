@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using OctagonHelpdesk.Formularios;
 using OctagonHelpdesk.Models;
+using OctagonHelpdesk.Services;
 
 
 namespace OctagonHelpdesk
@@ -54,6 +55,16 @@ namespace OctagonHelpdesk
                 {
                     currentUser = loginForm.CurrentUser;
                     this.Show();
+                    if (!currentUser.Roles.AdminPerms)
+                    {
+                        btnRegUsuarios.Visible = false;
+
+                    }
+                    else
+                    {
+                        btnRegUsuarios.Visible = true;
+                    }
+                    this.WindowState = FormWindowState.Maximized;
                     // Aquí puedes agregar lógica adicional para manejar el usuario logueado
                     Home home = Application.OpenForms.OfType<Home>().FirstOrDefault();
                     /*busca si ya existe una instancia de RegTicketFrm abierta. Si encuentra una, la asigna a regTicketFrm.*/
@@ -300,10 +311,26 @@ namespace OctagonHelpdesk
             // Volver a llamar al método On_Load para mostrar el formulario de inicio de sesión
             On_Load(sender, e);
         }
+        UsuarioDao usuarios = new UsuarioDao();
+        
+        
+        private void OnUsuarioCreated(UserModel usuario)
+        {
+            int indexUsuario = usuarios.FindPosition(usuario.IDUser); // Busca la posición del usuario en la lista
 
+            if (indexUsuario != -1) //Si el usuario ya existe, se actualiza
+            {
+                usuarios.UpdateUsuario(usuario);
+            }
+            else
+            {
+                usuarios.AddUsuario(usuario); //Si no existe, se agrega
+            }
+        }
         private void btnVerPerfil_Click(object sender, EventArgs e)
         {
             CrearUsuarioForm perfilFrm = new CrearUsuarioForm(currentUser);
+            perfilFrm.UsuarioCreated += OnUsuarioCreated;
             perfilFrm.ShowDialog();
 
         }

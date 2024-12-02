@@ -130,7 +130,24 @@ namespace OctagonHelpdesk.Formularios
 
         private void GenerateReport()
         {
-            ReportDataSource rds = new ReportDataSource("DsDatos", usuarios.GetUsuarios());
+            List<UserModel> filteredUsuarios = new List<UserModel>();
+            switch (cmbPermisos.SelectedItem.ToString())
+            {
+                case "Todos":
+                    filteredUsuarios = usuarios.GetUsuarios();
+                    break;
+                case "Admin":
+                    filteredUsuarios = usuarios.GetUsuariosByAdminPerms();
+                    break;
+                case "IT":
+                    filteredUsuarios = usuarios.GetUsuariosByITPerms();
+                    break;
+                case "Basico":
+                    filteredUsuarios = usuarios.GetUsuariosByBasicPerms();
+                    break;
+            }
+
+            ReportDataSource rds = new ReportDataSource("DsDatos", filteredUsuarios);
             RptVistaPrevia reporte = new RptVistaPrevia();
             reporte.reportViewer1.LocalReport.DataSources.Clear();
             reporte.reportViewer1.LocalReport.DataSources.Add(rds);
@@ -138,11 +155,46 @@ namespace OctagonHelpdesk.Formularios
             reporte.reportViewer1.RefreshReport();
             reporte.ShowDialog();
         }
+        
+        public void GenerarReportTodos(List<UserModel> filteredUsuarios)
+        {
+            ReportDataSource rds = new ReportDataSource("DsDatos", filteredUsuarios);
+            RptVistaPrevia reporte = new RptVistaPrevia();
+            reporte.reportViewer1.LocalReport.DataSources.Clear();
+            reporte.reportViewer1.LocalReport.DataSources.Add(rds);
+            reporte.reportViewer1.LocalReport.ReportEmbeddedResource = "OctagonHelpdesk.Reportes.RptUsers.rdlc";
+            reporte.reportViewer1.RefreshReport();
+            reporte.ShowDialog();
+
+        }
 
         private void btnReportesVistaPrevia_Click(object sender, EventArgs e)
         {
             GenerateReport();
         }
 
+        private void cmbPermisos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<UserModel> filteredUsuarios = new List<UserModel>();
+            switch(cmbPermisos.SelectedItem.ToString())
+            {
+                case "Todos":
+                    filteredUsuarios = usuarios.GetUsuarios();
+                    break;
+                case "Admin":
+                    filteredUsuarios = usuarios.GetUsuariosByAdminPerms();
+                    break;
+                case "IT":
+                    filteredUsuarios = usuarios.GetUsuariosByITPerms();
+                    break;
+                case "Basico":
+                    filteredUsuarios = usuarios.GetUsuariosByBasicPerms();
+                    break;
+            }
+            bindingSource1.DataSource = filteredUsuarios;
+            bindingSource1.ResetBindings(false);
+        }
+
+       
     }
 }

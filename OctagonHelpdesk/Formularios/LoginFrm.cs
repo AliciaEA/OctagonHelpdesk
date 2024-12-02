@@ -26,8 +26,8 @@ namespace OctagonHelpdesk
             }
             else
             {
-                try
-                {
+                //try
+                //{
                     // Verificar las credenciales utilizando AuthenticationService
                     if (AuthenticationService.ValidateCredentials(inputuser, inputpassword))
                     {
@@ -41,15 +41,15 @@ namespace OctagonHelpdesk
                         MessageBox.Show("Credenciales inválidas. Por favor, inténtelo de nuevo.", "Error de autenticación", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                     }
-                }
-                catch (InvalidOperationException ex)
-                {
-                    MessageBox.Show(ex.Message, "Error de autenticación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Ocurrió un error inesperado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                //}
+                //catch (InvalidOperationException ex)
+                //{
+                //    MessageBox.Show(ex.Message, "Error de autenticación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //}
+                //catch (Exception ex)
+                //{
+                //    MessageBox.Show("Ocurrió un error inesperado: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //}
 
             }
         }
@@ -71,5 +71,17 @@ namespace OctagonHelpdesk
            
         }
 
+        private void cbPassVisible_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbPassVisible.Checked)
+            {
+                txbpassword.PasswordChar = '\0';
+            }
+            else
+            {
+                txbpassword.PasswordChar = '*';
+
+            }
+        }
     }
 }

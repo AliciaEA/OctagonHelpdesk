@@ -71,7 +71,7 @@ namespace OctagonHelpdesk.Formularios
 
             lblTicketID.Text = $"Ticket # {ticketSel.IDTicket}";
             txtSubject.Text = ticketSel.Subject;
-            txtDescription.Text = ticketSel.Descripcion;
+            txtDescription.Text = ticketSel.Description;
             cmbState.SelectedItem = ticketSel.StateProcess;
             cmbPriority.SelectedItem = ticketSel.Prioridad;
 
@@ -112,7 +112,7 @@ namespace OctagonHelpdesk.Formularios
                 {
                     ticket.CreatedBy = currentUser.IDUser;
                     ticket.Subject = subject;
-                    ticket.Descripcion = description;
+                    ticket.Description = description;
                     ticket.StateProcess = cmbState.SelectedItem != null ? (State)cmbState.SelectedItem : State.Creado;
                     ticket.Prioridad = (Priority)cmbPriority.SelectedItem;
 

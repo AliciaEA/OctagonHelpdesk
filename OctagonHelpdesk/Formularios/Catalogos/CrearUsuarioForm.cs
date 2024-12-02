@@ -121,14 +121,28 @@ namespace OctagonHelpdesk.Formularios
                 ValidarDatosGenerales();
                 ValidarPermisos();
                 ValidarLogUser();
+                
+               
 
                 string email = tbEmail.Text.Trim();
                 usuario.Email = email;
                 usuario.Roles.ITPerms = cbIT.Checked ? true : false;
                 usuario.Roles.AdminPerms = cbAdmin.Checked ? true : false;
                 usuario.Roles.BasicPerms = cbEmpleado.Checked ? true : false;
-                UsuarioCreated?.Invoke(usuario);
+                
+               
+                
+                if (!string.IsNullOrEmpty(txtPassword.Text.Trim()))
+                {
 
+                    usuario.SetPassword(txtPassword.Text.Trim());
+
+                }
+                else
+                {
+                    ValidarClave();
+                }
+                UsuarioCreated?.Invoke(usuario);
                 this.Close();
             }
             catch (Exception ex)
@@ -171,6 +185,7 @@ namespace OctagonHelpdesk.Formularios
             {
 
                 ValidarDatosGenerales();
+                
 
                 gbDatosGenerales.Visible = false;
                 gbUserLog.Visible = true;
@@ -183,7 +198,7 @@ namespace OctagonHelpdesk.Formularios
                 txtUsername.Text = usuario.Username;
                 txtUsername.Enabled = false;
                 txtPassword.Focus();
-
+                
             }
             catch (Exception ex)
             {
@@ -203,14 +218,19 @@ namespace OctagonHelpdesk.Formularios
 
         }
 
+        public bool ValidarClave()
+        {
+            if (string.IsNullOrEmpty(usuario.EncryptedPassword))
+            {
+                return false;
+            }
+            return true;
+
+        }
         //Validar las credenciales
         public void ValidarLogUser()
         {
-            if (string.IsNullOrEmpty(usuario.Username.Trim()) || string.IsNullOrEmpty(usuario.EncryptedPassword))
-            {
-                throw new Exception("La contraseña no puede estar vacía.");
-            }
-            else if (string.IsNullOrEmpty(tbEmail.Text.Trim()))
+            if (string.IsNullOrEmpty(tbEmail.Text.Trim()))
             {
                 throw new Exception("El correo electrónico no puede estar vacío.");
             }
@@ -255,27 +275,7 @@ namespace OctagonHelpdesk.Formularios
 
         private void txtPassword_Leave(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("¿Deseas guardar esta contraseña como tu nueva clave?", "Confirmación", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
-            {
-                if (!string.IsNullOrEmpty(txtPassword.Text.Trim()))
-                {
-                    usuario.SetPassword(txtPassword.Text.Trim());
-                    
-                }
-                else
-                {
-                    MessageBox.Show("La contraseña no puede estar vacía.", "¡Espera!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                   
-                    txtPassword.Clear();
-                    txtPassword.Focus();
-                }
-            }
-            else
-            {
-                txtPassword.Clear();
-                tbEmail.Focus();
-            }
+
         }
 
         private void btnActividad_Click(object sender, EventArgs e)
@@ -331,6 +331,18 @@ namespace OctagonHelpdesk.Formularios
             btnGeneratePassword.Enabled = true;
             btnConfirmUserCreation.Enabled = true;
             cbActiveState.Enabled = false;
+        }
+
+        private void cbPassVisible_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbPassVisible.Checked)
+            {
+                txtPassword.PasswordChar = '\0';
+            }
+            else
+            {
+                txtPassword.PasswordChar = '*';
+            }
         }
 
         //private void tbEmail_KeyPress(object sender, KeyPressEventArgs e)

@@ -16,38 +16,32 @@ namespace OctagonHelpdesk.Services
 
         public UsuarioDao() 
         {
-            //MassFillLocal();
-            //fileHelper.SaveUser(usuarios,true);
             
             usuarios = fileHelper.GetUsers();
         }
 
-        
-        public void InsertU(int index, UserModel usuario)
+        //Segun Tipo de Rol
+        public List<UserModel> GetUsuariosByAdminPerms()
         {
-            usuarios.Insert(index, usuario);
-           
+            usuarios = fileHelper.GetUsers();
+            return usuarios.Where(usuario => usuario.Roles.AdminPerms).ToList();
         }
 
-        public void Fillusers(List<UserModel> usuariosL)
+        public List<UserModel> GetUsuariosByITPerms()
         {
-            
-            usuariosL = fileHelper.GetUsers();
-            //List < UserModel> temp = fileHelper.GetUsers();
-            //if (usuarios == null)
-            //{
-            //    MessageBox.Show("Error", "Recorda este error dao", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-            //else
-            //{
-            //    foreach (var user in temp)
-            //    {
-            //        Console.WriteLine(user.IDUser);
-            //        Console.WriteLine(user.Name);
-            //        Console.WriteLine(user.GetPassword(true));
-            //    }
-            //}
+            usuarios = fileHelper.GetUsers();
+            return usuarios.Where(usuario => usuario.Roles.ITPerms).ToList();
         }
+
+        public List<UserModel> GetUsuariosByBasicPerms()
+        {
+            usuarios = fileHelper.GetUsers();
+            return usuarios.Where(usuario => usuario.Roles.BasicPerms).ToList();
+        }
+        
+       
+
+     
 
         public void AddUsuario(UserModel usuario)
         {

@@ -31,11 +31,6 @@ public class TicketFileHelper
         }
     }
 
-    private DateTime DateFormater(string date)
-    {
-        return DateTime.ParseExact(date, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-    }
-
     public void SaveTickets(List<Ticket> ticketList)
     {
         using (FileStream archivo = new FileStream(rutaArchivo, FileMode.Create, FileAccess.Write))
@@ -48,15 +43,15 @@ public class TicketFileHelper
                     escritor.Write(ticket.ActiveState);
                     escritor.Write(ticket.CreatedBy);
                     escritor.Write(ticket.Subject);
-                    escritor.Write(ticket.Descripcion);
+                    escritor.Write(ticket.Description);
                     escritor.Write((int)ticket.StateProcess);
                     escritor.Write((int)ticket.Prioridad);
                     escritor.Write(ticket.AsignadoA.HasValue ? ticket.AsignadoA.Value : -1); // Manejar nulo
-                    escritor.Write(ticket.CreationDate.ToString("dd/MM/yyyy"));
-                    escritor.Write(ticket.LastUpdatedDate.ToString("dd/MM/yyyy"));
-                    escritor.Write(ticket.DeactivationDate.ToString("dd/MM/yyyy"));
-                    escritor.Write(ticket.ReactivationDate.ToString("dd/MM/yyyy"));
-                    escritor.Write(ticket.CloseDate.ToString("dd/MM/yyyy"));
+                    escritor.Write(ticket.CreationDate.ToString("dd/MM/yyyy HH:mm:ss"));
+                    escritor.Write(ticket.LastUpdatedDate.HasValue ? ticket.LastUpdatedDate.Value.ToString("dd/MM/yyyy HH:mm:ss") : string.Empty);
+                    escritor.Write(ticket.DeactivationDate.HasValue ? ticket.DeactivationDate.Value.ToString("dd/MM/yyyy HH:mm:ss") : string.Empty);
+                    escritor.Write(ticket.ReactivationDate.HasValue ? ticket.ReactivationDate.Value.ToString("dd/MM/yyyy HH:mm:ss") : string.Empty);
+                    escritor.Write(ticket.CloseDate.HasValue ? ticket.CloseDate.Value.ToString("dd/MM/yyyy HH:mm:ss") : string.Empty);
                     escritor.Write(ticket.imagepath ?? string.Empty); // Manejar nulo
                 }
             }
@@ -82,15 +77,15 @@ public class TicketFileHelper
                             ActiveState = lector.ReadBoolean(),
                             CreatedBy = lector.ReadInt32(),
                             Subject = lector.ReadString(),
-                            Descripcion = lector.ReadString(),
+                            Description = lector.ReadString(),
                             StateProcess = (State)lector.ReadInt32(),
                             Prioridad = (Priority)lector.ReadInt32(),
                             AsignadoA = lector.ReadInt32() == -1 ? (int?)null : lector.ReadInt32(),
                             CreationDate = ParseDate(lector.ReadString()),
-                            LastUpdatedDate = ParseDate(lector.ReadString()),
-                            DeactivationDate = ParseDate(lector.ReadString()),
-                            ReactivationDate = ParseDate(lector.ReadString()),
-                            CloseDate = ParseDate(lector.ReadString()),
+                            LastUpdatedDate = string.IsNullOrEmpty(lector.ReadString()) ? (DateTime?)null : ParseDate(lector.ReadString()),
+                            DeactivationDate = string.IsNullOrEmpty(lector.ReadString()) ? (DateTime?)null : ParseDate(lector.ReadString()),
+                            ReactivationDate = string.IsNullOrEmpty(lector.ReadString()) ? (DateTime?)null : ParseDate(lector.ReadString()),
+                            CloseDate = string.IsNullOrEmpty(lector.ReadString()) ? (DateTime?)null : ParseDate(lector.ReadString()),
                             imagepath = lector.ReadString()
                         };
 
@@ -119,13 +114,25 @@ public class TicketFileHelper
 
     private DateTime ParseDate(string dateString)
     {
-        if (DateTime.TryParseExact(dateString, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime date))
+        if (DateTime.TryParseExact(dateString, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime date))
         {
             return date;
         }
         else
         {
-            throw new FormatException($"{dateString} no es una fecha válida.");
+            throw new FormatException($"La cadena '{dateString}' no es una fecha válida.");
+        }
+    }
+    private DateTime? SafeParseDate(string dateString)
+    {
+        if (DateTime.TryParseExact(dateString, "dd/MM/yyyy HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime date))
+        {
+            return date;
+        }
+        else
+        {
+            // Manejar el error de fecha no válida
+            return null;
         }
     }
 
@@ -135,5 +142,4 @@ public class TicketFileHelper
         tickets.Add(ticket);
         SaveTickets(tickets);
     }
-
 }
